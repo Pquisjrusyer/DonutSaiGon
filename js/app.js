@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------------------------------------
   // 6. Cart State & Toast Notifications
   // ------------------------------------------------------------------------
-  let cartCount = 0;
+  let cartCount = parseInt(localStorage.getItem('ds_cart_count') || '0', 10);
 
   function showToast(message, icon = '✓') {
     const toastContainer = document.getElementById('toastContainer');
@@ -489,7 +489,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileCartBadge) {
       mobileCartBadge.textContent = cartCount;
     }
+    localStorage.setItem('ds_cart_count', cartCount.toString());
   }
+
+  // Initial cart UI update on page load
+  updateCartUI();
 
   document.addEventListener('click', (e) => {
     const ctaBtn = e.target.closest('.card-cta-btn, .product-card');
@@ -502,12 +506,6 @@ document.addEventListener('DOMContentLoaded', () => {
       updateCartUI();
       showToast(`Đã thêm ${productName} vào giỏ hàng!`);
       return;
-    }
-
-    const navCartBtn = e.target.closest('#navCartBtn, #mobileCartLink');
-    if (navCartBtn) {
-      e.preventDefault();
-      showToast(`Giỏ hàng của bạn đang có ${cartCount} sản phẩm.`);
     }
   });
 
@@ -761,5 +759,29 @@ document.addEventListener('DOMContentLoaded', () => {
         clearProps: 'transform,opacity',
       });
     }
+
+    // Cart page animations
+    if (document.querySelector('.cart-bento-grid')) {
+      gsap.from('.cart-empty-card, .cart-summary-card', {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+        clearProps: 'transform,opacity',
+      });
+    }
+  }
+
+  // Cart page checkout button action
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      if (cartCount === 0) {
+        showToast('Giỏ hàng của bạn đang trống. Hãy chọn thêm bánh nhé!');
+      } else {
+        showToast('Đang kết nối cổng thanh toán an toàn SSL...');
+      }
+    });
   }
 });

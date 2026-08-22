@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ Hàng | Donut Saigon - Bánh Donut Nghệ Nhân</title>
+  <meta name="description" content="Xem lại các sản phẩm donut bạn đã chọn, áp dụng mã ưu đãi và tiến hành thanh toán an toàn tại Donut Saigon.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Giỏ Hàng Của Bạn | Donut Saigon">
+  <meta property="og:description" content="Thưởng thức những chiếc bánh donut thủ công tươi mới thơm ngon nhất cùng Donut Saigon.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Maven Pro & Display Typefaces -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&family=Montserrat:wght@800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="cart-page">
+  <!-- Reusable Header Web Component -->
+  <donut-header></donut-header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="cart-main-section" aria-label="Khu vực giỏ hàng">
+      <div class="cart-wrapper">
+        <!-- Back Navigation Link -->
+        <div class="cart-back-bar">
+          <a href="menu.html" class="cart-back-link">
+            <img src="assets/icon-back-arrow.svg" alt="" class="back-icon" width="14" height="14">
+            <span>Quay lại thực đơn</span>
+          </a>
+        </div>
+
+        <!-- Header -->
+        <header class="cart-header">
+          <h1 class="cart-header-title">Giỏ hàng của bạn</h1>
+          <p class="cart-header-desc">Thưởng thức những chiếc bánh thủ công thơm ngon nhất.</p>
+        </header>
+
+        <!-- Cart Bento Content -->
+        <div class="cart-bento-grid">
+          <!-- Left Column: Cart Items & Empty State -->
+          <div class="cart-items-col" id="cartItemsContainer">
+            <!-- Empty State (Figma Node 1348:10296) -->
+            <div class="cart-empty-card" id="cartEmptyState">
+              <div class="cart-empty-img-wrap">
+                <img src="assets/cart-empty-illustration.png" alt="Giỏ hàng trống" class="cart-empty-img">
+              </div>
+              <h2 class="cart-empty-title">Giỏ Hàng Bạn Đang Trống</h2>
+              <p class="cart-empty-sub">Hãy chọn những hương vị donut yêu thích để lấp đầy chiếc hộp ngọt ngào nhé!</p>
+              <a href="menu.html" class="btn-primary-lg cart-shop-now-btn">Khám phá Menu ngay</a>
+            </div>
+
+            <!-- Dynamic Cart Items List (Shown when cart has items) -->
+            <div class="cart-items-list" id="cartItemsList" style="display: none;">
+              <!-- Generated dynamically via JS -->
+            </div>
+          </div>
+
+          <!-- Right Column: Summary Section -->
+          <aside class="cart-summary-col">
+            <div class="cart-summary-card">
+              <h2 class="cart-summary-title">Tổng đơn hàng</h2>
+
+              <div class="cart-summary-breakdown">
+                <div class="summary-row">
+                  <span class="summary-label">Tạm tính</span>
+                  <span class="summary-value" id="subtotalPrice">0đ</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-label">Phí giao hàng</span>
+                  <span class="summary-value text-free" id="shippingFee">0đ</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-label">Ưu đãi (DONUT5)</span>
+                  <span class="summary-value text-discount" id="discountValue">0đ</span>
+                </div>
+              </div>
+
+              <div class="cart-summary-total-wrap">
+                <div class="total-label-box">
+                  <span class="total-label-top">Tổng</span>
+                  <span class="total-label-bot">cộng</span>
+                </div>
+                <span class="total-price-value" id="totalPrice">0đ</span>
+              </div>
+
+              <div class="cart-summary-actions">
+                <button class="btn-checkout-primary" id="checkoutBtn" aria-label="Tiến hành thanh toán">
+                  <span>Thanh toán ngay</span>
+                  <img src="assets/icon-arrow-checkout.svg" alt="" class="checkout-arrow-icon" width="16" height="16">
+                </button>
+                <a href="menu.html" class="btn-continue-shopping">
+                  <span>Tiếp tục mua sắm</span>
+                </a>
+              </div>
+
+              <!-- SSL Secure Badge -->
+              <div class="ssl-badge-box">
+                <img src="assets/icon-ssl-shield.svg" alt="Bảo mật SSL" class="ssl-shield-icon" width="16" height="20">
+                <span class="ssl-badge-text">Thanh toán an toàn 100% với mã hóa SSL</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Reusable Footer Component -->
+  <donut-footer></donut-footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Lenis & GSAP Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Components & Logic -->
+  <script src="components/header.js" defer></script>
+  <script src="components/footer.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

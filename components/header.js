@@ -43,7 +43,7 @@ class DonutHeader extends HTMLElement {
                 </a>
               </li>
               <li class="nav-item" data-node-id="I2612:49012;1213:13344">
-                <a href="#cart" class="nav-link nav-cart" id="navCartBtn" aria-label="Giỏ hàng">
+                <a href="cart.html" class="nav-link nav-cart" id="navCartBtn" aria-label="Giỏ hàng">
                   <span>GIỎ HÀNG</span>
                   <span class="nav-icon cart-icon" aria-hidden="true" data-node-id="I2612:49012;2213:36266">
                     <img src="assets/icon-cart-1.svg" alt="" class="icon-cart-part">
@@ -76,7 +76,7 @@ class DonutHeader extends HTMLElement {
             <li><a href="about.html" class="drawer-link" id="mobNavAbout">GIỚI THIỆU</a></li>
             <li><a href="menu.html" class="drawer-link" id="mobNavMenu">MENU</a></li>
             <li><a href="account.html" class="drawer-link" id="mobNavAccount">TÀI KHOẢN</a></li>
-            <li><a href="#cart" class="drawer-link" id="mobileCartLink">GIỎ HÀNG (<span id="mobileCartBadge">0</span>)</a></li>
+            <li><a href="cart.html" class="drawer-link" id="mobileCartLink">GIỎ HÀNG (<span id="mobileCartBadge">0</span>)</a></li>
           </ul>
           <div class="drawer-footer">
             <p class="drawer-tagline">Nạp vị ngọt, bật công suất cùng Donut Saigon!</p>
