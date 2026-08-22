@@ -453,8 +453,25 @@ document.addEventListener('DOMContentLoaded', () => {
   updateReviewSlider();
 
   // ------------------------------------------------------------------------
-  // 6. Cart State & Toast Notifications
+  // 6. Cart State Management & Toast Notifications
   // ------------------------------------------------------------------------
+  function getCartItems() {
+    try {
+      const items = JSON.parse(localStorage.getItem('ds_cart_items') || '[]');
+      return Array.isArray(items) ? items : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveCartItems(items) {
+    localStorage.setItem('ds_cart_items', JSON.stringify(items));
+    const totalCount = items.reduce((sum, item) => sum + (item.qty || 1), 0);
+    cartCount = totalCount;
+    localStorage.setItem('ds_cart_count', cartCount.toString());
+    updateCartUI();
+  }
+
   let cartCount = parseInt(localStorage.getItem('ds_cart_count') || '0', 10);
 
   function showToast(message, icon = '✓') {
@@ -489,22 +506,47 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileCartBadge) {
       mobileCartBadge.textContent = cartCount;
     }
-    localStorage.setItem('ds_cart_count', cartCount.toString());
+  }
+
+  function addToCart(product) {
+    const items = getCartItems();
+    const existing = items.find((i) => i.id === product.id || i.name.toLowerCase() === product.name.toLowerCase());
+    if (existing) {
+      existing.qty += (product.qty || 1);
+    } else {
+      items.push({
+        id: product.id || product.name.toLowerCase().replace(/\s+/g, '-'),
+        name: product.name,
+        price: product.price || 30000,
+        img: product.img || 'assets/menu-sp-4.png',
+        qty: product.qty || 1,
+      });
+    }
+    saveCartItems(items);
+    showToast(`Đã thêm ${product.name} vào giỏ hàng!`);
   }
 
   // Initial cart UI update on page load
   updateCartUI();
 
+  // Home Page: Card CTA Click
   document.addEventListener('click', (e) => {
     const ctaBtn = e.target.closest('.card-cta-btn, .product-card');
     if (ctaBtn) {
       e.stopPropagation();
       const card = ctaBtn.closest('.product-card');
-      const productName = ctaBtn.getAttribute('data-product-name') || 
-                          (card ? card.querySelector('.card-title')?.textContent : 'Bánh Donut');
-      cartCount += 1;
-      updateCartUI();
-      showToast(`Đã thêm ${productName} vào giỏ hàng!`);
+      const titleEl = card ? card.querySelector('.card-title') : null;
+      const imgEl = card ? card.querySelector('img.product-img') : null;
+      const productName = ctaBtn.getAttribute('data-product-name') || (titleEl ? titleEl.textContent.trim() : 'Bánh Donut');
+      const productImg = imgEl ? imgEl.getAttribute('src') : 'assets/menu-sp-4.png';
+      
+      addToCart({
+        id: productName.toLowerCase().replace(/\s+/g, '-'),
+        name: productName,
+        price: 35000,
+        img: productImg,
+        qty: 1
+      });
       return;
     }
   });
@@ -659,19 +701,29 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ------------------------------------------------------------------------
-  // 9. Account Page & Menu Cart Actions Delegation
+  // 9. Menu Page: Add to Cart Action
   // ------------------------------------------------------------------------
   document.addEventListener('click', (e) => {
-    // Menu Page: Add to cart
     const menuAddBtn = e.target.closest('.menu-add-cart-btn');
     if (menuAddBtn) {
       e.stopPropagation();
       const card = menuAddBtn.closest('.menu-product-card');
-      const productName = menuAddBtn.getAttribute('data-product-name') ||
-                          card?.querySelector('.menu-card-title')?.textContent || 'Bánh Donut';
-      cartCount += 1;
-      updateCartUI();
-      showToast(`Đã thêm ${productName} vào giỏ hàng!`);
+      const titleEl = card ? card.querySelector('.menu-card-title') : null;
+      const priceEl = card ? card.querySelector('.menu-card-price') : null;
+      const imgEl = card ? card.querySelector('.menu-card-img') : null;
+
+      const productName = menuAddBtn.getAttribute('data-product-name') || (titleEl ? titleEl.textContent.trim() : 'Bánh Donut');
+      const productPriceText = priceEl ? priceEl.textContent.replace(/[^0-9]/g, '') : '30000';
+      const productPrice = parseInt(productPriceText, 10) || 30000;
+      const productImg = imgEl ? imgEl.getAttribute('src') : 'assets/menu-sp-1.png';
+
+      addToCart({
+        id: productName.toLowerCase().replace(/\s+/g, '-'),
+        name: productName,
+        price: productPrice,
+        img: productImg,
+        qty: 1
+      });
       return;
     }
 
@@ -701,7 +753,132 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // GSAP animations for About, Menu, and Account pages
+  // ------------------------------------------------------------------------
+  // 10. Cart & Checkout Dynamic Render Logic (Figma 1348:10296 & 1343:10552)
+  // ------------------------------------------------------------------------
+  function renderCartPage() {
+    const emptyView = document.getElementById('cartEmptyView');
+    const filledView = document.getElementById('cartFilledView');
+    const itemsListContainer = document.getElementById('checkoutItemsList');
+    const subtotalEl = document.getElementById('checkoutSubtotal');
+    const totalEl = document.getElementById('checkoutTotal');
+
+    if (!emptyView || !filledView) return;
+
+    const items = getCartItems();
+
+    if (items.length === 0) {
+      emptyView.style.display = 'block';
+      filledView.style.display = 'none';
+      return;
+    }
+
+    emptyView.style.display = 'none';
+    filledView.style.display = 'block';
+
+    if (itemsListContainer) {
+      itemsListContainer.innerHTML = items.map((item) => {
+        const itemTotal = (item.price * item.qty).toLocaleString('vi-VN');
+        return `
+          <div class="checkout-item-row" data-product-id="${item.id}">
+            <div class="checkout-item-thumb">
+              <img src="${item.img}" alt="${item.name}" loading="lazy">
+            </div>
+            <div class="checkout-item-info">
+              <div class="checkout-item-name">${item.name}</div>
+              <div class="checkout-item-qty-wrap">
+                <span>Số lượng:</span>
+                <button type="button" class="qty-btn" data-action="decrease" data-id="${item.id}" aria-label="Giảm số lượng">-</button>
+                <span class="qty-num">${item.qty}</span>
+                <button type="button" class="qty-btn" data-action="increase" data-id="${item.id}" aria-label="Tăng số lượng">+</button>
+              </div>
+            </div>
+            <div class="checkout-item-price">${itemTotal}đ</div>
+            <button type="button" class="checkout-item-del-btn" data-action="delete" data-id="${item.id}" aria-label="Xóa ${item.name}">&times;</button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    const subtotal = items.reduce((sum, i) => sum + (i.price * i.qty), 0);
+    const shipping = 25000;
+    const total = subtotal + shipping;
+
+    if (subtotalEl) {
+      subtotalEl.textContent = `${subtotal.toLocaleString('vi-VN')}đ`;
+    }
+    if (totalEl) {
+      totalEl.textContent = `${total.toLocaleString('vi-VN')}đ`;
+    }
+  }
+
+  // Initial cart page render
+  renderCartPage();
+
+  // Cart item quantity & delete delegation
+  document.addEventListener('click', (e) => {
+    const actionBtn = e.target.closest('[data-action]');
+    if (!actionBtn) return;
+
+    const action = actionBtn.getAttribute('data-action');
+    const id = actionBtn.getAttribute('data-id');
+    if (!id) return;
+
+    const items = getCartItems();
+    const itemIndex = items.findIndex((i) => i.id === id);
+
+    if (itemIndex > -1) {
+      if (action === 'increase') {
+        items[itemIndex].qty += 1;
+      } else if (action === 'decrease') {
+        if (items[itemIndex].qty > 1) {
+          items[itemIndex].qty -= 1;
+        } else {
+          items.splice(itemIndex, 1);
+        }
+      } else if (action === 'delete') {
+        items.splice(itemIndex, 1);
+      }
+      saveCartItems(items);
+      renderCartPage();
+    }
+  });
+
+  // Payment Option selection toggle
+  const paymentOptions = document.querySelectorAll('.payment-option-item');
+  paymentOptions.forEach((option) => {
+    option.addEventListener('click', () => {
+      paymentOptions.forEach((opt) => opt.classList.remove('active'));
+      option.classList.add('active');
+      const radio = option.querySelector('.payment-radio-input');
+      if (radio) radio.checked = true;
+    });
+  });
+
+  // Complete Order button
+  const completeOrderBtn = document.getElementById('btnCompleteOrder');
+  if (completeOrderBtn) {
+    completeOrderBtn.addEventListener('click', () => {
+      const nameInput = document.getElementById('shipName');
+      const phoneInput = document.getElementById('shipPhone');
+      const addressInput = document.getElementById('shipAddress');
+
+      if (!nameInput?.value.trim() || !phoneInput?.value.trim() || !addressInput?.value.trim()) {
+        showToast('Vui lòng điền đầy đủ họ tên, số điện thoại và địa chỉ nhận hàng!');
+        return;
+      }
+
+      showToast('🎉 Đặt hàng thành công! Đơn hàng đang được chuẩn bị giao đến bạn.', '✓');
+      saveCartItems([]);
+      setTimeout(() => {
+        renderCartPage();
+      }, 800);
+    });
+  }
+
+  // ------------------------------------------------------------------------
+  // 11. GSAP Animations for Subpages
+  // ------------------------------------------------------------------------
   if (typeof gsap !== 'undefined') {
     // About page animations
     if (document.querySelector('.about-hero-section')) {
@@ -761,8 +938,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Cart page animations
-    if (document.querySelector('.cart-bento-grid')) {
-      gsap.from('.cart-empty-card, .cart-summary-card', {
+    if (document.querySelector('.checkout-bento-grid, .cart-empty-card')) {
+      gsap.from('.checkout-card, .cart-empty-card', {
         y: 30,
         opacity: 0,
         duration: 0.8,
@@ -771,17 +948,5 @@ document.addEventListener('DOMContentLoaded', () => {
         clearProps: 'transform,opacity',
       });
     }
-  }
-
-  // Cart page checkout button action
-  const checkoutBtn = document.getElementById('checkoutBtn');
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', () => {
-      if (cartCount === 0) {
-        showToast('Giỏ hàng của bạn đang trống. Hãy chọn thêm bánh nhé!');
-      } else {
-        showToast('Đang kết nối cổng thanh toán an toàn SSL...');
-      }
-    });
   }
 });

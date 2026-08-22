@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Giỏ Hàng | Donut Saigon - Bánh Donut Nghệ Nhân</title>
-  <meta name="description" content="Xem lại các sản phẩm donut bạn đã chọn, áp dụng mã ưu đãi và tiến hành thanh toán an toàn tại Donut Saigon.">
+  <title>Giỏ Hàng & Thanh Toán | Donut Saigon - Bánh Donut Nghệ Nhân</title>
+  <meta name="description" content="Xem lại các sản phẩm donut bạn đã chọn, nhập thông tin giao hàng và tiến hành thanh toán an toàn tại Donut Saigon.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Giỏ Hàng Của Bạn | Donut Saigon">
+  <meta property="og:title" content="Giỏ Hàng & Thanh Toán | Donut Saigon">
   <meta property="og:description" content="Thưởng thức những chiếc bánh donut thủ công tươi mới thơm ngon nhất cùng Donut Saigon.">
   <meta property="og:type" content="website">
 
@@ -25,13 +25,13 @@
 
   <!-- Main Content -->
   <main>
-    <section class="cart-main-section" aria-label="Khu vực giỏ hàng">
+    <section class="cart-main-section" aria-label="Khu vực giỏ hàng và thanh toán">
       <div class="cart-wrapper">
         <!-- Back Navigation Link -->
         <div class="cart-back-bar">
           <a href="menu.html" class="cart-back-link">
             <img src="assets/icon-back-arrow.svg" alt="" class="back-icon" width="14" height="14">
-            <span>Quay lại thực đơn</span>
+            <span>Quay lại</span>
           </a>
         </div>
 
@@ -41,71 +41,202 @@
           <p class="cart-header-desc">Thưởng thức những chiếc bánh thủ công thơm ngon nhất.</p>
         </header>
 
-        <!-- Cart Bento Content -->
-        <div class="cart-bento-grid">
-          <!-- Left Column: Cart Items & Empty State -->
-          <div class="cart-items-col" id="cartItemsContainer">
-            <!-- Empty State (Figma Node 1348:10296) -->
-            <div class="cart-empty-card" id="cartEmptyState">
-              <div class="cart-empty-img-wrap">
-                <img src="assets/cart-empty-illustration.png" alt="Giỏ hàng trống" class="cart-empty-img">
+        <!-- ==========================================================
+             STATE 1: EMPTY CART VIEW (FIGMA NODE 1348:10296)
+             ========================================================== -->
+        <div class="cart-empty-view-wrapper" id="cartEmptyView" style="display: none;">
+          <div class="cart-bento-grid">
+            <div class="cart-items-col">
+              <div class="cart-empty-card">
+                <div class="cart-empty-img-wrap">
+                  <img src="assets/cart-empty-illustration.png" alt="Giỏ hàng trống" class="cart-empty-img">
+                </div>
+                <h2 class="cart-empty-title">Giỏ Hàng Bạn Đang Trống</h2>
+                <p class="cart-empty-sub">Hãy chọn những hương vị donut yêu thích để lấp đầy chiếc hộp ngọt ngào nhé!</p>
+                <a href="menu.html" class="btn-primary-lg cart-shop-now-btn">Khám phá Menu ngay</a>
               </div>
-              <h2 class="cart-empty-title">Giỏ Hàng Bạn Đang Trống</h2>
-              <p class="cart-empty-sub">Hãy chọn những hương vị donut yêu thích để lấp đầy chiếc hộp ngọt ngào nhé!</p>
-              <a href="menu.html" class="btn-primary-lg cart-shop-now-btn">Khám phá Menu ngay</a>
             </div>
 
-            <!-- Dynamic Cart Items List (Shown when cart has items) -->
-            <div class="cart-items-list" id="cartItemsList" style="display: none;">
-              <!-- Generated dynamically via JS -->
-            </div>
+            <aside class="cart-summary-col">
+              <div class="cart-summary-card">
+                <h2 class="cart-summary-title">Tổng đơn hàng</h2>
+                <div class="cart-summary-breakdown">
+                  <div class="summary-row">
+                    <span class="summary-label">Tạm tính</span>
+                    <span class="summary-value">0đ</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Phí giao hàng</span>
+                    <span class="summary-value text-free">0đ</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Ưu đãi (DONUT5)</span>
+                    <span class="summary-value text-discount">0đ</span>
+                  </div>
+                </div>
+
+                <div class="cart-summary-total-wrap">
+                  <div class="total-label-box">
+                    <span class="total-label-top">Tổng</span>
+                    <span class="total-label-bot">cộng</span>
+                  </div>
+                  <span class="total-price-value">0đ</span>
+                </div>
+
+                <div class="cart-summary-actions">
+                  <a href="menu.html" class="btn-checkout-primary" style="text-align: center; text-decoration: none;">
+                    <span>Chọn bánh ngay</span>
+                    <img src="assets/icon-arrow-checkout.svg" alt="" class="checkout-arrow-icon" width="16" height="16">
+                  </a>
+                </div>
+
+                <div class="ssl-badge-box">
+                  <img src="assets/icon-ssl-shield.svg" alt="Bảo mật SSL" class="ssl-shield-icon" width="16" height="20">
+                  <span class="ssl-badge-text">Thanh toán an toàn 100% với mã hóa SSL</span>
+                </div>
+              </div>
+            </aside>
           </div>
+        </div>
 
-          <!-- Right Column: Summary Section -->
-          <aside class="cart-summary-col">
-            <div class="cart-summary-card">
-              <h2 class="cart-summary-title">Tổng đơn hàng</h2>
-
-              <div class="cart-summary-breakdown">
-                <div class="summary-row">
-                  <span class="summary-label">Tạm tính</span>
-                  <span class="summary-value" id="subtotalPrice">0đ</span>
+        <!-- ==========================================================
+             STATE 2: FILLED CART / CHECKOUT VIEW (FIGMA NODE 1343:10552)
+             ========================================================== -->
+        <div class="checkout-view-wrapper" id="cartFilledView">
+          <div class="checkout-bento-grid">
+            <!-- Left Column: Shipping Information Form -->
+            <div class="checkout-shipping-col">
+              <section class="checkout-card shipping-card">
+                <div class="checkout-card-header">
+                  <img src="assets/icon-shipping-truck.svg" alt="" class="card-header-icon" width="22" height="16">
+                  <h2 class="checkout-card-title">Thông tin vận chuyển</h2>
                 </div>
-                <div class="summary-row">
-                  <span class="summary-label">Phí giao hàng</span>
-                  <span class="summary-value text-free" id="shippingFee">0đ</span>
-                </div>
-                <div class="summary-row">
-                  <span class="summary-label">Ưu đãi (DONUT5)</span>
-                  <span class="summary-value text-discount" id="discountValue">0đ</span>
-                </div>
-              </div>
 
-              <div class="cart-summary-total-wrap">
-                <div class="total-label-box">
-                  <span class="total-label-top">Tổng</span>
-                  <span class="total-label-bot">cộng</span>
-                </div>
-                <span class="total-price-value" id="totalPrice">0đ</span>
-              </div>
+                <form class="shipping-form" id="shippingForm" onsubmit="event.preventDefault();">
+                  <div class="form-row-grid">
+                    <div class="form-group">
+                      <label for="shipName" class="form-label">Họ và Tên</label>
+                      <input type="text" id="shipName" class="form-input" placeholder="Nguyễn Văn A" value="Nguyễn Văn A" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="shipPhone" class="form-label">Số điện thoại</label>
+                      <input type="tel" id="shipPhone" class="form-input" placeholder="0901 234 567" value="0901 234 567" required>
+                    </div>
+                  </div>
 
-              <div class="cart-summary-actions">
-                <button class="btn-checkout-primary" id="checkoutBtn" aria-label="Tiến hành thanh toán">
-                  <span>Thanh toán ngay</span>
-                  <img src="assets/icon-arrow-checkout.svg" alt="" class="checkout-arrow-icon" width="16" height="16">
-                </button>
-                <a href="menu.html" class="btn-continue-shopping">
-                  <span>Tiếp tục mua sắm</span>
-                </a>
-              </div>
+                  <div class="form-group">
+                    <label for="shipEmail" class="form-label">Email</label>
+                    <input type="email" id="shipEmail" class="form-input" placeholder="email@example.com" value="email@example.com" required>
+                  </div>
 
-              <!-- SSL Secure Badge -->
-              <div class="ssl-badge-box">
-                <img src="assets/icon-ssl-shield.svg" alt="Bảo mật SSL" class="ssl-shield-icon" width="16" height="20">
-                <span class="ssl-badge-text">Thanh toán an toàn 100% với mã hóa SSL</span>
-              </div>
+                  <div class="form-group">
+                    <label for="shipAddress" class="form-label">Địa chỉ giao hàng</label>
+                    <textarea id="shipAddress" class="form-textarea" rows="3" placeholder="Số nhà, tên đường, phường/xã...">123 Nguyễn Huệ, Phường Bến Nghé</textarea>
+                  </div>
+
+                  <div class="form-row-grid">
+                    <div class="form-group">
+                      <label for="shipDistrict" class="form-label">Quận/Huyện</label>
+                      <div class="custom-select-wrap">
+                        <select id="shipDistrict" class="form-select">
+                          <option value="Quận 1" selected>Quận 1</option>
+                          <option value="Quận 3">Quận 3</option>
+                          <option value="Quận 5">Quận 5</option>
+                          <option value="Quận 7">Quận 7</option>
+                          <option value="Bình Thạnh">Bình Thạnh</option>
+                          <option value="Thủ Đức">Thủ Đức</option>
+                          <option value="Phú Nhuận">Phú Nhuận</option>
+                          <option value="Tân Bình">Tân Bình</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="shipNote" class="form-label">Ghi chú (Tùy chọn)</label>
+                      <input type="text" id="shipNote" class="form-input" placeholder="Lời nhắn cho shipper...">
+                    </div>
+                  </div>
+                </form>
+              </section>
             </div>
-          </aside>
+
+            <!-- Right Column: Order Summary & Payment Method -->
+            <aside class="checkout-summary-col">
+              <!-- Order Summary Card -->
+              <section class="checkout-card order-summary-card">
+                <div class="checkout-card-header">
+                  <img src="assets/icon-order-bag.svg" alt="" class="card-header-icon" width="22" height="19">
+                  <h2 class="checkout-card-title">Tóm tắt đơn hàng</h2>
+                </div>
+
+                <!-- Dynamic Cart Product List -->
+                <div class="checkout-items-list" id="checkoutItemsList">
+                  <!-- Filled dynamically by JavaScript -->
+                </div>
+
+                <!-- Summary Breakdown -->
+                <div class="checkout-calc-breakdown">
+                  <div class="calc-row">
+                    <span class="calc-label">Tạm tính</span>
+                    <span class="calc-value" id="checkoutSubtotal">0đ</span>
+                  </div>
+                  <div class="calc-row">
+                    <span class="calc-label">Phí vận chuyển</span>
+                    <span class="calc-value" id="checkoutShipping">25.000đ</span>
+                  </div>
+                  <div class="calc-row calc-total-row">
+                    <span class="calc-total-label">Tổng cộng</span>
+                    <span class="calc-total-value" id="checkoutTotal">0đ</span>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Payment Method Card -->
+              <section class="checkout-card payment-method-card">
+                <h2 class="checkout-card-title mb-16">Phương thức thanh toán</h2>
+
+                <div class="payment-options-list">
+                  <!-- MoMo / ZaloPay -->
+                  <label class="payment-option-item active" for="payWallet">
+                    <input type="radio" name="paymentMethod" id="payWallet" value="wallet" checked class="payment-radio-input">
+                    <span class="custom-radio-mark"></span>
+                    <div class="payment-option-info">
+                      <img src="assets/icon-pay-wallet.svg" alt="" class="pay-icon" width="19" height="18">
+                      <span class="pay-title">Ví MoMo / ZaloPay</span>
+                    </div>
+                  </label>
+
+                  <!-- COD -->
+                  <label class="payment-option-item" for="payCod">
+                    <input type="radio" name="paymentMethod" id="payCod" value="cod" class="payment-radio-input">
+                    <span class="custom-radio-mark"></span>
+                    <div class="payment-option-info">
+                      <img src="assets/icon-pay-cod.svg" alt="" class="pay-icon" width="22" height="16">
+                      <span class="pay-title">Thanh toán khi nhận hàng (COD)</span>
+                    </div>
+                  </label>
+
+                  <!-- ATM / Card -->
+                  <label class="payment-option-item" for="payCard">
+                    <input type="radio" name="paymentMethod" id="payCard" value="card" class="payment-radio-input">
+                    <span class="custom-radio-mark"></span>
+                    <div class="payment-option-info">
+                      <img src="assets/icon-pay-card.svg" alt="" class="pay-icon" width="20" height="16">
+                      <span class="pay-title">Thẻ ATM / Visa / Mastercard</span>
+                    </div>
+                  </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="button" class="btn-complete-order" id="btnCompleteOrder">
+                  Hoàn tất đặt hàng
+                </button>
+
+                <p class="checkout-terms-note">
+                  Bằng việc nhấn đặt hàng, bạn đồng ý với Điều khoản của Donut Saigon.
+                </p>
+              </section>
+            </aside>
+          </div>
         </div>
       </div>
     </section>
