@@ -25,16 +25,16 @@ class DonutHeader extends HTMLElement {
           <nav class="main-nav" aria-label="Menu chính" data-node-id="I2612:49012;1213:13331">
             <ul class="nav-list" data-node-id="I2612:49012;1213:13332">
               <li class="nav-item" data-node-id="I2612:49012;1213:13333">
-                <a href="#hero" class="nav-link active" id="navHome">TRANG CHỦ</a>
+                <a href="index.html" class="nav-link" id="navHome">TRANG CHỦ</a>
               </li>
               <li class="nav-item" data-node-id="I2612:49012;1213:13335">
-                <a href="#about" class="nav-link" id="navAbout">GIỚI THIỆU</a>
+                <a href="about.html" class="nav-link" id="navAbout">GIỚI THIỆU</a>
               </li>
               <li class="nav-item" data-node-id="I2612:49012;1213:13337">
-                <a href="#flavors" class="nav-link" id="navMenu">MENU</a>
+                <a href="menu.html" class="nav-link" id="navMenu">MENU</a>
               </li>
               <li class="nav-item" data-node-id="I2612:49012;1213:13339">
-                <a href="#account" class="nav-link nav-account" id="navAccount">
+                <a href="account.html" class="nav-link nav-account" id="navAccount">
                   <span>TÀI KHOẢN</span>
                   <span class="nav-icon user-icon" aria-hidden="true" data-node-id="I2612:49012;1213:13341">
                     <img src="assets/icon-user-outer.svg" alt="" class="icon-user-base">
@@ -72,10 +72,10 @@ class DonutHeader extends HTMLElement {
             <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Đóng menu">&times;</button>
           </div>
           <ul class="drawer-list">
-            <li><a href="#hero" class="drawer-link active">TRANG CHỦ</a></li>
-            <li><a href="#about" class="drawer-link">GIỚI THIỆU</a></li>
-            <li><a href="#flavors" class="drawer-link">MENU</a></li>
-            <li><a href="#account" class="drawer-link">TÀI KHOẢN</a></li>
+            <li><a href="index.html" class="drawer-link" id="mobNavHome">TRANG CHỦ</a></li>
+            <li><a href="about.html" class="drawer-link" id="mobNavAbout">GIỚI THIỆU</a></li>
+            <li><a href="menu.html" class="drawer-link" id="mobNavMenu">MENU</a></li>
+            <li><a href="account.html" class="drawer-link" id="mobNavAccount">TÀI KHOẢN</a></li>
             <li><a href="#cart" class="drawer-link" id="mobileCartLink">GIỎ HÀNG (<span id="mobileCartBadge">0</span>)</a></li>
           </ul>
           <div class="drawer-footer">
@@ -137,6 +137,18 @@ class DonutHeader extends HTMLElement {
 
     drawerLinks.forEach((link) => {
       link.addEventListener('click', closeDrawer);
+    });
+
+    // Automatically highlight active nav link based on current page URL
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const allNavLinks = this.querySelectorAll('.nav-link, .drawer-link');
+    allNavLinks.forEach((link) => {
+      const href = link.getAttribute('href');
+      if (href && (href === currentPath || (currentPath === '' && href === 'index.html') || (currentPath === 'index.html' && href === 'index.html'))) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
     });
   }
 }
