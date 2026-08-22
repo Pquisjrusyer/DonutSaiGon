@@ -22,9 +22,9 @@
   --text-light: #FCFAF8;
   --avatar-text: #74575C;
 
-  /* Typography */
+  /* Typography (Figma Official Design Tokens: Maven Pro & iCiel Panton) */
   --font-family-base: 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-display: 'Plus Jakarta Sans', 'Maven Pro', -apple-system, sans-serif;
+  --font-family-display: 'iCiel Panton', 'Panton', 'Plus Jakarta Sans', 'Montserrat', 'Maven Pro', -apple-system, sans-serif;
 
   /* Transitions & Shadows */
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -201,10 +201,18 @@ html {
 
 body {
   font-family: var(--font-family-base);
+  font-weight: 500;
   background-color: var(--bg-cream);
   color: var(--text-main);
   line-height: 1.5;
   overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: -0.01em;
 }
 
 img,
@@ -219,7 +227,7 @@ a {
 }
 
 button {
-  font-family: inherit;
+  font-family: var(--font-family-base);
   cursor: pointer;
   border: none;
   background: none;
