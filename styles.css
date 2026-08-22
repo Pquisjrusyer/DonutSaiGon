@@ -163,10 +163,40 @@ html.lenis body {
   padding: 0;
 }
 
+/* --------------------------------------------------------------------------
+   Custom Ocean Blue Scrollbar
+   -------------------------------------------------------------------------- */
 html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--bg-cream);
+}
+
+/* WebKit (Chrome, Edge, Safari, Opera) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 9999px;
+  border: 2px solid var(--bg-cream);
+  transition: background-color var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--primary-dark);
 }
 
 body {
