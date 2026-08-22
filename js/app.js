@@ -529,24 +529,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial cart UI update on page load
   updateCartUI();
 
-  // Home Page: Card CTA Click
+  // Home Page: Product Card Add to Cart (excluding explore links)
   document.addEventListener('click', (e) => {
-    const ctaBtn = e.target.closest('.card-cta-btn, .product-card');
-    if (ctaBtn) {
-      e.stopPropagation();
-      const card = ctaBtn.closest('.product-card');
-      const titleEl = card ? card.querySelector('.card-title') : null;
-      const imgEl = card ? card.querySelector('img.product-img') : null;
-      const productName = ctaBtn.getAttribute('data-product-name') || (titleEl ? titleEl.textContent.trim() : 'Bánh Donut');
-      const productImg = imgEl ? imgEl.getAttribute('src') : 'assets/menu-sp-4.png';
-      
-      addToCart({
-        id: productName.toLowerCase().replace(/\s+/g, '-'),
-        name: productName,
-        price: 35000,
-        img: productImg,
-        qty: 1
-      });
+    const exploreBtn = e.target.closest('.card-cta-btn[data-action="explore"], a.card-cta-btn');
+    if (exploreBtn) {
+      // Let the link navigate normally
       return;
     }
   });
@@ -948,5 +935,109 @@ document.addEventListener('DOMContentLoaded', () => {
         clearProps: 'transform,opacity',
       });
     }
+
+    // Product Detail page animations
+    if (document.querySelector('.detail-bento-grid')) {
+      gsap.from('.detail-gallery-col, .detail-info-col', {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+        clearProps: 'transform,opacity',
+      });
+    }
+  }
+
+  // ------------------------------------------------------------------------
+  // 12. Product Detail Page Interactions (Figma 1990:55171)
+  // ------------------------------------------------------------------------
+  const showcaseImg = document.getElementById('mainShowcaseImg');
+  const thumbnailBtns = document.querySelectorAll('.thumbnail-item');
+  const galleryPrevBtn = document.getElementById('galleryPrevBtn');
+  const galleryNextBtn = document.getElementById('galleryNextBtn');
+  let currentThumbIndex = 0;
+
+  function updateGalleryImage(index) {
+    if (thumbnailBtns.length === 0 || !showcaseImg) return;
+    currentThumbIndex = (index + thumbnailBtns.length) % thumbnailBtns.length;
+    thumbnailBtns.forEach((btn, idx) => {
+      btn.classList.toggle('active', idx === currentThumbIndex);
+    });
+    const targetSrc = thumbnailBtns[currentThumbIndex].getAttribute('data-img-src') || 'assets/detail-glaze-main.png';
+    showcaseImg.style.opacity = '0.5';
+    showcaseImg.src = targetSrc;
+    setTimeout(() => {
+      showcaseImg.style.opacity = '1';
+    }, 150);
+  }
+
+  thumbnailBtns.forEach((btn, idx) => {
+    btn.addEventListener('click', () => {
+      updateGalleryImage(idx);
+    });
+  });
+
+  if (galleryPrevBtn) {
+    galleryPrevBtn.addEventListener('click', () => {
+      updateGalleryImage(currentThumbIndex - 1);
+    });
+  }
+
+  if (galleryNextBtn) {
+    galleryNextBtn.addEventListener('click', () => {
+      updateGalleryImage(currentThumbIndex + 1);
+    });
+  }
+
+  // Detail Quantity Selector
+  let detailQty = 1;
+  const qtyDisplay = document.getElementById('productQtyDisplay');
+  const btnQtyMinus = document.getElementById('btnQtyMinus');
+  const btnQtyPlus = document.getElementById('btnQtyPlus');
+
+  if (btnQtyMinus && qtyDisplay) {
+    btnQtyMinus.addEventListener('click', () => {
+      if (detailQty > 1) {
+        detailQty--;
+        qtyDisplay.textContent = detailQty;
+      }
+    });
+  }
+
+  if (btnQtyPlus && qtyDisplay) {
+    btnQtyPlus.addEventListener('click', () => {
+      detailQty++;
+      qtyDisplay.textContent = detailQty;
+    });
+  }
+
+  // Detail Add to Cart & Buy Now
+  const btnDetailAddCart = document.getElementById('btnDetailAddCart');
+  const btnDetailBuyNow = document.getElementById('btnDetailBuyNow');
+
+  if (btnDetailAddCart) {
+    btnDetailAddCart.addEventListener('click', () => {
+      addToCart({
+        id: 'gift-box',
+        name: 'GIFT BOX (Hộp 4 Bánh)',
+        price: 170000,
+        img: 'assets/cat-gift-box.png',
+        qty: detailQty
+      });
+    });
+  }
+
+  if (btnDetailBuyNow) {
+    btnDetailBuyNow.addEventListener('click', () => {
+      addToCart({
+        id: 'gift-box',
+        name: 'GIFT BOX (Hộp 4 Bánh)',
+        price: 170000,
+        img: 'assets/cat-gift-box.png',
+        qty: detailQty
+      });
+      window.location.href = 'cart.html';
+    });
   }
 });

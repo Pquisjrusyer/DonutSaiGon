@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi Tiết Sản Phẩm - GIFT BOX | Donut Saigon</title>
+  <meta name="description" content="Hộp quà Gift Box Donut Saigon sang trọng bao gồm 4 chiếc bánh donut nghệ nhân tự chọn cùng thư tay đong đầy cảm xúc chân thành.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="GIFT BOX Donut Saigon - Hộp Quà Donut Nghệ Nhân">
+  <meta property="og:description" content="Tự chọn 4 hương vị donut hảo hạng trao gửi yêu thương cùng Donut Saigon.">
+  <meta property="og:type" content="product">
+  <meta property="og:image" content="assets/detail-glaze-main.png">
+
+  <!-- Google Fonts: Maven Pro & Display Typefaces -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&family=Montserrat:wght@800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="product-detail-page">
+  <!-- Reusable Header Web Component -->
+  <donut-header></donut-header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="detail-main-section" aria-label="Chi tiết sản phẩm Gift Box">
+      <div class="detail-wrapper">
+        <!-- Breadcrumb Navigation -->
+        <nav class="detail-breadcrumbs" aria-label="Điều hướng liên kết">
+          <a href="index.html">Trang chủ</a>
+          <span class="breadcrumb-separator">&gt;&gt;</span>
+          <a href="menu.html">Sản phẩm</a>
+          <span class="breadcrumb-separator">&gt;&gt;</span>
+          <span class="breadcrumb-current">GIFT BOX</span>
+        </nav>
+
+        <!-- Product Showcase Bento Layout (Figma Node 1990:55171) -->
+        <div class="detail-bento-grid">
+          <!-- Left Column: Gallery & Usage Commitments -->
+          <div class="detail-gallery-col">
+            <!-- Main Image Viewer with Nav Arrows -->
+            <div class="detail-main-gallery">
+              <button class="gallery-nav-btn gallery-prev" id="galleryPrevBtn" aria-label="Hình ảnh trước">
+                <img src="assets/icon-arrow-left.svg" alt="" width="23" height="48">
+              </button>
+
+              <div class="detail-main-img-box">
+                <img src="assets/detail-glaze-main.png" alt="Hộp quà Gift Box Donut Saigon" id="mainShowcaseImg" class="detail-showcase-img">
+              </div>
+
+              <button class="gallery-nav-btn gallery-next" id="galleryNextBtn" aria-label="Hình ảnh tiếp theo">
+                <img src="assets/icon-arrow-right.svg" alt="" width="23" height="48">
+              </button>
+            </div>
+
+            <!-- Thumbnail Selector List -->
+            <div class="detail-thumbnails-list">
+              <button class="thumbnail-item active" data-img-src="assets/detail-glaze-main.png" aria-label="Xem ảnh 1">
+                <img src="assets/detail-thumb-1.png" alt="Ảnh chi tiết 1">
+              </button>
+              <button class="thumbnail-item" data-img-src="assets/detail-thumb-2.png" aria-label="Xem ảnh 2">
+                <img src="assets/detail-thumb-2.png" alt="Ảnh chi tiết 2">
+              </button>
+              <button class="thumbnail-item" data-img-src="assets/detail-thumb-3.png" aria-label="Xem ảnh 3">
+                <img src="assets/detail-thumb-3.png" alt="Ảnh chi tiết 3">
+              </button>
+            </div>
+
+            <!-- Commitments & Storage Bento Card (HDSD) -->
+            <div class="detail-commitments-card">
+              <div class="commitments-grid">
+                <!-- Feature 1: Fresh Daily -->
+                <div class="commitment-item">
+                  <div class="commitment-icon-wrap">
+                    <img src="assets/icon-time-machine.png" alt="" width="50" height="50">
+                  </div>
+                  <div class="commitment-info">
+                    <h3 class="commitment-title">BÁNH MỚI MỖI NGÀY</h3>
+                    <p class="commitment-desc">Làm mới mỗi ngày, trọn vẹn vị tươi ngon.</p>
+                  </div>
+                </div>
+
+                <!-- Feature 2: Storage -->
+                <div class="commitment-item">
+                  <div class="commitment-icon-wrap">
+                    <img src="assets/icon-temperature.png" alt="" width="50" height="50">
+                  </div>
+                  <div class="commitment-info">
+                    <h3 class="commitment-title">BẢO QUẢN</h3>
+                    <p class="commitment-desc">Dùng ngon nhất trong ngày hoặc để tủ lạnh 1-2 ngày nha!</p>
+                  </div>
+                </div>
+
+                <!-- Feature 3: Quality -->
+                <div class="commitment-item">
+                  <div class="commitment-icon-wrap">
+                    <img src="assets/icon-good-quality.png" alt="" width="50" height="50">
+                  </div>
+                  <div class="commitment-info">
+                    <h3 class="commitment-title">AN TOÀN CHẤT LƯỢNG</h3>
+                    <p class="commitment-desc">Nguyên liệu sạch, 100% không chất bảo quản.</p>
+                  </div>
+                </div>
+
+                <!-- Feature 4: Suitable -->
+                <div class="commitment-item">
+                  <div class="commitment-icon-wrap">
+                    <img src="assets/icon-gift-box.png" alt="" width="50" height="50">
+                  </div>
+                  <div class="commitment-info">
+                    <h3 class="commitment-title">THÍCH HỢP</h3>
+                    <p class="commitment-desc">Phù hợp ăn sáng, ăn xế, tiệc trà và làm quà tặng.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Product Information & Order Actions -->
+          <div class="detail-info-col">
+            <div class="detail-info-card">
+              <!-- Title & Best Seller Badge -->
+              <div class="detail-title-wrap">
+                <h1 class="detail-product-title">GIFT BOX</h1>
+                <div class="detail-badge-wrap">
+                  <span class="detail-best-seller-badge">BEST SELLER</span>
+                </div>
+              </div>
+
+              <!-- Price & Rating -->
+              <div class="detail-price-rating-row">
+                <div class="detail-price-box">
+                  <span class="detail-price-amount" id="detailPriceDisplay">170.000 VNĐ</span>
+                </div>
+                <div class="detail-rating-box">
+                  <div class="rating-stars">
+                    <img src="assets/icon-star-yellow.svg" alt="5 sao" width="18" height="18">
+                    <img src="assets/icon-star-yellow.svg" alt="" width="18" height="18">
+                    <img src="assets/icon-star-yellow.svg" alt="" width="18" height="18">
+                    <img src="assets/icon-star-yellow.svg" alt="" width="18" height="18">
+                    <img src="assets/icon-star-yellow.svg" alt="" width="18" height="18">
+                  </div>
+                  <span class="rating-count">(128 Đánh giá)</span>
+                </div>
+              </div>
+
+              <div class="detail-dot-divider"></div>
+
+              <!-- Product Description -->
+              <p class="detail-description">
+                Bao gồm 4 chiếc bánh donut tự chọn bất kỳ cùng một lá thư tay được viết riêng, giúp mỗi hộp quà không chỉ ngọt ngào bởi hương vị mà còn đong đầy những cảm xúc chân thành.
+              </p>
+
+              <!-- Highlight Feature Pills -->
+              <div class="detail-feature-pills">
+                <div class="feature-pill-item">
+                  <div class="feature-pill-icon">
+                    <img src="assets/icon-cherry-donut.png" alt="" width="24" height="24">
+                  </div>
+                  <span class="feature-pill-text">Mềm xốp tự nhiên</span>
+                </div>
+                <div class="feature-pill-item">
+                  <div class="feature-pill-icon">
+                    <img src="assets/icon-milk-bottle.png" alt="" width="24" height="24">
+                  </div>
+                  <span class="feature-pill-text">Ngọt thanh không gắt</span>
+                </div>
+                <div class="feature-pill-item">
+                  <div class="feature-pill-icon">
+                    <img src="assets/icon-leaf.png" alt="" width="24" height="24">
+                  </div>
+                  <span class="feature-pill-text">Không chất bảo quản</span>
+                </div>
+              </div>
+
+              <div class="detail-dot-divider"></div>
+
+              <!-- Ingredients -->
+              <div class="detail-ingredients-section">
+                <h2 class="ingredients-heading">THÀNH PHẦN NỔI BẬT:</h2>
+                <div class="ingredients-pills-list">
+                  <div class="ingredient-pill">
+                    <img src="assets/icon-wheat.png" alt="" width="22" height="22">
+                    <span>Bột mì</span>
+                  </div>
+                  <div class="ingredient-pill">
+                    <img src="assets/icon-butter.png" alt="" width="24" height="20">
+                    <span>Bơ</span>
+                  </div>
+                  <div class="ingredient-pill">
+                    <img src="assets/icon-milk-bottle.png" alt="" width="20" height="20">
+                    <span>Sữa</span>
+                  </div>
+                  <div class="ingredient-pill">
+                    <img src="assets/icon-sugar-cube.png" alt="" width="20" height="20">
+                    <span>Đường</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Flavor profile -->
+              <div class="detail-flavor-profile">
+                <span class="flavor-heading">HƯƠNG VỊ:</span>
+                <span class="flavor-desc">Ngọt nhẹ - Béo thơm - Mềm xốp</span>
+              </div>
+
+              <div class="detail-dot-divider"></div>
+
+              <!-- Quantity Selector & Action Buttons -->
+              <div class="detail-actions-section">
+                <div class="quantity-selector-row">
+                  <span class="qty-label">Số lượng:</span>
+                  <div class="qty-pill-controls">
+                    <button type="button" class="qty-control-btn" id="btnQtyMinus" aria-label="Giảm">-</button>
+                    <span class="qty-value-display" id="productQtyDisplay">1</span>
+                    <button type="button" class="qty-control-btn" id="btnQtyPlus" aria-label="Tăng">+</button>
+                  </div>
+                </div>
+
+                <div class="detail-cta-buttons-row">
+                  <button type="button" class="btn-detail-add-cart" id="btnDetailAddCart">
+                    <img src="assets/icon-add-cart.svg" alt="" width="22" height="21">
+                    <span>Thêm vào giỏ hàng</span>
+                  </button>
+                  <button type="button" class="btn-detail-buy-now" id="btnDetailBuyNow">
+                    <span>Mua ngay</span>
+                  </button>
+                </div>
+
+                <div class="delivery-guarantee-note">
+                  <img src="assets/icon-speed-delivery.svg" alt="" width="20" height="16">
+                  <span>Giao hàng nhanh trong vòng 30 phút</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other Products Section ("Sản phẩm khác" - Figma 1990:55414) -->
+        <section class="detail-related-section">
+          <h2 class="related-section-title">Sản phẩm khác</h2>
+
+          <div class="related-products-carousel">
+            <!-- Product: Glaze -->
+            <article class="related-product-card">
+              <div class="related-card-img-wrap">
+                <img src="assets/menu-sp-1.png" alt="Bánh Glaze" loading="lazy">
+              </div>
+              <div class="related-card-body">
+                <h3 class="related-card-title">GLAZE</h3>
+                <p class="related-card-desc">Vị truyền thống phủ lớp đường sữa mỏng nhẹ.</p>
+                <div class="related-card-footer">
+                  <span class="related-card-price">25.000 VNĐ</span>
+                  <button class="related-add-btn menu-add-cart-btn" data-product-name="Donut Glaze" aria-label="Thêm vào giỏ">
+                    <img src="assets/icon-add-cart.svg" alt="" width="20" height="21">
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Product: Very Berry -->
+            <article class="related-product-card">
+              <div class="related-card-img-wrap">
+                <img src="assets/menu-sp-9.png" alt="Bánh Very Berry" loading="lazy">
+              </div>
+              <div class="related-card-body">
+                <h3 class="related-card-title">VERY BERRY</h3>
+                <p class="related-card-desc">Nhân kem phúc bồn tử phủ socola dâu tươi.</p>
+                <div class="related-card-footer">
+                  <span class="related-card-price">36.000 VNĐ</span>
+                  <button class="related-add-btn menu-add-cart-btn" data-product-name="Donut Very Berry" aria-label="Thêm vào giỏ">
+                    <img src="assets/icon-add-cart.svg" alt="" width="20" height="21">
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Product: Mango Tango -->
+            <article class="related-product-card">
+              <div class="related-card-img-wrap">
+                <img src="assets/menu-sp-8.png" alt="Bánh Mango Tango" loading="lazy">
+              </div>
+              <div class="related-card-body">
+                <h3 class="related-card-title">MANGO TANGO</h3>
+                <p class="related-card-desc">Nhân kem xoài nhiệt đới thơm nức ngọt lành.</p>
+                <div class="related-card-footer">
+                  <span class="related-card-price">35.000 VNĐ</span>
+                  <button class="related-add-btn menu-add-cart-btn" data-product-name="Donut Mango Tango" aria-label="Thêm vào giỏ">
+                    <img src="assets/icon-add-cart.svg" alt="" width="20" height="21">
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Product: Red Velvet -->
+            <article class="related-product-card">
+              <div class="related-card-img-wrap">
+                <img src="assets/menu-sp-4.png" alt="Bánh Red Velvet" loading="lazy">
+              </div>
+              <div class="related-card-body">
+                <h3 class="related-card-title">RED VELVET</h3>
+                <p class="related-card-desc">Kem phô mai chanh kết hợp cốt bánh nhung đỏ.</p>
+                <div class="related-card-footer">
+                  <span class="related-card-price">30.000 VNĐ</span>
+                  <button class="related-add-btn menu-add-cart-btn" data-product-name="Donut Red Velvet" aria-label="Thêm vào giỏ">
+                    <img src="assets/icon-add-cart.svg" alt="" width="20" height="21">
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Product: Blackpink -->
+            <article class="related-product-card">
+              <div class="related-card-img-wrap">
+                <img src="assets/menu-sp-6.png" alt="Bánh Blackpink" loading="lazy">
+              </div>
+              <div class="related-card-body">
+                <h3 class="related-card-title">BLACKPINK</h3>
+                <p class="related-card-desc">Socola đen đậm đà và socola dâu hồng ngọt ngào.</p>
+                <div class="related-card-footer">
+                  <span class="related-card-price">30.000 VNĐ</span>
+                  <button class="related-add-btn menu-add-cart-btn" data-product-name="Donut Blackpink" aria-label="Thêm vào giỏ">
+                    <img src="assets/icon-add-cart.svg" alt="" width="20" height="21">
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <!-- Reusable Footer Component -->
+  <donut-footer></donut-footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Lenis & GSAP Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Components & Logic -->
+  <script src="components/header.js" defer></script>
+  <script src="components/footer.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
