@@ -528,10 +528,57 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   // ------------------------------------------------------------------------
-  // 8. Menu Page: Category Filtering & Pagination
+  // 8. Menu Page: Category Filtering & Pagination Logic
   // ------------------------------------------------------------------------
   const filterPills = document.querySelectorAll('.filter-pill');
   const productCards = document.querySelectorAll('.menu-product-card');
+  const paginationNums = document.querySelectorAll('.pagination-num');
+  const prevPageBtn = document.getElementById('prevPageBtn') || document.querySelector('.pagination-prev');
+  const nextPageBtn = document.getElementById('nextPageBtn') || document.querySelector('.pagination-next');
+
+  let currentCategory = 'all';
+  let currentPage = 1;
+
+  function renderMenuProducts(animate = true) {
+    let visibleCount = 0;
+    productCards.forEach((card) => {
+      const cardCategory = card.getAttribute('data-category');
+      const cardPage = parseInt(card.getAttribute('data-page') || '1', 10);
+
+      const matchesCategory = currentCategory === 'all' || cardCategory === currentCategory;
+      const matchesPage = cardPage === currentPage;
+
+      if (matchesCategory && matchesPage) {
+        card.style.display = 'flex';
+        visibleCount++;
+        if (animate && typeof gsap !== 'undefined') {
+          gsap.fromTo(card, { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
+        }
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Update pagination controls
+    paginationNums.forEach((btn) => {
+      const page = parseInt(btn.getAttribute('data-page-target') || btn.textContent.trim(), 10);
+      btn.classList.toggle('active', page === currentPage);
+      if (page === currentPage) {
+        btn.setAttribute('aria-current', 'page');
+      } else {
+        btn.removeAttribute('aria-current');
+      }
+    });
+
+    if (prevPageBtn) {
+      prevPageBtn.disabled = currentPage <= 1;
+      prevPageBtn.classList.toggle('disabled', currentPage <= 1);
+    }
+    if (nextPageBtn) {
+      nextPageBtn.disabled = currentPage >= 2;
+      nextPageBtn.classList.toggle('disabled', currentPage >= 2);
+    }
+  }
 
   filterPills.forEach((pill) => {
     pill.addEventListener('click', () => {
@@ -542,36 +589,66 @@ document.addEventListener('DOMContentLoaded', () => {
       pill.classList.add('active');
       pill.setAttribute('aria-selected', 'true');
 
-      const selectedCategory = pill.getAttribute('data-category');
-
-      productCards.forEach((card) => {
-        const cardCategory = card.getAttribute('data-category');
-        if (selectedCategory === 'all' || cardCategory === selectedCategory) {
-          card.style.display = 'flex';
-          if (typeof gsap !== 'undefined') {
-            gsap.fromTo(card, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
-          }
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      currentCategory = pill.getAttribute('data-category');
+      renderMenuProducts(true);
     });
   });
 
-  // Pagination buttons
-  const paginationNums = document.querySelectorAll('.pagination-num');
   paginationNums.forEach((btn) => {
     btn.addEventListener('click', () => {
-      paginationNums.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      const pageNum = btn.textContent.trim();
-      showToast(`Đang xem danh mục trang ${pageNum}`);
-      const grid = document.getElementById('menuProductGrid');
-      if (grid && lenis) {
-        lenis.scrollTo(grid, { offset: -100, duration: 0.8 });
+      const targetPage = parseInt(btn.getAttribute('data-page-target') || btn.textContent.trim(), 10);
+      if (targetPage !== currentPage) {
+        currentPage = targetPage;
+        renderMenuProducts(true);
+        const grid = document.getElementById('menuProductGrid');
+        if (grid) {
+          if (typeof lenis !== 'undefined' && lenis) {
+            lenis.scrollTo(grid, { offset: -120, duration: 0.6 });
+          } else {
+            grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
       }
     });
   });
+
+  if (prevPageBtn) {
+    prevPageBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderMenuProducts(true);
+        const grid = document.getElementById('menuProductGrid');
+        if (grid) {
+          if (typeof lenis !== 'undefined' && lenis) {
+            lenis.scrollTo(grid, { offset: -120, duration: 0.6 });
+          } else {
+            grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      }
+    });
+  }
+
+  if (nextPageBtn) {
+    nextPageBtn.addEventListener('click', () => {
+      if (currentPage < 2) {
+        currentPage++;
+        renderMenuProducts(true);
+        const grid = document.getElementById('menuProductGrid');
+        if (grid) {
+          if (typeof lenis !== 'undefined' && lenis) {
+            lenis.scrollTo(grid, { offset: -120, duration: 0.6 });
+          } else {
+            grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      }
+    });
+  }
+
+  if (productCards.length > 0) {
+    renderMenuProducts(false);
+  }
 
   // ------------------------------------------------------------------------
   // 9. Account Page & Menu Cart Actions Delegation
