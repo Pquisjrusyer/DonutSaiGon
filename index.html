@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donut Saigon | Những Chiếc Donut Nghệ Nhân Tươi Ngon Mỗi Ngày</title>
+  <meta name="description" content="Donut Saigon mang đến trải nghiệm bánh donut nghệ nhân cao cấp, không chất bảo quản, mềm mịn tươi mới mỗi ngày. Giao nhanh 30-45 phút nội thành Sài Gòn.">
+  <meta name="keywords" content="Donut Saigon, Bánh Donut Sài Gòn, Filled Donut, Ring Donut, Gift Box Bánh Donut, Bánh ngọt Sài Gòn">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Donut Saigon | Nghệ Nhân Bánh Donut">
+  <meta property="og:description" content="Khám phá các hương vị Donut tuyệt hảo: Filled Donut, Ring Donut và Hộp quà Gift Box sang trọng.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/hero-slide-1.png">
+
+  <!-- Google Fonts: Maven Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header / Navigation Bar -->
+  <header class="site-header" id="mainHeader">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" aria-label="Donut Saigon Trang Chủ">
+        <img src="assets/logo-donut-saigon.png" alt="Donut Saigon Logo" class="logo-img" width="122" height="54">
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="main-nav" aria-label="Menu chính">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="#hero" class="nav-link active" id="navHome">TRANG CHỦ</a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link" id="navAbout">GIỚI THIỆU</a>
+          </li>
+          <li class="nav-item">
+            <a href="#flavors" class="nav-link" id="navMenu">MENU</a>
+          </li>
+          <li class="nav-item">
+            <a href="#account" class="nav-link nav-account" id="navAccount">
+              <span>TÀI KHOẢN</span>
+              <span class="nav-icon user-icon" aria-hidden="true">
+                <img src="assets/icon-user-outer.svg" alt="" class="icon-user-base">
+                <img src="assets/icon-user-inner.svg" alt="" class="icon-user-head">
+              </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#cart" class="nav-link nav-cart" id="navCartBtn" aria-label="Giỏ hàng">
+              <span>GIỎ HÀNG</span>
+              <span class="nav-icon cart-icon" aria-hidden="true">
+                <img src="assets/icon-cart-1.svg" alt="" class="icon-cart-part">
+                <img src="assets/icon-cart-2.svg" alt="" class="icon-cart-part">
+                <img src="assets/icon-cart-3.svg" alt="" class="icon-cart-part">
+                <img src="assets/icon-cart-4.svg" alt="" class="icon-cart-part">
+                <span class="cart-badge" id="cartBadge">0</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Mở menu điều hướng" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+      <div class="drawer-header">
+        <img src="assets/logo-donut-saigon.png" alt="Donut Saigon Logo" class="drawer-logo" width="100">
+        <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Đóng menu">&times;</button>
+      </div>
+      <ul class="drawer-list">
+        <li><a href="#hero" class="drawer-link active">TRANG CHỦ</a></li>
+        <li><a href="#about" class="drawer-link">GIỚI THIỆU</a></li>
+        <li><a href="#flavors" class="drawer-link">MENU</a></li>
+        <li><a href="#account" class="drawer-link">TÀI KHOẢN</a></li>
+        <li><a href="#cart" class="drawer-link" id="mobileCartLink">GIỎ HÀNG (<span id="mobileCartBadge">0</span>)</a></li>
+      </ul>
+      <div class="drawer-footer">
+        <p class="drawer-tagline">Nạp vị ngọt, bật công suất cùng Donut Saigon!</p>
+      </div>
+    </div>
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Banner Slider -->
+    <section class="hero-section" id="hero" aria-label="Banner nổi bật">
+      <div class="hero-slider-wrapper" id="heroSlider">
+        <div class="hero-slides-container">
+          <!-- Slide 1 -->
+          <div class="hero-slide active" data-slide="0">
+            <img src="assets/hero-slide-1.png" alt="Dám Nghĩ Dám Làm - Cùng DONUT SAIGON nạp vị ngọt, bật công suất" class="hero-banner-img" fetchpriority="high">
+            <div class="hero-slide-overlay">
+              <a href="#flavors" class="hero-cta-btn" aria-label="Khám phá ngay sản phẩm">
+                <span>ĐẶT BÁNH NGAY</span>
+                <img src="assets/icon-arrow-white.svg" alt="" class="cta-arrow-icon">
+              </a>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="hero-slide" data-slide="1">
+            <img src="assets/hero-slide-2.png" alt="Donut Saigon Combo Bánh Tươi Thơm Ngon" class="hero-banner-img" loading="lazy">
+            <div class="hero-slide-overlay">
+              <a href="#flavors" class="hero-cta-btn" aria-label="Khám phá ngay sản phẩm">
+                <span>KHÁM PHÁ MENU</span>
+                <img src="assets/icon-arrow-white.svg" alt="" class="cta-arrow-icon">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <button class="slider-arrow prev" id="heroPrevBtn" aria-label="Slide trước">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="slider-arrow next" id="heroNextBtn" aria-label="Slide tiếp theo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- Slider Indicators -->
+        <div class="slider-dots" id="heroDots" role="tablist" aria-label="Điều hướng slide">
+          <button class="dot active" role="tab" aria-selected="true" aria-label="Slide 1" data-slide-to="0"></button>
+          <button class="dot" role="tab" aria-selected="false" aria-label="Slide 2" data-slide-to="1"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Khám Phá Hương Vị -->
+    <section class="flavors-section" id="flavors" aria-labelledby="flavorsTitle">
+      <div class="section-header">
+        <h2 class="section-title" id="flavorsTitle">Khám Phá Hương Vị</h2>
+        <p class="section-subtitle">Thưởng thức trọn vẹn tinh hoa bánh donut nghệ nhân được nhào nặn công phu từ những nguyên liệu tươi mới nhất.</p>
+      </div>
+
+      <div class="flavors-container">
+        <!-- Two Column Product Grid -->
+        <div class="product-cards-row">
+          <!-- Card 1: Filled Donut -->
+          <article class="product-card card-filled-donut" data-product="filled-donut">
+            <div class="card-image-wrap">
+              <img src="assets/cat-filled-donut.png" alt="Filled Donut - Bánh Donut Nhân Kem Dâu Béo Ngậy" class="product-img" loading="lazy">
+              <!-- CTA Button on Card -->
+              <button class="card-cta-btn btn-pink" data-action="explore" data-product-name="Filled Donut" aria-label="Khám phá dòng Filled Donut">
+                <span class="btn-text">KHÁM PHÁ NGAY</span>
+                <span class="btn-icon">
+                  <img src="assets/icon-arrow-white.svg" alt="" class="arrow-svg">
+                </span>
+              </button>
+            </div>
+            <div class="card-meta">
+              <h3 class="card-title">FILLED DONUT</h3>
+              <p class="card-desc">Lớp vỏ ngoài mềm xốp ôm trọn lớp kem nhân dâu béo nhẹ, thơm lừng ngất ngây.</p>
+            </div>
+          </article>
+
+          <!-- Card 2: Ring Donut -->
+          <article class="product-card card-ring-donut" data-product="ring-donut">
+            <div class="card-image-wrap">
+              <img src="assets/cat-ring-donut.png" alt="Ring Donut - Bánh Donut Vòng Socola Marshmallow" class="product-img" loading="lazy">
+              <!-- CTA Button on Card -->
+              <button class="card-cta-btn btn-white" data-action="explore" data-product-name="Ring Donut" aria-label="Khám phá dòng Ring Donut">
+                <span class="btn-text">KHÁM PHÁ NGAY</span>
+                <span class="btn-icon">
+                  <img src="assets/icon-arrow-blue.svg" alt="" class="arrow-svg">
+                </span>
+              </button>
+            </div>
+            <div class="card-meta">
+              <h3 class="card-title">RING DONUT</h3>
+              <p class="card-desc">Bánh vòng phủ socola Bỉ đậm đà, điểm xuyết kẹo dẻo marshmallow xốp mềm.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Full Width Card: Gift Box -->
+        <article class="product-card card-gift-box" data-product="gift-box">
+          <div class="card-image-wrap">
+            <img src="assets/cat-gift-box.png" alt="Gift Box - Hộp Quà Donut Trao Gửi Vị Ngọt Kèm Thiệp" class="product-img" loading="lazy">
+            <!-- CTA Button on Card -->
+            <button class="card-cta-btn btn-white-gift" data-action="explore" data-product-name="Gift Box" aria-label="Khám phá Hộp Quà Gift Box">
+              <span class="btn-text">KHÁM PHÁ NGAY</span>
+              <span class="btn-icon">
+                <img src="assets/icon-arrow-blue.svg" alt="" class="arrow-svg">
+              </span>
+            </button>
+          </div>
+          <div class="card-meta gift-meta">
+            <h3 class="card-title">GIFT BOX</h3>
+            <p class="card-desc">Viết lời yêu thương - Trao gửi vị ngọt. Món quà hoàn hảo để dành tặng đối tác, người thân yêu.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section: Giá Trị Cốt Lõi / Value Proposition -->
+    <section class="values-section" id="about" aria-label="Cam kết thương hiệu Donut Saigon">
+      <div class="values-container">
+        <!-- Value Item 1 -->
+        <div class="value-item">
+          <div class="value-icon-circle">
+            <img src="assets/icon-truck.svg" alt="Giao Hàng Siêu Tốc" class="value-svg" width="33" height="24">
+          </div>
+          <h4 class="value-title">Giao Hàng Siêu Tốc</h4>
+          <p class="value-desc">Nhận bánh nóng hổi chỉ trong 30-45 phút nội thành Sài Gòn.</p>
+        </div>
+
+        <!-- Value Item 2 -->
+        <div class="value-item">
+          <div class="value-icon-circle">
+            <img src="assets/icon-box.svg" alt="Đóng Gói Cao Cấp" class="value-svg" width="30" height="30">
+          </div>
+          <h4 class="value-title">Đóng Gói Cao Cấp</h4>
+          <p class="value-desc">Hộp bánh thiết kế sang trọng, bảo vệ trọn vẹn hình dáng và hương vị.</p>
+        </div>
+
+        <!-- Value Item 3 -->
+        <div class="value-item">
+          <div class="value-icon-circle">
+            <img src="assets/icon-leaf.svg" alt="Nguyên Liệu Sạch" class="value-svg" width="26" height="26">
+          </div>
+          <h4 class="value-title">Nguyên Liệu Sạch</h4>
+          <p class="value-desc">Cam kết không chất bảo quản, 100% nguyên liệu tự nhiên trong ngày.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Khách Hàng Nói Gì? / Testimonials Carousel -->
+    <section class="reviews-section" id="reviews" aria-labelledby="reviewsTitle">
+      <div class="reviews-header">
+        <h2 class="reviews-title" id="reviewsTitle">Khách Hàng Nói Gì?</h2>
+      </div>
+
+      <div class="reviews-carousel-wrapper">
+        <!-- Left Slider Arrow -->
+        <button class="review-nav-btn prev-review" id="reviewPrevBtn" aria-label="Xem đánh giá trước">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D61AD" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Carousel Track Container -->
+        <div class="reviews-track-container" id="reviewsTrackContainer">
+          <div class="reviews-track" id="reviewsTrack">
+            <!-- Review 1: Minh Lan -->
+            <article class="review-card" data-index="0">
+              <div class="review-rating" aria-label="Đánh giá 5 sao">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+              </div>
+              <blockquote class="review-quote">
+                <p>"Bánh donut ở đây thực sự khác biệt, không quá ngọt và phần bột rất mềm mịn. Mình đặc biệt thích vị Trứng Muối."</p>
+              </blockquote>
+              <div class="review-author">
+                <div class="author-avatar" aria-hidden="true">ML</div>
+                <div class="author-info">
+                  <strong class="author-name">Minh Lan</strong>
+                  <span class="author-location">Hồ Chí Minh</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Review 2: Quang Trung -->
+            <article class="review-card" data-index="1">
+              <div class="review-rating" aria-label="Đánh giá 5 sao">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+              </div>
+              <blockquote class="review-quote">
+                <p>"Thiết kế hộp rất đẹp, mang đi tặng đối tác hay bạn bè đều rất sang trọng. Chất lượng phục vụ 10 điểm."</p>
+              </blockquote>
+              <div class="review-author">
+                <div class="author-avatar" aria-hidden="true">QT</div>
+                <div class="author-info">
+                  <strong class="author-name">Quang Trung</strong>
+                  <span class="author-location">Hồ Chí Minh</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Review 3: Hoàng Anh -->
+            <article class="review-card" data-index="2">
+              <div class="review-rating" aria-label="Đánh giá 5 sao">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+              </div>
+              <blockquote class="review-quote">
+                <p>"Bánh tươi mỗi ngày cảm nhận rõ rệt. Mình hay đặt cho văn phòng ăn xế, ai cũng khen ngon."</p>
+              </blockquote>
+              <div class="review-author">
+                <div class="author-avatar" aria-hidden="true">HA</div>
+                <div class="author-info">
+                  <strong class="author-name">Hoàng Anh</strong>
+                  <span class="author-location">Hồ Chí Minh</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Review 4: Trúc Linh -->
+            <article class="review-card" data-index="3">
+              <div class="review-rating" aria-label="Đánh giá 5 sao">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+              </div>
+              <blockquote class="review-quote">
+                <p>"Bánh có nhiều loại bắt mắt, vị bánh thơm béo nhẹ. Mình thích nhất phần kem và lớp phủ bên ngoài không bị ngấy. Rất phù hợp để ăn nhẹ hoặc mua làm quà."</p>
+              </blockquote>
+              <div class="review-author">
+                <div class="author-avatar" aria-hidden="true">TL</div>
+                <div class="author-info">
+                  <strong class="author-name">Trúc Linh</strong>
+                  <span class="author-location">Hồ Chí Minh</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Review 5: Bình An -->
+            <article class="review-card" data-index="4">
+              <div class="review-rating" aria-label="Đánh giá 5 sao">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+              </div>
+              <blockquote class="review-quote">
+                <p>"Bánh nhìn đẹp và được làm khá chỉn chu. Phần vỏ mềm, bên trong xốp, hương vị dễ ăn. Giá ổn so với chất lượng, chắc chắn sẽ quay lại thử thêm những vị khác."</p>
+              </blockquote>
+              <div class="review-author">
+                <div class="author-avatar" aria-hidden="true">BA</div>
+                <div class="author-info">
+                  <strong class="author-name">Bình An</strong>
+                  <span class="author-location">Hồ Chí Minh</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Review 6: Nguyễn Hùng -->
+            <article class="review-card" data-index="5">
+              <div class="review-rating" aria-label="Đánh giá 5 sao">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+                <img src="assets/icon-star-filled.svg" alt="" class="star-icon">
+              </div>
+              <blockquote class="review-quote">
+                <p>"Đóng gói gọn gàng và hương vị khá ổn. Mình thích nhất là bánh không bị quá ngọt hay ngấy, phù hợp để ăn nhẹ trong ngày. Chắc chắn sẽ quay lại thử thêm các vị mới."</p>
+              </blockquote>
+              <div class="review-author">
+                <div class="author-avatar" aria-hidden="true">NH</div>
+                <div class="author-info">
+                  <strong class="author-name">Nguyễn Hùng</strong>
+                  <span class="author-location">Hồ Chí Minh</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Right Slider Arrow -->
+        <button class="review-nav-btn next-review" id="reviewNextBtn" aria-label="Xem đánh giá tiếp">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D61AD" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Reusable Site Footer Component (<donut-footer>) -->
+  <donut-footer></donut-footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- JavaScript Components & Logic -->
+  <script src="components/footer.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
