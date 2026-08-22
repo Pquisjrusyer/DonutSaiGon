@@ -62,7 +62,7 @@ class DonutFooter extends HTMLElement {
                   <img src="assets/icon-mail.svg" alt="Mail" width="20" height="16">
                 </a>
                 <a href="tel:0901234567" class="social-icon-btn" aria-label="Hotline Donut Saigon" title="Gọi Hotline">
-                  <img src="assets/icon-phone.svg" alt="Phone" width="18" height="18">
+                  <img src="assets/icon-phone-white.svg" alt="Phone" width="18" height="18">
                 </a>
               </div>
             </div>

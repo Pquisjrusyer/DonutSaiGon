@@ -1161,11 +1161,17 @@ donut-footer {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #FFFFFF;
   transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.social-icon-btn img {
+  filter: brightness(0) invert(1);
+  display: block;
 }
 
 .social-icon-btn:hover {
