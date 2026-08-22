@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tài Khoản & Lịch Sử Mua Hàng | Donut Saigon</title>
+  <meta name="description" content="Quản lý thông tin tài khoản thành viên Donut Saigon, theo dõi điểm thưởng tích lũy và tra cứu lịch sử đơn hàng của bạn.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tài Khoản | Donut Saigon">
+  <meta property="og:description" content="Trang thành viên thân thiết Donut Saigon - Theo dõi điểm thưởng và đơn hàng của bạn.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="account-page">
+  <!-- Reusable Header Web Component -->
+  <donut-header></donut-header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="account-main-section" aria-label="Khu vực tài khoản thành viên">
+      <div class="account-dashboard-wrapper">
+        <!-- Back Navigation Button -->
+        <div class="account-back-bar">
+          <a href="index.html" class="account-back-btn">
+            <img src="assets/icon-back-arrow.svg" alt="" class="back-icon" width="14" height="14">
+            <span>Quay lại trang chủ</span>
+          </a>
+        </div>
+
+        <!-- Dashboard Header -->
+        <header class="account-header">
+          <h1 class="account-header-title">Lời Khen Từ Bạn</h1>
+          <p class="account-header-desc">
+            Chia sẻ trải nghiệm ngọt ngào của bạn tại Donut Saigon. Mỗi đánh giá là một động lực để chúng mình hoàn thiện hơn mỗi ngày.
+          </p>
+        </header>
+
+        <!-- Bento Grid Layout -->
+        <div class="account-bento-grid">
+          <!-- Left Column: User Profile & Loyalty Points -->
+          <aside class="account-profile-col">
+            <!-- Profile Card -->
+            <div class="profile-card">
+              <div class="profile-avatar-wrap">
+                <div class="profile-avatar-frame">
+                  <img src="assets/avatar-user.png" alt="Ảnh đại diện Nguyễn Văn An" class="profile-avatar-img">
+                </div>
+                <h2 class="profile-name">Nguyễn Văn An</h2>
+                <span class="profile-badge">Thành viên thân thiết</span>
+              </div>
+
+              <div class="profile-info-list">
+                <div class="profile-info-item">
+                  <img src="assets/icon-email.svg" alt="Email" class="info-icon" width="20" height="16">
+                  <span class="info-text">nguyen.vana@email.com</span>
+                </div>
+                <div class="profile-info-item">
+                  <img src="assets/icon-phone.svg" alt="Số điện thoại" class="info-icon" width="18" height="18">
+                  <span class="info-text">+84 90 123 4567</span>
+                </div>
+                <div class="profile-info-item">
+                  <img src="assets/icon-location.svg" alt="Địa chỉ" class="info-icon" width="16" height="20">
+                  <span class="info-text">Quận 1, TP. Hồ Chí Minh</span>
+                </div>
+              </div>
+
+              <button class="profile-edit-btn" id="editProfileBtn" aria-label="Chỉnh sửa thông tin cá nhân">
+                <img src="assets/icon-edit.svg" alt="" class="edit-btn-icon" width="12" height="12">
+                <span>Chỉnh sửa thông tin</span>
+              </button>
+            </div>
+
+            <!-- Loyalty Rewards Card -->
+            <div class="loyalty-card">
+              <h3 class="loyalty-title">Ưu đãi của bạn</h3>
+              <p class="loyalty-desc">
+                Bạn có <strong>250 điểm</strong> tích lũy. Đổi 500 điểm để nhận ngay 1 hộp Donut Classic!
+              </p>
+              <div class="loyalty-progress-track" aria-hidden="true">
+                <div class="loyalty-progress-bar" style="width: 50%;"></div>
+              </div>
+              <div class="loyalty-milestones">
+                <span>250 điểm</span>
+                <span>500 điểm</span>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Right Column: Order History & Favorites -->
+          <div class="account-orders-col">
+            <!-- Order History Table Card -->
+            <div class="orders-table-card">
+              <div class="orders-table-header">
+                <div class="orders-title-wrap">
+                  <img src="assets/icon-order-history.svg" alt="" class="orders-title-icon" width="20" height="20">
+                  <h2 class="orders-title">Lịch sử mua hàng</h2>
+                </div>
+                <span class="orders-count-pill">3 Đơn hàng gần đây</span>
+              </div>
+
+              <div class="orders-table-responsive">
+                <table class="orders-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">MÃ ĐƠN HÀNG</th>
+                      <th scope="col">NGÀY ĐẶT</th>
+                      <th scope="col" class="text-right">TỔNG TIỀN</th>
+                      <th scope="col">TRẠNG THÁI</th>
+                      <th scope="col">THAO TÁC</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="order-code">#DS-8829410</td>
+                      <td class="order-date">24/05/2024</td>
+                      <td class="order-total text-right">320.000đ</td>
+                      <td>
+                        <span class="order-status-badge status-delivered">
+                          <span class="status-dot"></span>
+                          Đã giao
+                        </span>
+                      </td>
+                      <td>
+                        <button class="order-action-link" data-order-id="DS-8829410">
+                          <span>Chi tiết</span>
+                          <img src="assets/icon-arrow-right-mini.svg" alt="" class="action-arrow">
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="order-code">#DS-8829152</td>
+                      <td class="order-date">18/05/2024</td>
+                      <td class="order-total text-right">155.000đ</td>
+                      <td>
+                        <span class="order-status-badge status-delivered">
+                          <span class="status-dot"></span>
+                          Đã giao
+                        </span>
+                      </td>
+                      <td>
+                        <button class="order-action-link" data-order-id="DS-8829152">
+                          <span>Chi tiết</span>
+                          <img src="assets/icon-arrow-right-mini.svg" alt="" class="action-arrow">
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="order-code">#DS-8828904</td>
+                      <td class="order-date">12/05/2024</td>
+                      <td class="order-total text-right">540.000đ</td>
+                      <td>
+                        <span class="order-status-badge status-processing">
+                          <span class="status-dot"></span>
+                          Đang xử lý
+                        </span>
+                      </td>
+                      <td>
+                        <button class="order-action-link" data-order-id="DS-8828904">
+                          <span>Chi tiết</span>
+                          <img src="assets/icon-arrow-right-mini.svg" alt="" class="action-arrow">
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="orders-table-footer">
+                <button class="view-all-orders-btn" id="viewAllOrdersBtn">Xem tất cả đơn hàng</button>
+              </div>
+            </div>
+
+            <!-- Recent Favorites Row -->
+            <div class="account-favorites-row">
+              <!-- Favorite Card 1 -->
+              <div class="favorite-donut-card">
+                <div class="fav-donut-img-wrap">
+                  <img src="assets/account-fav-1.png" alt="Dark Cookie Donut" class="fav-donut-img">
+                </div>
+                <div class="fav-donut-info">
+                  <span class="fav-donut-sub">Món yêu thích nhất</span>
+                  <h3 class="fav-donut-title">DARK COOKIE</h3>
+                  <span class="fav-donut-price">30.000 VNĐ</span>
+                </div>
+              </div>
+
+              <!-- Favorite Card 2 -->
+              <div class="favorite-donut-card">
+                <div class="fav-donut-img-wrap">
+                  <img src="assets/account-fav-2.png" alt="Strawberry Filled Donut" class="fav-donut-img">
+                </div>
+                <div class="fav-donut-info">
+                  <span class="fav-donut-sub">Món yêu thích nhất</span>
+                  <h3 class="fav-donut-title">STRAWBERRY FILLED</h3>
+                  <span class="fav-donut-price">32.000 VNĐ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Reusable Footer Component -->
+  <donut-footer></donut-footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Lenis & GSAP Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Components & Logic -->
+  <script src="components/header.js" defer></script>
+  <script src="components/footer.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

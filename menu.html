@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Sản Phẩm | Donut Saigon - Bánh Donut Nghệ Nhân</title>
+  <meta name="description" content="Khám phá toàn bộ thực đơn bánh donut nghệ nhân tại Donut Saigon: Ring Donut, Filled Donut, Gift Box và các hương vị signature độc bản tươi mới mỗi ngày.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Menu Sản Phẩm | Donut Saigon">
+  <meta property="og:description" content="Thưởng thức các hương vị Donut nghệ nhân: Glaze, Oreomallow, Red Velvet, Dark Cookie, Blackpink, Fruit Pop và Mango Tango.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/menu-sp-1.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="menu-page">
+  <!-- Reusable Header Web Component -->
+  <donut-header></donut-header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Menu Header / Category Banner -->
+    <section class="menu-banner-section" aria-label="Danh mục thực đơn">
+      <div class="menu-banner-container">
+        <!-- Breadcrumbs -->
+        <nav class="menu-breadcrumbs" aria-label="Đường dẫn trang">
+          <a href="index.html" class="breadcrumb-link">Trang Chủ</a>
+          <span class="breadcrumb-separator">&lt;&lt;</span>
+          <span class="breadcrumb-current">Menu</span>
+        </nav>
+
+        <div class="menu-banner-row">
+          <div class="menu-banner-text">
+            <h1 class="menu-banner-title">Tất cả Hương vị</h1>
+            <p class="menu-banner-desc">
+              Khám phá bộ sưu tập donut nghệ nhân, được chế tác thủ công mỗi ngày với những nguyên liệu cao cấp nhất.
+            </p>
+          </div>
+
+          <!-- Category Filter Pills -->
+          <div class="menu-filter-pills" role="tablist" aria-label="Bộ lọc danh mục">
+            <button class="filter-pill active" data-category="all" role="tab" aria-selected="true">Tất cả</button>
+            <button class="filter-pill" data-category="ring-donut" role="tab" aria-selected="false">Ring Donut</button>
+            <button class="filter-pill" data-category="filled-donut" role="tab" aria-selected="false">Filled Donut</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Listing Grid -->
+    <section class="menu-grid-section" aria-label="Danh sách sản phẩm">
+      <div class="menu-grid-container" id="menuProductGrid">
+        <!-- Product 1 -->
+        <article class="menu-product-card" data-category="ring-donut">
+          <div class="menu-card-img-wrap">
+            <img src="assets/menu-sp-1.png" alt="Bánh Donut GLAZE" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h2 class="menu-card-title">GLAZE</h2>
+            <p class="menu-card-desc">Vị truyền thống phủ lớp đường sữa mỏng nhẹ, mềm tan trong miệng.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">25.000 <small>VNĐ</small></span>
+              <button class="menu-add-cart-btn" data-product-name="Donut Glaze" aria-label="Thêm Glaze vào giỏ hàng">
+                <img src="assets/icon-add-cart.svg" alt="" class="btn-cart-icon" width="20" height="21">
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="menu-product-card" data-category="ring-donut">
+          <div class="menu-card-img-wrap">
+            <img src="assets/menu-sp-2.png" alt="Bánh Donut OREOMALLOW" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h2 class="menu-card-title">OREOMALLOW</h2>
+            <p class="menu-card-desc">Bánh donut phủ kem marshmallow cùng vụn bánh quy Oreo giòn rụm.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">25.000 <small>VNĐ</small></span>
+              <button class="menu-add-cart-btn" data-product-name="Donut Oreomallow" aria-label="Thêm Oreomallow vào giỏ hàng">
+                <img src="assets/icon-add-cart.svg" alt="" class="btn-cart-icon" width="20" height="21">
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="menu-product-card" data-category="ring-donut">
+          <div class="menu-card-img-wrap">
+            <img src="assets/menu-sp-3.png" alt="Bánh Donut SMOKER WHITE" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h2 class="menu-card-title">SMOKER WHITE</h2>
+            <p class="menu-card-desc">Hương vị socola trắng khói độc đáo, ngọt dịu và thơm ngậy quyến rũ.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">29.000 <small>VNĐ</small></span>
+              <button class="menu-add-cart-btn" data-product-name="Donut Smoker White" aria-label="Thêm Smoker White vào giỏ hàng">
+                <img src="assets/icon-add-cart.svg" alt="" class="btn-cart-icon" width="20" height="21">
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 4 -->
+        <article class="menu-product-card" data-category="ring-donut">
+          <div class="menu-card-img-wrap">
+            <img src="assets/menu-sp-4.png" alt="Bánh Donut RED VELVET" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h2 class="menu-card-title">RED VELVET</h2>
+            <p class="menu-card-desc">Sắc đỏ nhung quý phái kết hợp sốt cream cheese béo nhẹ chuẩn vị bánh Mỹ.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">30.000 <small>VNĐ</small></span>
+              <button class="menu-add-cart-btn" data-product-name="Donut Red Velvet" aria-label="Thêm Red Velvet vào giỏ hàng">
+                <img src="assets/icon-add-cart.svg" alt="" class="btn-cart-icon" width="20" height="21">
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 5 -->
+        <article class="menu-product-card" data-category="ring-donut">
+          <div class="menu-card-img-wrap">
+            <img src="assets/menu-sp-5.png" alt="Bánh Donut DARK COOKIE" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h2 class="menu-card-title">DARK COOKIE</h2>
+            <p class="menu-card-desc">Socola đen 70% nguyên chất hòa quyện lớp bánh quy đen giòn rụm đậm đà.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">30.000 <small>VNĐ</small></span>
+              <button class="menu-add-cart-btn" data-product-name="Donut Dark Cookie" aria-label="Thêm Dark Cookie vào giỏ hàng">
+                <img src="assets/icon-add-cart.svg" alt="" class="btn-cart-icon" width="20" height="21">
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 6 -->
+        <article class="menu-product-card" data-category="ring-donut">
+          <div class="menu-card-img-wrap">
+            <img src="assets/menu-sp-6.png" alt="Bánh Donut BLACKPINK" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h2 class="menu-card-title">BLACKPINK</h2>
+            <p class="menu-card-desc">Sự kết hợp hoàn hảo giữa socola đen và lớp phủ kem dâu tây hồng ngọt ngào.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">30.000 <small>VNĐ</small></span>
+              <button class="menu-add-cart-btn" data-product-name="Donut Blackpink" aria-label="Thêm Blackpink vào giỏ hàng">
+                <img src="assets/icon-add-cart.svg" alt="" class="btn-cart-icon" width="20" height="21">
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 7 -->
+        <article class="menu-product-card" data-category="filled-donut">
+          <div class="menu-card-img-wrap">
+            <img src="assets/menu-sp-7.png" alt="Bánh Donut FRUIT POP" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h2 class="menu-card-title">FRUIT POP</h2>
+            <p class="menu-card-desc">Lớp nhân kem trái cây nhiệt đới chua ngọt thanh mát, bùng nổ vị giác sảng khoái.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">30.000 <small>VNĐ</small></span>
+              <button class="menu-add-cart-btn" data-product-name="Donut Fruit Pop" aria-label="Thêm Fruit Pop vào giỏ hàng">
+                <img src="assets/icon-add-cart.svg" alt="" class="btn-cart-icon" width="20" height="21">
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 8 -->
+        <article class="menu-product-card" data-category="filled-donut">
+          <div class="menu-card-img-wrap">
+            <img src="assets/menu-sp-8.png" alt="Bánh Donut MANGO TANGO" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h2 class="menu-card-title">MANGO TANGO</h2>
+            <p class="menu-card-desc">Nhân kem xoài cát chín vàng óng ánh, thơm nức hương vị nhiệt đới Sài Gòn.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">30.000 <small>VNĐ</small></span>
+              <button class="menu-add-cart-btn" data-product-name="Donut Mango Tango" aria-label="Thêm Mango Tango vào giỏ hàng">
+                <img src="assets/icon-add-cart.svg" alt="" class="btn-cart-icon" width="20" height="21">
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Pagination Component -->
+      <nav class="menu-pagination" aria-label="Phân trang thực đơn">
+        <button class="pagination-btn pagination-prev disabled" aria-label="Trang trước" disabled>&lt;</button>
+        <button class="pagination-btn pagination-num active" aria-label="Trang 1" aria-current="page">1</button>
+        <button class="pagination-btn pagination-num" aria-label="Trang 2">2</button>
+        <button class="pagination-btn pagination-next" aria-label="Trang sau">&gt;</button>
+      </nav>
+    </section>
+  </main>
+
+  <!-- Reusable Footer Component -->
+  <donut-footer></donut-footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Lenis & GSAP Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Components & Logic -->
+  <script src="components/header.js" defer></script>
+  <script src="components/footer.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

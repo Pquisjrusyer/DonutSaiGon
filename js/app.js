@@ -512,16 +512,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------------------------------------------------------
-  // 7. ScrollSpy & Header Shadow on Scroll
+  // 7. Header Shadow on Scroll
   // ------------------------------------------------------------------------
-  const sections = document.querySelectorAll('section[id]');
-
   window.addEventListener('scroll', () => {
     const mainHeader = document.getElementById('mainHeader');
-    const scrollY = window.scrollY;
-
     if (mainHeader) {
-      if (scrollY > 40) {
+      if (window.scrollY > 40) {
         mainHeader.classList.add('scrolled');
         mainHeader.style.boxShadow = '0 6px 24px rgba(0, 0, 0, 0.18)';
       } else {
@@ -529,22 +525,154 @@ document.addEventListener('DOMContentLoaded', () => {
         mainHeader.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
       }
     }
+  }, { passive: true });
 
-    let currentSectionId = '';
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 120;
-      const sectionHeight = section.offsetHeight;
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        currentSectionId = section.getAttribute('id');
+  // ------------------------------------------------------------------------
+  // 8. Menu Page: Category Filtering & Pagination
+  // ------------------------------------------------------------------------
+  const filterPills = document.querySelectorAll('.filter-pill');
+  const productCards = document.querySelectorAll('.menu-product-card');
+
+  filterPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach((p) => {
+        p.classList.remove('active');
+        p.setAttribute('aria-selected', 'false');
+      });
+      pill.classList.add('active');
+      pill.setAttribute('aria-selected', 'true');
+
+      const selectedCategory = pill.getAttribute('data-category');
+
+      productCards.forEach((card) => {
+        const cardCategory = card.getAttribute('data-category');
+        if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+          card.style.display = 'flex';
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(card, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
+          }
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Pagination buttons
+  const paginationNums = document.querySelectorAll('.pagination-num');
+  paginationNums.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      paginationNums.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const pageNum = btn.textContent.trim();
+      showToast(`Đang xem danh mục trang ${pageNum}`);
+      const grid = document.getElementById('menuProductGrid');
+      if (grid && lenis) {
+        lenis.scrollTo(grid, { offset: -100, duration: 0.8 });
       }
     });
+  });
 
-    if (currentSectionId) {
-      const navLinks = document.querySelectorAll('.main-nav .nav-link, .mobile-drawer .drawer-link');
-      navLinks.forEach((link) => {
-        const href = link.getAttribute('href')?.replace('#', '');
-        link.classList.toggle('active', href === currentSectionId);
+  // ------------------------------------------------------------------------
+  // 9. Account Page & Menu Cart Actions Delegation
+  // ------------------------------------------------------------------------
+  document.addEventListener('click', (e) => {
+    // Menu Page: Add to cart
+    const menuAddBtn = e.target.closest('.menu-add-cart-btn');
+    if (menuAddBtn) {
+      e.stopPropagation();
+      const card = menuAddBtn.closest('.menu-product-card');
+      const productName = menuAddBtn.getAttribute('data-product-name') ||
+                          card?.querySelector('.menu-card-title')?.textContent || 'Bánh Donut';
+      cartCount += 1;
+      updateCartUI();
+      showToast(`Đã thêm ${productName} vào giỏ hàng!`);
+      return;
+    }
+
+    // Account Page: Order details
+    const orderBtn = e.target.closest('.order-action-link');
+    if (orderBtn) {
+      e.preventDefault();
+      const orderId = orderBtn.getAttribute('data-order-id') || 'DS-8829410';
+      showToast(`Đang mở chi tiết đơn hàng #${orderId}`);
+      return;
+    }
+
+    // Account Page: Edit Profile
+    const editBtn = e.target.closest('#editProfileBtn');
+    if (editBtn) {
+      e.preventDefault();
+      showToast('Tính năng chỉnh sửa hồ sơ đang được cập nhật!');
+      return;
+    }
+
+    // Account Page: View all orders
+    const viewAllBtn = e.target.closest('#viewAllOrdersBtn');
+    if (viewAllBtn) {
+      e.preventDefault();
+      showToast('Bạn đang xem toàn bộ 3 đơn hàng gần nhất.');
+      return;
+    }
+  });
+
+  // GSAP animations for About, Menu, and Account pages
+  if (typeof gsap !== 'undefined') {
+    // About page animations
+    if (document.querySelector('.about-hero-section')) {
+      gsap.from('.about-hero-content > *', {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: 'power3.out',
+      });
+      gsap.from('.about-hero-img-wrap', {
+        scale: 0.9,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        delay: 0.2,
       });
     }
-  }, { passive: true });
+
+    if (document.querySelector('.about-value-card')) {
+      gsap.from('.about-value-card', {
+        scrollTrigger: {
+          trigger: '.about-values-container',
+          start: 'top 80%',
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power2.out',
+        clearProps: 'transform,opacity',
+      });
+    }
+
+    // Menu page animations
+    if (document.querySelector('.menu-product-card')) {
+      gsap.from('.menu-product-card', {
+        y: 35,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: 'power2.out',
+        clearProps: 'transform,opacity',
+      });
+    }
+
+    // Account page animations
+    if (document.querySelector('.account-dashboard-wrapper')) {
+      gsap.from('.account-profile-col, .account-orders-col', {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+        clearProps: 'transform,opacity',
+      });
+    }
+  }
 });
