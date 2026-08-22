@@ -338,7 +338,7 @@ ul, ol {
 }
 
 /* --------------------------------------------------------------------------
-   Hero Banner Slider
+   Hero Banner Slider (Full Width)
    -------------------------------------------------------------------------- */
 .hero-section {
   width: 100%;
@@ -348,10 +348,11 @@ ul, ol {
 }
 
 .hero-slider-wrapper {
-  max-width: var(--max-width);
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   position: relative;
-  height: clamp(340px, 43.2vw, 623px);
+  height: clamp(340px, 43.26vw, 750px);
   overflow: hidden;
 }
 
@@ -364,6 +365,8 @@ ul, ol {
 .hero-slide {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
