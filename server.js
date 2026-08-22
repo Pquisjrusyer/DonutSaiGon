@@ -41,6 +41,13 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, '127.0.0.1', () => {
-  console.log(`Donut Saigon server running at http://127.0.0.1:${PORT}`);
-});
+if (require.main === module) {
+  server.listen(PORT, '127.0.0.1', () => {
+    console.log(`Donut Saigon server running at http://127.0.0.1:${PORT}`);
+  });
+}
+
+module.exports = (req, res) => {
+  server.emit('request', req, res);
+};
+

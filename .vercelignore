@@ -1,0 +1,9 @@
+# Ignore local server script on Vercel
+server.js
+download_assets.js
+test_logo.png
+
+# Ignore local tool configs
+.agents
+.claude
+skills-lock.json
