@@ -40,6 +40,119 @@
 }
 
 /* --------------------------------------------------------------------------
+   Lenis Smooth Scroll Settings
+   -------------------------------------------------------------------------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Intro Splash Screen / Preloader Overlay
+   -------------------------------------------------------------------------- */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #356ebd 0%, #1c4580 60%, #13325e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+.intro-logo-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.intro-logo-img {
+  width: clamp(180px, 25vw, 280px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.35));
+  position: relative;
+  z-index: 2;
+}
+
+.intro-glow-pulse {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(248, 205, 212, 0.35) 0%, rgba(242, 161, 174, 0.15) 50%, transparent 75%);
+  filter: blur(20px);
+  animation: introPulse 2.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes introPulse {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.9;
+  }
+}
+
+.intro-tagline {
+  font-family: var(--font-family-base);
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 600;
+  color: var(--secondary-light);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.intro-progress-bar {
+  width: clamp(160px, 20vw, 220px);
+  height: 4px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.intro-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #F2A1AE, #FFFFFF);
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(242, 161, 174, 0.8);
+}
+
+/* --------------------------------------------------------------------------
    Reset & Base Styles
    -------------------------------------------------------------------------- */
 *,
@@ -51,7 +164,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -1,7 +1,9 @@
 /**
  * Donut Saigon - Main Interactive Application Script
  * Features:
- * - GSAP & ScrollTrigger Smooth Scroll Animations
+ * - Brand Intro Splash Screen (Logo Reveal, Pulse & Smooth Fade-out)
+ * - Lenis Smooth Momentum Scroll integrated with GSAP ScrollTrigger
+ * - GSAP Scroll-triggered Animations
  * - Hero Banner Carousel (Auto-slide, Prev/Next, Dots)
  * - Testimonials Review Slider (Smooth scroll, Swipe, Prev/Next)
  * - Cart Management & Toast Notification Feedback
@@ -10,16 +12,154 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------------------------------------
-  // 1. GSAP & ScrollTrigger Animations
+  // 1. Lenis Smooth Momentum Scroll Initialization
   // ------------------------------------------------------------------------
-  function initGSAPAnimations() {
+  let lenis = null;
+
+  function initLenis() {
+    if (typeof Lenis === 'undefined') return;
+
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // smooth exponential curve
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+
+    // Smooth Anchor Scroll with Lenis
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#' && document.querySelector(targetId)) {
+          e.preventDefault();
+          const targetEl = document.querySelector(targetId);
+          lenis.scrollTo(targetEl, {
+            offset: -75,
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          });
+        }
+      });
+    });
+  }
+
+  initLenis();
+
+  // ------------------------------------------------------------------------
+  // 2. Intro Logo Splash Screen Animation
+  // ------------------------------------------------------------------------
+  const introOverlay = document.getElementById('introOverlay');
+  const introLogoImg = document.querySelector('.intro-logo-img');
+  const introTagline = document.querySelector('.intro-tagline');
+  const introProgress = document.getElementById('introProgress');
+  const introGlow = document.querySelector('.intro-glow-pulse');
+
+  function startIntroAnimation() {
+    if (!introOverlay || typeof gsap === 'undefined') {
+      if (introOverlay) introOverlay.style.display = 'none';
+      initMainAnimations();
+      return;
+    }
+
+    // Lock page scrolling during intro
+    if (lenis) lenis.stop();
+    document.body.style.overflow = 'hidden';
+
+    const introTl = gsap.timeline({
+      onComplete: () => {
+        introOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+        if (lenis) lenis.start();
+        initMainAnimations();
+      },
+    });
+
+    // Step 1: Initial state
+    introTl
+      .set(introLogoImg, { opacity: 0, scale: 0.6, y: 15 })
+      .set(introTagline, { opacity: 0, y: 15 })
+      .set(introProgress, { width: '0%' })
+      .set(introGlow, { opacity: 0, scale: 0.8 });
+
+    // Step 2: Logo Pop & Glow in
+    introTl
+      .to(introLogoImg, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.9,
+        ease: 'elastic.out(1, 0.7)',
+      })
+      .to(
+        introGlow,
+        {
+          opacity: 0.8,
+          scale: 1.2,
+          duration: 0.8,
+          ease: 'power2.out',
+        },
+        '-=0.7'
+      )
+      .to(
+        introTagline,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power2.out',
+        },
+        '-=0.5'
+      )
+      .to(
+        introProgress,
+        {
+          width: '100%',
+          duration: 0.85,
+          ease: 'power1.inOut',
+        },
+        '-=0.4'
+      );
+
+    // Step 3: Zoom and Fade Out Overlay to Reveal Site
+    introTl.to(introOverlay, {
+      opacity: 0,
+      scale: 1.04,
+      duration: 0.7,
+      ease: 'power3.inOut',
+      delay: 0.15,
+    });
+  }
+
+  // ------------------------------------------------------------------------
+  // 3. GSAP ScrollTrigger Page Animations
+  // ------------------------------------------------------------------------
+  function initMainAnimations() {
     if (typeof gsap === 'undefined') return;
 
     if (typeof ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
     }
 
-    // 1.1 Navbar Entrance Animation
+    // 3.1 Header Entrance Animation
     gsap.from('#mainHeader', {
       y: -80,
       opacity: 0,
@@ -27,16 +167,16 @@ document.addEventListener('DOMContentLoaded', () => {
       ease: 'power3.out',
     });
 
-    // 1.2 Hero Banner Entrance
+    // 3.2 Hero Banner Entrance
     gsap.from('.hero-slider-wrapper', {
       opacity: 0,
       scale: 0.98,
       duration: 1,
       ease: 'power3.out',
-      delay: 0.15,
+      delay: 0.1,
     });
 
-    // 1.3 Section: Khám Phá Hương Vị
+    // 3.3 Section: Khám Phá Hương Vị
     if (document.querySelector('#flavors')) {
       gsap.from('#flavors .section-title, #flavors .section-subtitle', {
         scrollTrigger: {
@@ -65,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 1.4 Section: Giá Trị Cốt Lõi (Values)
+    // 3.4 Section: Giá Trị Cốt Lõi (Values)
     if (document.querySelector('#about')) {
       gsap.from('.value-item', {
         scrollTrigger: {
@@ -81,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 1.5 Section: Khách Hàng Nói Gì? (Reviews)
+    // 3.5 Section: Khách Hàng Nói Gì? (Reviews)
     if (document.querySelector('#reviews')) {
       gsap.from('#reviews .reviews-title', {
         scrollTrigger: {
@@ -109,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 1.6 Footer Elements
+    // 3.6 Footer Elements
     if (document.querySelector('.site-footer')) {
       gsap.from('.footer-col', {
         scrollTrigger: {
@@ -126,18 +266,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Run GSAP initializations (with small delay if CDN loads asynchronously)
-  setTimeout(initGSAPAnimations, 50);
+  // Trigger Intro Splash Screen
+  startIntroAnimation();
 
   // ------------------------------------------------------------------------
-  // 2. Hero Slider Component
+  // 4. Hero Slider Component
   // ------------------------------------------------------------------------
   const heroSlides = document.querySelectorAll('.hero-slide');
   const heroDots = document.querySelectorAll('#heroDots .dot');
   const heroPrevBtn = document.getElementById('heroPrevBtn');
   const heroNextBtn = document.getElementById('heroNextBtn');
   const heroSlider = document.getElementById('heroSlider');
-  
+
   let currentSlide = 0;
   const totalSlides = heroSlides.length;
   let slideInterval = null;
@@ -212,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
   startAutoPlay();
 
   // ------------------------------------------------------------------------
-  // 3. Testimonial Reviews Slider Component
+  // 5. Testimonial Reviews Slider Component
   // ------------------------------------------------------------------------
   const reviewsTrack = document.getElementById('reviewsTrack');
   const reviewCards = document.querySelectorAll('.review-card');
@@ -313,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateReviewSlider();
 
   // ------------------------------------------------------------------------
-  // 4. Cart State & Toast Notifications
+  // 6. Cart State & Toast Notifications
   // ------------------------------------------------------------------------
   let cartCount = 0;
 
@@ -351,7 +491,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Event delegation for cart actions across page and components
   document.addEventListener('click', (e) => {
     const ctaBtn = e.target.closest('.card-cta-btn, .product-card');
     if (ctaBtn) {
@@ -373,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------------------------------------------------------
-  // 5. ScrollSpy & Header Shadow on Scroll
+  // 7. ScrollSpy & Header Shadow on Scroll
   // ------------------------------------------------------------------------
   const sections = document.querySelectorAll('section[id]');
 
