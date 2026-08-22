@@ -43,34 +43,25 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger: '#flavors',
           start: 'top 85%',
         },
-        y: 35,
+        y: 25,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: 'power2.out',
+        clearProps: 'transform,opacity',
+      });
+
+      gsap.from('#flavors .product-card', {
+        scrollTrigger: {
+          trigger: '#flavors .flavors-container',
+          start: 'top 80%',
+        },
+        y: 30,
         opacity: 0,
         duration: 0.8,
         stagger: 0.15,
         ease: 'power2.out',
-      });
-
-      gsap.from('.product-cards-row .product-card', {
-        scrollTrigger: {
-          trigger: '.product-cards-row',
-          start: 'top 80%',
-        },
-        y: 60,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.2,
-        ease: 'power3.out',
-      });
-
-      gsap.from('.card-gift-box', {
-        scrollTrigger: {
-          trigger: '.card-gift-box',
-          start: 'top 85%',
-        },
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
+        clearProps: 'transform,opacity',
       });
     }
 
@@ -81,11 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger: '#about',
           start: 'top 80%',
         },
-        y: 45,
+        y: 35,
         opacity: 0,
-        duration: 0.85,
-        stagger: 0.2,
-        ease: 'back.out(1.4)',
+        duration: 0.75,
+        stagger: 0.15,
+        ease: 'back.out(1.3)',
+        clearProps: 'transform,opacity',
       });
     }
 
@@ -96,10 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger: '#reviews',
           start: 'top 85%',
         },
-        y: 30,
+        y: 25,
         opacity: 0,
-        duration: 0.7,
+        duration: 0.6,
         ease: 'power2.out',
+        clearProps: 'transform,opacity',
       });
 
       gsap.from('.review-card', {
@@ -107,11 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger: '.reviews-carousel-wrapper',
           start: 'top 82%',
         },
-        y: 45,
+        y: 30,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power3.out',
+        duration: 0.75,
+        stagger: 0.1,
+        ease: 'power2.out',
+        clearProps: 'transform,opacity',
       });
     }
 
@@ -122,11 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger: '.site-footer',
           start: 'top 90%',
         },
-        y: 35,
+        y: 25,
         opacity: 0,
-        duration: 0.75,
-        stagger: 0.12,
+        duration: 0.7,
+        stagger: 0.1,
         ease: 'power2.out',
+        clearProps: 'transform,opacity',
       });
     }
   }
