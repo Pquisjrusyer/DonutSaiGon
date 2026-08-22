@@ -1,0 +1,6 @@
+# Secrets & Environment variables
+mail.md
+.env
+.env.*
+node_modules/
+.DS_Store
