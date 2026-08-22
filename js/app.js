@@ -1,16 +1,141 @@
 /**
  * Donut Saigon - Main Interactive Application Script
  * Features:
+ * - GSAP & ScrollTrigger Smooth Scroll Animations
  * - Hero Banner Carousel (Auto-slide, Prev/Next, Dots)
  * - Testimonials Review Slider (Smooth scroll, Swipe, Prev/Next)
- * - Mobile Navigation Drawer
  * - Cart Management & Toast Notification Feedback
- * - Active Navigation Scroll Spy
+ * - Active Navigation Scroll Spy & Header Shrink on Scroll
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------------------------------------
-  // 1. Hero Slider Component
+  // 1. GSAP & ScrollTrigger Animations
+  // ------------------------------------------------------------------------
+  function initGSAPAnimations() {
+    if (typeof gsap === 'undefined') return;
+
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // 1.1 Navbar Entrance Animation
+    gsap.from('#mainHeader', {
+      y: -80,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+    });
+
+    // 1.2 Hero Banner Entrance
+    gsap.from('.hero-slider-wrapper', {
+      opacity: 0,
+      scale: 0.98,
+      duration: 1,
+      ease: 'power3.out',
+      delay: 0.15,
+    });
+
+    // 1.3 Section: Khám Phá Hương Vị
+    if (document.querySelector('#flavors')) {
+      gsap.from('#flavors .section-title, #flavors .section-subtitle', {
+        scrollTrigger: {
+          trigger: '#flavors',
+          start: 'top 85%',
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power2.out',
+      });
+
+      gsap.from('.product-cards-row .product-card', {
+        scrollTrigger: {
+          trigger: '.product-cards-row',
+          start: 'top 80%',
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.2,
+        ease: 'power3.out',
+      });
+
+      gsap.from('.card-gift-box', {
+        scrollTrigger: {
+          trigger: '.card-gift-box',
+          start: 'top 85%',
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+      });
+    }
+
+    // 1.4 Section: Giá Trị Cốt Lõi (Values)
+    if (document.querySelector('#about')) {
+      gsap.from('.value-item', {
+        scrollTrigger: {
+          trigger: '#about',
+          start: 'top 80%',
+        },
+        y: 45,
+        opacity: 0,
+        duration: 0.85,
+        stagger: 0.2,
+        ease: 'back.out(1.4)',
+      });
+    }
+
+    // 1.5 Section: Khách Hàng Nói Gì? (Reviews)
+    if (document.querySelector('#reviews')) {
+      gsap.from('#reviews .reviews-title', {
+        scrollTrigger: {
+          trigger: '#reviews',
+          start: 'top 85%',
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+      });
+
+      gsap.from('.review-card', {
+        scrollTrigger: {
+          trigger: '.reviews-carousel-wrapper',
+          start: 'top 82%',
+        },
+        y: 45,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: 'power3.out',
+      });
+    }
+
+    // 1.6 Footer Elements
+    if (document.querySelector('.site-footer')) {
+      gsap.from('.footer-col', {
+        scrollTrigger: {
+          trigger: '.site-footer',
+          start: 'top 90%',
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.75,
+        stagger: 0.12,
+        ease: 'power2.out',
+      });
+    }
+  }
+
+  // Run GSAP initializations (with small delay if CDN loads asynchronously)
+  setTimeout(initGSAPAnimations, 50);
+
+  // ------------------------------------------------------------------------
+  // 2. Hero Slider Component
   // ------------------------------------------------------------------------
   const heroSlides = document.querySelectorAll('.hero-slide');
   const heroDots = document.querySelectorAll('#heroDots .dot');
@@ -52,7 +177,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startAutoPlay() {
     stopAutoPlay();
-    slideInterval = setInterval(nextSlide, AUTO_PLAY_DELAY);
+    if (totalSlides > 1) {
+      slideInterval = setInterval(nextSlide, AUTO_PLAY_DELAY);
+    }
   }
 
   function stopAutoPlay() {
@@ -87,11 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
     heroSlider.addEventListener('mouseleave', startAutoPlay);
   }
 
-  // Initialize Hero AutoPlay
   startAutoPlay();
 
   // ------------------------------------------------------------------------
-  // 2. Testimonial Reviews Slider Component
+  // 3. Testimonial Reviews Slider Component
   // ------------------------------------------------------------------------
   const reviewsTrack = document.getElementById('reviewsTrack');
   const reviewCards = document.querySelectorAll('.review-card');
@@ -123,18 +249,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const firstCard = reviewCards[0];
     const cardWidth = firstCard.offsetWidth;
-    const gap = 24; // matches styles.css gap
+    const gap = 24;
     const offset = reviewCurrentIndex * (cardWidth + gap);
 
     reviewsTrack.style.transform = `translateX(-${offset}px)`;
 
-    // Update navigation button states
     if (reviewPrevBtn) {
-      reviewPrevBtn.style.opacity = reviewCurrentIndex === 0 ? '0.5' : '1';
+      reviewPrevBtn.style.opacity = reviewCurrentIndex === 0 ? '0.4' : '1';
       reviewPrevBtn.style.pointerEvents = reviewCurrentIndex === 0 ? 'none' : 'auto';
     }
     if (reviewNextBtn) {
-      reviewNextBtn.style.opacity = reviewCurrentIndex >= maxIndex ? '0.5' : '1';
+      reviewNextBtn.style.opacity = reviewCurrentIndex >= maxIndex ? '0.4' : '1';
       reviewNextBtn.style.pointerEvents = reviewCurrentIndex >= maxIndex ? 'none' : 'auto';
     }
   }
@@ -159,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Touch Swipe for Reviews on mobile
+  // Touch Swipe for Reviews on Mobile
   let touchStartX = 0;
   let touchEndX = 0;
 
@@ -170,97 +295,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     trackContainer.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
+      const swipeThreshold = 50;
+      const visibleCount = getVisibleCardsCount();
+      const maxIndex = Math.max(0, reviewCards.length - visibleCount);
+
+      if (touchEndX < touchStartX - swipeThreshold) {
+        if (reviewCurrentIndex < maxIndex) {
+          reviewCurrentIndex++;
+          updateReviewSlider();
+        }
+      }
+      if (touchEndX > touchStartX + swipeThreshold) {
+        if (reviewCurrentIndex > 0) {
+          reviewCurrentIndex--;
+          updateReviewSlider();
+        }
+      }
     }, { passive: true });
-  }
-
-  function handleSwipe() {
-    const swipeThreshold = 50;
-    const visibleCount = getVisibleCardsCount();
-    const maxIndex = Math.max(0, reviewCards.length - visibleCount);
-
-    if (touchEndX < touchStartX - swipeThreshold) {
-      // Swiped Left -> Next
-      if (reviewCurrentIndex < maxIndex) {
-        reviewCurrentIndex++;
-        updateReviewSlider();
-      }
-    }
-    if (touchEndX > touchStartX + swipeThreshold) {
-      // Swiped Right -> Prev
-      if (reviewCurrentIndex > 0) {
-        reviewCurrentIndex--;
-        updateReviewSlider();
-      }
-    }
   }
 
   window.addEventListener('resize', updateReviewSlider);
   updateReviewSlider();
 
   // ------------------------------------------------------------------------
-  // 3. Mobile Navigation Drawer
-  // ------------------------------------------------------------------------
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileDrawer = document.getElementById('mobileDrawer');
-  const drawerBackdrop = document.getElementById('drawerBackdrop');
-  const drawerCloseBtn = document.getElementById('drawerCloseBtn');
-  const drawerLinks = document.querySelectorAll('.drawer-link');
-
-  function openDrawer() {
-    if (mobileDrawer && drawerBackdrop && mobileMenuBtn) {
-      mobileDrawer.classList.add('open');
-      drawerBackdrop.classList.add('open');
-      mobileMenuBtn.classList.add('open');
-      mobileDrawer.setAttribute('aria-hidden', 'false');
-      mobileMenuBtn.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-  }
-
-  function closeDrawer() {
-    if (mobileDrawer && drawerBackdrop && mobileMenuBtn) {
-      mobileDrawer.classList.remove('open');
-      drawerBackdrop.classList.remove('open');
-      mobileMenuBtn.classList.remove('open');
-      mobileDrawer.setAttribute('aria-hidden', 'true');
-      mobileMenuBtn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-  }
-
-  if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', () => {
-      const isOpen = mobileDrawer && mobileDrawer.classList.contains('open');
-      if (isOpen) {
-        closeDrawer();
-      } else {
-        openDrawer();
-      }
-    });
-  }
-
-  if (drawerCloseBtn) {
-    drawerCloseBtn.addEventListener('click', closeDrawer);
-  }
-
-  if (drawerBackdrop) {
-    drawerBackdrop.addEventListener('click', closeDrawer);
-  }
-
-  drawerLinks.forEach((link) => {
-    link.addEventListener('click', closeDrawer);
-  });
-
-  // ------------------------------------------------------------------------
   // 4. Cart State & Toast Notifications
   // ------------------------------------------------------------------------
   let cartCount = 0;
-  const cartBadge = document.getElementById('cartBadge');
-  const mobileCartBadge = document.getElementById('mobileCartBadge');
-  const toastContainer = document.getElementById('toastContainer');
 
   function showToast(message, icon = '✓') {
+    const toastContainer = document.getElementById('toastContainer');
     if (!toastContainer) return;
     const toast = document.createElement('div');
     toast.className = 'toast';
@@ -278,6 +341,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateCartUI() {
+    const cartBadge = document.getElementById('cartBadge');
+    const mobileCartBadge = document.getElementById('mobileCartBadge');
+
     if (cartBadge) {
       cartBadge.textContent = cartCount;
       cartBadge.style.transform = 'scale(1.3)';
@@ -290,49 +356,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const ctaButtons = document.querySelectorAll('.card-cta-btn, .product-card');
-  ctaButtons.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
+  // Event delegation for cart actions across page and components
+  document.addEventListener('click', (e) => {
+    const ctaBtn = e.target.closest('.card-cta-btn, .product-card');
+    if (ctaBtn) {
       e.stopPropagation();
-      const card = btn.closest('.product-card');
-      const productName = btn.getAttribute('data-product-name') || 
+      const card = ctaBtn.closest('.product-card');
+      const productName = ctaBtn.getAttribute('data-product-name') || 
                           (card ? card.querySelector('.card-title')?.textContent : 'Bánh Donut');
       cartCount += 1;
       updateCartUI();
       showToast(`Đã thêm ${productName} vào giỏ hàng!`);
-    });
-  });
+      return;
+    }
 
-  const navCartBtn = document.getElementById('navCartBtn');
-  const mobileCartLink = document.getElementById('mobileCartLink');
-
-  [navCartBtn, mobileCartLink].forEach((cartBtn) => {
-    if (cartBtn) {
-      cartBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        showToast(`Giỏ hàng của bạn đang có ${cartCount} sản phẩm.`);
-      });
+    const navCartBtn = e.target.closest('#navCartBtn, #mobileCartLink');
+    if (navCartBtn) {
+      e.preventDefault();
+      showToast(`Giỏ hàng của bạn đang có ${cartCount} sản phẩm.`);
     }
   });
 
   // ------------------------------------------------------------------------
   // 5. ScrollSpy & Header Shadow on Scroll
   // ------------------------------------------------------------------------
-  const mainHeader = document.getElementById('mainHeader');
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.main-nav .nav-link');
 
   window.addEventListener('scroll', () => {
+    const mainHeader = document.getElementById('mainHeader');
     const scrollY = window.scrollY;
 
-    // Header background & shadow adjustment
-    if (scrollY > 50) {
-      mainHeader.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
-    } else {
-      mainHeader.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+    if (mainHeader) {
+      if (scrollY > 40) {
+        mainHeader.classList.add('scrolled');
+        mainHeader.style.boxShadow = '0 6px 24px rgba(0, 0, 0, 0.18)';
+      } else {
+        mainHeader.classList.remove('scrolled');
+        mainHeader.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+      }
     }
 
-    // ScrollSpy active indicator
     let currentSectionId = '';
     sections.forEach((section) => {
       const sectionTop = section.offsetTop - 120;
@@ -343,8 +406,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (currentSectionId) {
+      const navLinks = document.querySelectorAll('.main-nav .nav-link, .mobile-drawer .drawer-link');
       navLinks.forEach((link) => {
-        const href = link.getAttribute('href').replace('#', '');
+        const href = link.getAttribute('href')?.replace('#', '');
         link.classList.toggle('active', href === currentSectionId);
       });
     }

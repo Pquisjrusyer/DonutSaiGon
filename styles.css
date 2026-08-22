@@ -86,12 +86,23 @@ ul, ol {
 }
 
 /* --------------------------------------------------------------------------
-   Header / Navigation Bar
+   Custom Web Components & Header
    -------------------------------------------------------------------------- */
-.site-header {
+donut-header {
+  display: block;
+  width: 100%;
   position: sticky;
   top: 0;
-  left: 0;
+  z-index: 1000;
+}
+
+donut-footer {
+  display: block;
+  width: 100%;
+}
+
+.site-header {
+  position: relative;
   width: 100%;
   height: var(--header-height);
   background-color: var(--primary);
