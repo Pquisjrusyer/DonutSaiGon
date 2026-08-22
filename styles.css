@@ -3045,14 +3045,14 @@ donut-footer {
 .detail-commitments-card {
   background-color: #F8F5F0;
   border-radius: 20px;
-  padding: 180px 24px;
+  padding: 100px 24px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
 }
 
 .commitments-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 60px;
 }
 
 .commitment-item {
