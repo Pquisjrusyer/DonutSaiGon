@@ -546,7 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const cardPage = parseInt(card.getAttribute('data-page') || '1', 10);
 
       const matchesCategory = currentCategory === 'all' || cardCategory === currentCategory;
-      const matchesPage = cardPage === currentPage;
+      const matchesPage = currentCategory === 'all' ? (cardPage === currentPage) : true;
 
       if (matchesCategory && matchesPage) {
         card.style.display = 'flex';
@@ -559,7 +559,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update pagination controls
+    // Update pagination controls visibility and state
+    const paginationNav = document.querySelector('.menu-pagination');
+    if (paginationNav) {
+      if (currentCategory !== 'all') {
+        paginationNav.style.display = 'none';
+      } else {
+        paginationNav.style.display = 'flex';
+      }
+    }
+
     paginationNums.forEach((btn) => {
       const page = parseInt(btn.getAttribute('data-page-target') || btn.textContent.trim(), 10);
       btn.classList.toggle('active', page === currentPage);
@@ -590,6 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
       pill.setAttribute('aria-selected', 'true');
 
       currentCategory = pill.getAttribute('data-category');
+      currentPage = 1;
       renderMenuProducts(true);
     });
   });
