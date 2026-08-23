@@ -1960,6 +1960,23 @@ donut-footer {
    Account Page Authentication Flow (Login, Forgot, OTP, Signup, Success)
    Figma Nodes: 1227:13483, 1227:13708, 1227:13739, 1303:25818, 1230:9228
    -------------------------------------------------------------------------- */
+body.account-page,
+body.profile-page {
+  background-color: #F8F5F0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body.account-page main,
+body.profile-page main {
+  background-color: #F8F5F0;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 body.account-page.auth-mode donut-footer,
 body.account-page:not(.dashboard-mode) donut-footer {
   display: none !important;
@@ -1968,6 +1985,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 .auth-login-section {
   position: relative;
   min-height: calc(100vh - var(--header-height));
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1975,6 +1993,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   padding: calc(var(--header-height) + 24px) 24px 20px;
   background-color: #F8F5F0;
   overflow: hidden;
+  flex: 1 0 auto;
 }
 
 .auth-decor-blob {
@@ -2755,11 +2774,14 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .profile-update-section {
   background-color: #F8F5F0;
-  padding: calc(var(--header-height) + 32px) 24px 60px;
+  padding: calc(var(--header-height) + 32px) 24px 32px;
   min-height: calc(100vh - var(--header-height));
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+  flex: 1 0 auto;
 }
 
 .profile-update-container {
