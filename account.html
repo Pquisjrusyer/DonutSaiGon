@@ -217,6 +217,104 @@
     </section>
 
     <!-- ==========================================================
+         STATE 1D: SIGN UP / REGISTER VIEW (FIGMA NODE 1303:25818)
+         ========================================================== -->
+    <section class="auth-login-section auth-signup-section" id="authSignupView" style="display: none;">
+      <!-- Decorative Blurred Gradient Blobs -->
+      <div class="auth-decor-blob blob-left" aria-hidden="true"></div>
+      <div class="auth-decor-blob blob-right" aria-hidden="true"></div>
+
+      <div class="signup-card-container">
+        <div class="signup-card">
+          <!-- Left Side: Visual / Brand Content -->
+          <div class="signup-left-col">
+            <img src="assets/signup-brand-banner.png" alt="Donut Saigon - Trở Thành Khách Hàng Thân Thiết" class="signup-banner-img">
+          </div>
+
+          <!-- Right Side: Registration Form -->
+          <div class="signup-right-col">
+            <header class="signup-header">
+              <h1 class="signup-title">Tạo tài khoản</h1>
+              <p class="signup-subtitle">Bắt đầu hành trình thưởng thức donut cùng chúng tôi.</p>
+            </header>
+
+            <form class="signup-form" id="signupForm" onsubmit="event.preventDefault();">
+              <!-- Name Input -->
+              <div class="signup-form-group">
+                <label for="signupName" class="signup-label">Họ và tên</label>
+                <div class="signup-input-wrap">
+                  <img src="assets/icon-signup-user.svg" alt="" class="input-icon-left" width="16" height="16">
+                  <input type="text" id="signupName" class="signup-input" placeholder="Nguyen Van A" required>
+                </div>
+              </div>
+
+              <!-- Email Input -->
+              <div class="signup-form-group">
+                <label for="signupEmail" class="signup-label">Email</label>
+                <div class="signup-input-wrap">
+                  <img src="assets/icon-signup-email.svg" alt="" class="input-icon-left" width="18" height="16">
+                  <input type="email" id="signupEmail" class="signup-input" placeholder="vi-du@email.com" required>
+                </div>
+              </div>
+
+              <!-- Phone Input -->
+              <div class="signup-form-group">
+                <label for="signupPhone" class="signup-label">Số điện thoại</label>
+                <div class="signup-input-wrap">
+                  <img src="assets/icon-signup-phone.svg" alt="" class="input-icon-left" width="16" height="16">
+                  <input type="tel" id="signupPhone" class="signup-input" placeholder="0912 345 678" required>
+                </div>
+              </div>
+
+              <!-- Password Input -->
+              <div class="signup-form-group">
+                <label for="signupPassword" class="signup-label">Mật khẩu</label>
+                <div class="signup-input-wrap">
+                  <img src="assets/icon-signup-lock.svg" alt="" class="input-icon-left" width="16" height="18">
+                  <input type="password" id="signupPassword" class="signup-input" placeholder="••••••••" required>
+                  <button type="button" class="btn-toggle-pwd" id="btnToggleSignupPwd" aria-label="Hiện/ẩn mật khẩu">
+                    <img src="assets/icon-eye-toggle.svg" alt="" width="20" height="14">
+                  </button>
+                </div>
+              </div>
+
+              <!-- Terms Checkbox -->
+              <div class="signup-terms-row">
+                <label class="custom-checkbox-label">
+                  <input type="checkbox" id="signupTerms" checked class="custom-checkbox-input" required>
+                  <span class="custom-checkbox-box"></span>
+                  <span class="terms-text">
+                    Tôi đồng ý với các <a href="#terms" class="terms-link">Điều khoản dịch vụ</a> và <a href="#privacy" class="terms-link">Chính sách bảo mật</a>
+                  </span>
+                </label>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn-signup-submit" id="btnSignupSubmit">
+                Đăng ký ngay
+              </button>
+            </form>
+
+            <!-- Login Redirect Link -->
+            <div class="signup-login-redirect">
+              <span>Đã có tài khoản?</span>
+              <button type="button" class="login-link-btn" id="linkToLogin">Đăng nhập</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subpage Minimal Footer Note -->
+        <div class="login-page-footer-note">
+          <span>© 2024 Donut Saigon. Bánh donut thủ công làm bằng cả tâm huyết.</span>
+          <div class="footer-note-links">
+            <a href="#privacy">Chính sách bảo mật</a>
+            <a href="#terms">Điều khoản dịch vụ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
          STATE 2: AUTHENTICATED USER DASHBOARD VIEW
          ========================================================== -->
     <section class="account-main-section" id="authDashboardView" style="display: none;" aria-label="Khu vực tài khoản thành viên">

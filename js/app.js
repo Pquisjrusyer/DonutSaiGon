@@ -728,16 +728,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------------------------------------------------------
-  // 9b. Account Page Authentication State (Figma Node 1227:13483, 1227:13708 & 1227:13739)
+  // 9b. Account Page Authentication State (Figma Node 1227:13483, 1227:13708, 1227:13739 & 1303:25818)
   // ------------------------------------------------------------------------
   function initAccountAuth() {
     const loginView = document.getElementById('authLoginView');
     const forgotView = document.getElementById('authForgotView');
     const otpView = document.getElementById('authOtpView');
+    const signupView = document.getElementById('authSignupView');
     const dashboardView = document.getElementById('authDashboardView');
     if (!loginView || !dashboardView) return;
 
-    let authState = 'login'; // 'login', 'forgot', 'otp', 'dashboard'
+    let authState = 'login'; // 'login', 'forgot', 'otp', 'signup', 'dashboard'
     let currentOtp = '82941';
     let targetEmail = '';
 
@@ -748,23 +749,33 @@ document.addEventListener('DOMContentLoaded', () => {
         loginView.style.display = 'none';
         if (forgotView) forgotView.style.display = 'none';
         if (otpView) otpView.style.display = 'none';
+        if (signupView) signupView.style.display = 'none';
         dashboardView.style.display = 'block';
       } else {
         if (authState === 'forgot' && forgotView) {
           loginView.style.display = 'none';
           forgotView.style.display = 'flex';
           if (otpView) otpView.style.display = 'none';
+          if (signupView) signupView.style.display = 'none';
           dashboardView.style.display = 'none';
         } else if (authState === 'otp' && otpView) {
           loginView.style.display = 'none';
           if (forgotView) forgotView.style.display = 'none';
           otpView.style.display = 'flex';
+          if (signupView) signupView.style.display = 'none';
+          dashboardView.style.display = 'none';
+        } else if (authState === 'signup' && signupView) {
+          loginView.style.display = 'none';
+          if (forgotView) forgotView.style.display = 'none';
+          if (otpView) otpView.style.display = 'none';
+          signupView.style.display = 'flex';
           dashboardView.style.display = 'none';
         } else {
           authState = 'login';
           loginView.style.display = 'flex';
           if (forgotView) forgotView.style.display = 'none';
           if (otpView) otpView.style.display = 'none';
+          if (signupView) signupView.style.display = 'none';
           dashboardView.style.display = 'none';
         }
       }
@@ -774,7 +785,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Send Real OTP Email via Resend API
     async function triggerResendEmail(email, otp) {
-      // Load API key securely from config, window, or fallback token parts
       const apiKey = window.RESEND_API_KEY || ['re', 'GN85r9ke', 'GDA2UK5sHfv8iA6Ra6FG6en7'].join('_');
       try {
         const res = await fetch('https://api.resend.com/emails', {
@@ -973,11 +983,72 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    // Switch from Login to Sign Up
     const signupLink = document.getElementById('signupLink');
     if (signupLink) {
       signupLink.addEventListener('click', (e) => {
         e.preventDefault();
-        showToast('Tính năng đăng ký đang được hoàn thiện. Bạn có thể đăng nhập trực tiếp!');
+        authState = 'signup';
+        updateAuthDisplay();
+        scrollToTop();
+      });
+    }
+
+    // Switch from Sign Up to Login
+    const linkToLogin = document.getElementById('linkToLogin');
+    if (linkToLogin) {
+      linkToLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        authState = 'login';
+        updateAuthDisplay();
+        scrollToTop();
+      });
+    }
+
+    // Toggle Sign Up Password Visibility
+    const btnToggleSignupPwd = document.getElementById('btnToggleSignupPwd');
+    if (btnToggleSignupPwd) {
+      btnToggleSignupPwd.addEventListener('click', () => {
+        const pwdInput = document.getElementById('signupPassword');
+        if (pwdInput) {
+          pwdInput.type = pwdInput.type === 'password' ? 'text' : 'password';
+        }
+      });
+    }
+
+    // Sign Up Form Submit
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+      signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('signupName')?.value.trim();
+        const email = document.getElementById('signupEmail')?.value.trim();
+        const phone = document.getElementById('signupPhone')?.value.trim();
+        const password = document.getElementById('signupPassword')?.value.trim();
+        const terms = document.getElementById('signupTerms')?.checked;
+
+        if (!name || !email || !phone || !password) {
+          showToast('Vui lòng điền đầy đủ thông tin đăng ký!');
+          return;
+        }
+
+        if (!terms) {
+          showToast('Vui lòng đồng ý với Điều khoản dịch vụ và Chính sách bảo mật!');
+          return;
+        }
+
+        localStorage.setItem('dnsg_registered_user', JSON.stringify({ name, email, phone }));
+        localStorage.setItem('dnsg_user_logged_in', 'true');
+
+        // Update dashboard profile display if present
+        const profileNameEl = document.querySelector('.profile-name');
+        if (profileNameEl) profileNameEl.textContent = name;
+        const profileEmailEl = document.querySelector('.profile-info-item .info-text');
+        if (profileEmailEl) profileEmailEl.textContent = email;
+
+        showToast(`🎉 Chúc mừng ${name}, bạn đã đăng ký thành công!`, '✓');
+        updateAuthDisplay();
+        scrollToTop();
       });
     }
 
