@@ -721,14 +721,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Account Page: Edit Profile
-    const editBtn = e.target.closest('#editProfileBtn');
-    if (editBtn) {
-      e.preventDefault();
-      showToast('Tính năng chỉnh sửa hồ sơ đang được cập nhật!');
-      return;
-    }
-
     // Account Page: View all orders
     const viewAllBtn = e.target.closest('#viewAllOrdersBtn');
     if (viewAllBtn) {
@@ -787,7 +779,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateAuthDisplay() {
       const isLogged = localStorage.getItem('dnsg_user_logged_in') === 'true';
 
-      if (authState === 'profile_edit' && profileEditView && isLogged) {
+      if (authState === 'profile_edit' && profileEditView) {
         document.body.classList.remove('auth-mode');
         document.body.classList.add('dashboard-mode');
         loginView.style.display = 'none';
