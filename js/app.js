@@ -566,6 +566,17 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentCategory = 'all';
   let currentPage = 1;
 
+  // Read URL category query param (e.g. ?category=filled-donut or ?category=ring-donut)
+  const urlCategoryParam = new URLSearchParams(window.location.search).get('category');
+  if (urlCategoryParam && (urlCategoryParam === 'ring-donut' || urlCategoryParam === 'filled-donut' || urlCategoryParam === 'all')) {
+    currentCategory = urlCategoryParam;
+    filterPills.forEach((p) => {
+      const isTarget = p.getAttribute('data-category') === urlCategoryParam;
+      p.classList.toggle('active', isTarget);
+      p.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+    });
+  }
+
   function renderMenuProducts(animate = true) {
     let visibleCount = 0;
     productCards.forEach((card) => {
