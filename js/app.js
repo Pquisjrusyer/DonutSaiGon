@@ -1463,4 +1463,184 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = 'cart.html';
     });
   }
+
+  // ------------------------------------------------------------------------
+  // 13. Cookie Consent Banner & Privacy Policy Modal
+  // ------------------------------------------------------------------------
+  function initCookieConsentAndPolicyModal() {
+    // Inject Banner and Modal if not present
+    if (!document.getElementById('donutCookieBanner')) {
+      const bannerHtml = `
+        <div class="donut-cookie-banner" id="donutCookieBanner" aria-live="polite" role="dialog" aria-label="Thông báo Cookie">
+          <div class="cookie-banner-content">
+            <div class="cookie-icon-wrap">
+              <span class="cookie-emoji" aria-hidden="true">🍪</span>
+            </div>
+            <div class="cookie-text-wrap">
+              <h3 class="cookie-title">Thông báo Cookie & Quyền riêng tư</h3>
+              <p class="cookie-desc">
+                Donut Saigon sử dụng cookie để tối ưu trải nghiệm duyệt web, lưu giỏ hàng và mang đến các ưu đãi ngọt ngào nhất.
+                <a href="#privacy" class="cookie-policy-link" id="openPrivacyPolicyFromBanner">Xem chính sách</a>
+              </p>
+            </div>
+          </div>
+          <div class="cookie-actions-wrap">
+            <button type="button" class="btn-cookie-secondary" id="btnCookieCustomize">Tùy chỉnh</button>
+            <button type="button" class="btn-cookie-primary" id="btnCookieAcceptAll">Chấp nhận tất cả</button>
+          </div>
+          <button type="button" class="btn-cookie-close" id="btnCookieClose" aria-label="Đóng thông báo">✕</button>
+        </div>
+      `;
+      document.body.insertAdjacentHTML('beforeend', bannerHtml);
+    }
+
+    if (!document.getElementById('privacyPolicyModal')) {
+      const modalHtml = `
+        <div class="policy-modal-backdrop" id="privacyPolicyModal" aria-hidden="true" role="dialog" aria-labelledby="policyModalTitle">
+          <div class="policy-modal-card">
+            <div class="policy-modal-header">
+              <div class="policy-header-title-wrap">
+                <span class="policy-header-badge">DONUT SAIGON</span>
+                <h2 class="policy-modal-title" id="policyModalTitle">Chính Sách Bảo Mật & Cookie</h2>
+              </div>
+              <button type="button" class="policy-modal-close" id="btnClosePolicyModal" aria-label="Đóng modal">✕</button>
+            </div>
+            <div class="policy-modal-body">
+              <div class="policy-section">
+                <h3 class="policy-section-title">1. Mục Đích Thu Thập Thông Tin</h3>
+                <p>Donut Saigon cam kết bảo mật thông tin cá nhân của bạn. Dữ liệu (họ tên, email, số điện thoại, địa chỉ nhận bánh) chỉ được dùng để giao hàng nhanh chóng, tích lũy điểm thưởng thành viên và gửi voucher ưu đãi đặc quyền.</p>
+              </div>
+              <div class="policy-section">
+                <h3 class="policy-section-title">2. Quản Lý Tùy Chọn Cookie</h3>
+                <p>Bạn có thể tùy chỉnh các loại cookie mà website được phép lưu trữ trên thiết bị của bạn:</p>
+                <div class="cookie-preferences-box">
+                  <div class="pref-item">
+                    <div class="pref-info">
+                      <span class="pref-name">Cookie Cần Thiết (Essential)</span>
+                      <span class="pref-desc">Bắt buộc để lưu giỏ hàng, thanh toán và bảo mật tài khoản.</span>
+                    </div>
+                    <input type="checkbox" checked disabled class="pref-switch" title="Luôn bật">
+                  </div>
+                  <div class="pref-item">
+                    <div class="pref-info">
+                      <span class="pref-name">Cookie Phân Tích (Analytics)</span>
+                      <span class="pref-desc">Giúp chúng mình thống kê lưu lượng để nâng cấp tốc độ website.</span>
+                    </div>
+                    <input type="checkbox" id="prefAnalytics" checked class="pref-switch">
+                  </div>
+                  <div class="pref-item">
+                    <div class="pref-info">
+                      <span class="pref-name">Cookie Tiếp Thị (Marketing)</span>
+                      <span class="pref-desc">Hiển thị ưu đãi quà tặng và voucher giảm giá bánh mới.</span>
+                    </div>
+                    <input type="checkbox" id="prefMarketing" checked class="pref-switch">
+                  </div>
+                </div>
+              </div>
+              <div class="policy-section">
+                <h3 class="policy-section-title">3. Cam Kết Bảo Mật Tuyệt Đối</h3>
+                <p>Mọi giao dịch và thông tin thanh toán đều được mã hóa an toàn. Chúng tôi không bao giờ chia sẻ dữ liệu của bạn cho bất kỳ bên thứ ba nào vì mục đích thương mại.</p>
+              </div>
+            </div>
+            <div class="policy-modal-footer">
+              <button type="button" class="btn-save-cookie-prefs" id="btnSaveCookiePrefs">Lưu Tùy Chọn & Đóng</button>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
+
+    const banner = document.getElementById('donutCookieBanner');
+    const modal = document.getElementById('privacyPolicyModal');
+    const btnAcceptAll = document.getElementById('btnCookieAcceptAll');
+    const btnCustomize = document.getElementById('btnCookieCustomize');
+    const btnCloseBanner = document.getElementById('btnCookieClose');
+    const btnCloseModal = document.getElementById('btnClosePolicyModal');
+    const btnSavePrefs = document.getElementById('btnSaveCookiePrefs');
+
+    // Show banner after 800ms if not consented
+    const hasConsented = localStorage.getItem('dnsg_cookie_consent');
+    if (!hasConsented && banner) {
+      setTimeout(() => {
+        banner.classList.add('active');
+      }, 800);
+    }
+
+    function hideBanner() {
+      if (banner) banner.classList.remove('active');
+    }
+
+    function openModal() {
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeModal() {
+      if (modal) modal.classList.remove('active');
+    }
+
+    if (btnAcceptAll) {
+      btnAcceptAll.addEventListener('click', () => {
+        localStorage.setItem('dnsg_cookie_consent', JSON.stringify({
+          essential: true,
+          analytics: true,
+          marketing: true,
+          date: new Date().toISOString()
+        }));
+        hideBanner();
+        showToast('🍪 Bạn đã chấp nhận toàn bộ cookie. Cảm ơn bạn!', '✓');
+      });
+    }
+
+    if (btnCustomize) {
+      btnCustomize.addEventListener('click', () => {
+        openModal();
+      });
+    }
+
+    if (btnCloseBanner) {
+      btnCloseBanner.addEventListener('click', () => {
+        hideBanner();
+      });
+    }
+
+    if (btnCloseModal) {
+      btnCloseModal.addEventListener('click', () => {
+        closeModal();
+      });
+    }
+
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+
+    if (btnSavePrefs) {
+      btnSavePrefs.addEventListener('click', () => {
+        const analytics = document.getElementById('prefAnalytics')?.checked ?? true;
+        const marketing = document.getElementById('prefMarketing')?.checked ?? true;
+        localStorage.setItem('dnsg_cookie_consent', JSON.stringify({
+          essential: true,
+          analytics,
+          marketing,
+          date: new Date().toISOString()
+        }));
+        closeModal();
+        hideBanner();
+        showToast('🍪 Đã lưu tùy chọn cài đặt cookie của bạn!', '✓');
+      });
+    }
+
+    // Bind all privacy links on the page (footer links, navbar, register links)
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href="#privacy"], a[href="#privacyPolicyModal"], .cookie-policy-link, a[href*="chinh-sach"]');
+      if (link) {
+        e.preventDefault();
+        openModal();
+      }
+    });
+  }
+
+  initCookieConsentAndPolicyModal();
 });

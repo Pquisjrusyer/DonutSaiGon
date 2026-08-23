@@ -2661,6 +2661,349 @@ donut-footer {
   }
 }
 
+/* --------------------------------------------------------------------------
+   Cookie Consent Popup & Privacy Policy Modal
+   -------------------------------------------------------------------------- */
+.donut-cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  max-width: 480px;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(253, 214, 220, 0.9);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 16px 40px rgba(41, 94, 172, 0.16), 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transform: translateY(120%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.donut-cookie-banner.active {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cookie-banner-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.cookie-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #FEF3F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cookie-emoji {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.cookie-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cookie-title {
+  font-family: var(--font-family-display);
+  font-size: 17px;
+  font-weight: 900;
+  color: #2D61AD;
+}
+
+.cookie-desc {
+  font-size: 13.5px;
+  color: #424751;
+  line-height: 1.5;
+}
+
+.cookie-policy-link {
+  color: #004691;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cookie-policy-link:hover {
+  color: var(--primary-hover);
+}
+
+.cookie-actions-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-cookie-secondary {
+  padding: 8px 18px;
+  background-color: transparent;
+  border: 1.5px solid #C3C6D3;
+  border-radius: 9999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #424751;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-cookie-secondary:hover {
+  background-color: #F8F5F0;
+  border-color: #2D61AD;
+  color: #2D61AD;
+}
+
+.btn-cookie-primary {
+  padding: 8px 20px;
+  background-color: #2D61AD;
+  border: none;
+  border-radius: 9999px;
+  font-family: var(--font-family-display);
+  font-size: 14px;
+  font-weight: 900;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(45, 97, 173, 0.2);
+}
+
+.btn-cookie-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(45, 97, 173, 0.3);
+}
+
+.btn-cookie-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: #737782;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: color var(--transition-fast);
+}
+
+.btn-cookie-close:hover {
+  color: #181818;
+}
+
+/* Privacy Policy Modal */
+.policy-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background-color: rgba(24, 52, 93, 0.45);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.policy-modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.policy-modal-card {
+  width: 100%;
+  max-width: 620px;
+  max-height: 85vh;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: policyModalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes policyModalSlideUp {
+  from {
+    transform: translateY(24px) scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.policy-modal-header {
+  padding: 24px 28px 16px;
+  border-bottom: 1px solid #F5ECE7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.policy-header-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.policy-header-badge {
+  font-size: 11px;
+  font-weight: 800;
+  color: #F2A1AE;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.policy-modal-title {
+  font-family: var(--font-family-display);
+  font-size: 24px;
+  font-weight: 900;
+  color: #2D61AD;
+}
+
+.policy-modal-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #F8F5F0;
+  border: none;
+  font-size: 16px;
+  color: #424751;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.policy-modal-close:hover {
+  background-color: #F5ECE7;
+  color: #181818;
+}
+
+.policy-modal-body {
+  padding: 24px 28px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 14.5px;
+  color: #424751;
+  line-height: 1.6;
+}
+
+.policy-section-title {
+  font-family: var(--font-family-display);
+  font-size: 16px;
+  font-weight: 900;
+  color: #18345D;
+  margin-bottom: 6px;
+}
+
+.cookie-preferences-box {
+  background-color: #F8F5F0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pref-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.pref-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.pref-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pref-name {
+  font-weight: 700;
+  color: #18345D;
+  font-size: 14px;
+}
+
+.pref-desc {
+  font-size: 12.5px;
+  color: #737782;
+}
+
+.pref-switch {
+  width: 20px;
+  height: 20px;
+  accent-color: #2D61AD;
+  cursor: pointer;
+}
+
+.policy-modal-footer {
+  padding: 16px 28px 24px;
+  border-top: 1px solid #F5ECE7;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-save-cookie-prefs {
+  padding: 12px 28px;
+  background-color: #2D61AD;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 9999px;
+  font-family: var(--font-family-display);
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(45, 97, 173, 0.2);
+}
+
+.btn-save-cookie-prefs:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .donut-cookie-banner {
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+    max-width: none;
+    padding: 18px;
+  }
+}
+
 .profile-actions-stack {
   display: flex;
   flex-direction: column;
