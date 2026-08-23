@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lời Khen Từ Bạn | Donut Saigon - Bánh Donut Nghệ Nhân</title>
+  <meta name="description" content="Chia sẻ trải nghiệm ngọt ngào của bạn tại Donut Saigon. Mỗi đánh giá là một động lực để chúng mình hoàn thiện hơn mỗi ngày.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Lời Khen Từ Bạn | Donut Saigon">
+  <meta property="og:description" content="Chia sẻ trải nghiệm ngọt ngào và xem đánh giá từ khách hàng tại Donut Saigon.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Maven Pro & Display Typefaces -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&family=Montserrat:wght@800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="reviews-page">
+  <!-- Reusable Header Web Component -->
+  <donut-header></donut-header>
+
+  <!-- Main Content Wrap (Figma Node 1338:10105) -->
+  <main class="reviews-main-wrap">
+    <div class="reviews-container">
+      <!-- Back Link -->
+      <div class="reviews-top-bar">
+        <a href="index.html#reviews" class="btn-back-reviews" aria-label="Quay lại trang chủ">
+          <img src="assets/icon-back-arrow.svg" alt="" width="14" height="14">
+          <span>Quay lại</span>
+        </a>
+      </div>
+
+      <!-- Page Header -->
+      <header class="reviews-page-header">
+        <h1 class="reviews-page-title">Lời Khen Từ Bạn</h1>
+        <p class="reviews-page-subtitle">
+          Chia sẻ trải nghiệm ngọt ngào của bạn tại Donut Saigon. Mỗi đánh giá là một động lực để chúng mình hoàn thiện hơn mỗi ngày.
+        </p>
+      </header>
+
+      <!-- Content Grid: Form (Left) & Testimonials (Right) -->
+      <div class="reviews-content-grid">
+        <!-- Left Column: Review Form Card -->
+        <section class="review-form-card" aria-label="Form gửi đánh giá">
+          <h2 class="review-form-title">Gửi Đánh Giá</h2>
+
+          <form id="customerFeedbackForm" class="review-form-inner" novalidate>
+            <!-- Field 1: Product Quality Rating -->
+            <div class="form-rating-group">
+              <label class="form-rating-label">Chất lượng sản phẩm</label>
+              <div class="star-rating-controls" data-rating-group="product">
+                <button type="button" class="star-rating-btn active" data-star="1" aria-label="1 sao">★</button>
+                <button type="button" class="star-rating-btn active" data-star="2" aria-label="2 sao">★</button>
+                <button type="button" class="star-rating-btn active" data-star="3" aria-label="3 sao">★</button>
+                <button type="button" class="star-rating-btn active" data-star="4" aria-label="4 sao">★</button>
+                <button type="button" class="star-rating-btn active" data-star="5" aria-label="5 sao">★</button>
+              </div>
+              <input type="hidden" id="inputProductRating" name="productRating" value="5">
+            </div>
+
+            <!-- Field 2: Store Service Rating -->
+            <div class="form-rating-group">
+              <label class="form-rating-label">Dịch vụ cửa hàng</label>
+              <div class="star-rating-controls" data-rating-group="service">
+                <button type="button" class="star-rating-btn active" data-star="1" aria-label="1 sao">★</button>
+                <button type="button" class="star-rating-btn active" data-star="2" aria-label="2 sao">★</button>
+                <button type="button" class="star-rating-btn active" data-star="3" aria-label="3 sao">★</button>
+                <button type="button" class="star-rating-btn active" data-star="4" aria-label="4 sao">★</button>
+                <button type="button" class="star-rating-btn active" data-star="5" aria-label="5 sao">★</button>
+              </div>
+              <input type="hidden" id="inputServiceRating" name="serviceRating" value="5">
+            </div>
+
+            <!-- Field 3: Review Textarea -->
+            <div class="form-textarea-group">
+              <label for="inputReviewMessage" class="form-rating-label">Nhận xét của bạn</label>
+              <textarea id="inputReviewMessage" class="review-feedback-textarea" placeholder="Hãy viết gì đó về chiếc bánh bạn đã thử..." required rows="4"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit-review" id="btnSubmitFeedback">
+              <span>Gửi nhận xét</span>
+              <img src="assets/icon-send-arrow.svg" alt="" width="14" height="12">
+            </button>
+          </form>
+        </section>
+
+        <!-- Right Column: Customer Reviews Display -->
+        <section class="reviews-display-column" aria-label="Danh sách đánh giá từ khách hàng">
+          <!-- Card 1: Featured Large Card (Minh Tuấn) -->
+          <article class="review-item-card card-featured">
+            <div class="review-avatar-wrap">
+              <img src="assets/avatar-review-cow.png" alt="Minh Tuấn" class="review-avatar-img" width="96" height="96">
+            </div>
+            <div class="review-card-body">
+              <div class="review-card-top-row">
+                <div class="review-author-meta">
+                  <h3 class="review-author-name">Minh Tuấn</h3>
+                  <div class="review-stars-row" aria-label="5 sao">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="18" height="18">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="18" height="18">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="18" height="18">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="18" height="18">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="18" height="18">
+                  </div>
+                </div>
+                <span class="review-date-badge">Hôm qua</span>
+              </div>
+              <p class="review-comment-text">
+                Bánh Donut ở đây thật sự khác biệt. Lớp vỏ mềm tan, không bị quá ngọt. Mình cực kỳ thích vị Matcha Hạnh Nhân, vị trà xanh rất đậm đà và thơm. Sẽ quay lại thường xuyên!
+              </p>
+            </div>
+          </article>
+
+          <!-- Row of Standard Review Cards -->
+          <div class="reviews-sub-grid">
+            <!-- Card 2: Khánh Linh -->
+            <article class="review-item-card card-standard">
+              <div class="review-card-top-compact">
+                <div class="review-avatar-wrap-sm">
+                  <img src="assets/avatar-review-hamster.png" alt="Khánh Linh" class="review-avatar-img-sm" width="48" height="48">
+                </div>
+                <div class="review-author-meta-sm">
+                  <h3 class="review-author-name-sm">Khánh Linh</h3>
+                  <div class="review-stars-row-sm" aria-label="5 sao">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="14" height="14">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="14" height="14">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="14" height="14">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="14" height="14">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="14" height="14">
+                  </div>
+                </div>
+              </div>
+              <p class="review-comment-text-sm">
+                Cửa hàng trang trí rất xinh, nhân viên nhiệt tình hỗ trợ mình chọn bánh. Black Pink là vị mình thích nhất, bánh mềm, siu siu ngon ạ.
+              </p>
+            </article>
+
+            <!-- Card 3: Hoàng Nam -->
+            <article class="review-item-card card-standard">
+              <div class="review-card-top-compact">
+                <div class="review-avatar-wrap-sm">
+                  <img src="assets/avatar-review-bear.png" alt="Hoàng Nam" class="review-avatar-img-sm" width="48" height="48">
+                </div>
+                <div class="review-author-meta-sm">
+                  <h3 class="review-author-name-sm">Hoàng Nam</h3>
+                  <div class="review-stars-row-sm" aria-label="4 sao">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="14" height="14">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="14" height="14">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="14" height="14">
+                    <img src="assets/icon-star-filled-blue.svg" alt="★" width="14" height="14">
+                    <img src="assets/icon-star-empty-blue.svg" alt="☆" width="14" height="14">
+                  </div>
+                </div>
+              </div>
+              <p class="review-comment-text-sm">
+                Bánh ngon, chất lượng bánh không có điểm nào chê, tuy nhiên dịch vụ giao hàng giờ cao điểm còn hơi chậm. Mong shop cải thiện vấn đề này.
+              </p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Reusable Footer Web Component -->
+  <donut-footer></donut-footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Lenis Smooth Scroll & GSAP Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Components & Logic -->
+  <script src="components/header.js" defer></script>
+  <script src="components/footer.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

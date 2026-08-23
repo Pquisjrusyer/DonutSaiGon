@@ -2352,4 +2352,80 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initOrderDetailPage();
+
+  // ------------------------------------------------------------------------
+  // 17. Reviews & Feedback Page Handler (Figma Node 1338:10105)
+  // ------------------------------------------------------------------------
+  function initReviewsPage() {
+    const feedbackForm = document.getElementById('customerFeedbackForm');
+    if (!feedbackForm) return;
+
+    // Star rating controls
+    const ratingGroups = document.querySelectorAll('.star-rating-controls');
+    ratingGroups.forEach(group => {
+      const groupName = group.getAttribute('data-rating-group');
+      const hiddenInput = groupName === 'product'
+        ? document.getElementById('inputProductRating')
+        : document.getElementById('inputServiceRating');
+      const starBtns = group.querySelectorAll('.star-rating-btn');
+
+      starBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const starVal = parseInt(btn.getAttribute('data-star'), 10);
+          if (hiddenInput) hiddenInput.value = starVal;
+          starBtns.forEach(s => {
+            const val = parseInt(s.getAttribute('data-star'), 10);
+            s.classList.toggle('active', val <= starVal);
+          });
+        });
+      });
+    });
+
+    // Form submission
+    feedbackForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const messageInput = document.getElementById('inputReviewMessage');
+      const message = messageInput ? messageInput.value.trim() : '';
+
+      if (!message) {
+        showToast('Vui lòng nhập lời nhận xét của bạn!', '⚠️');
+        if (messageInput) messageInput.focus();
+        return;
+      }
+
+      const productRating = document.getElementById('inputProductRating')?.value || '5';
+      const user = getCurrentUser();
+      const authorName = user ? user.name : 'Khách hàng thân thiết';
+
+      // Insert new review into display list smoothly
+      const reviewsDisplayCol = document.querySelector('.reviews-display-column');
+      if (reviewsDisplayCol) {
+        const newCard = document.createElement('article');
+        newCard.className = 'review-item-card card-featured';
+        newCard.innerHTML = `
+          <div class="review-avatar-wrap">
+            <img src="assets/avatar-review-cow.png" alt="${authorName}" class="review-avatar-img" width="96" height="96">
+          </div>
+          <div class="review-card-body">
+            <div class="review-card-top-row">
+              <div class="review-author-meta">
+                <h3 class="review-author-name">${authorName}</h3>
+                <div class="review-stars-row" aria-label="${productRating} sao">
+                  ${Array.from({ length: parseInt(productRating, 10) }).map(() => '<img src="assets/icon-star-filled-blue.svg" alt="★" width="18" height="18">').join('')}
+                </div>
+              </div>
+              <span class="review-date-badge">Vừa xong</span>
+            </div>
+            <p class="review-comment-text">${message}</p>
+          </div>
+        `;
+        reviewsDisplayCol.insertBefore(newCard, reviewsDisplayCol.firstChild);
+      }
+
+      feedbackForm.reset();
+      showToast('🎉 Cảm ơn bạn! Đánh giá của bạn đã được gửi thành công.', '✓');
+    });
+  }
+
+  initReviewsPage();
 });
