@@ -3519,6 +3519,218 @@ donut-footer {
   }
 }
 
+/* --------------------------------------------------------------------------
+   Store Policy Page (Figma Node 1343:10230)
+   -------------------------------------------------------------------------- */
+.policy-page {
+  background-color: #F8F5F0;
+}
+
+.policy-main-section {
+  padding: calc(var(--header-height) + 32px) 24px 80px;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  justify-content: center;
+}
+
+.policy-page-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.policy-hero-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.policy-hero-title {
+  font-family: var(--font-family-display);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 900;
+  color: #2D61AD;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.policy-hero-desc {
+  font-size: 16px;
+  color: #424751;
+  line-height: 1.6;
+}
+
+.policy-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.policy-card-item {
+  background-color: #FFFFFF;
+  border: 1px solid #C3C6D3;
+  border-radius: 16px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 4px 16px rgba(41, 94, 172, 0.04);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.policy-card-item:hover {
+  box-shadow: 0 8px 24px rgba(41, 94, 172, 0.08);
+}
+
+.policy-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.policy-card-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #BACFED;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.policy-card-heading {
+  font-family: var(--font-family-display);
+  font-size: 16px;
+  font-weight: 900;
+  color: #2D61AD;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.policy-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 15.5px;
+  color: #424751;
+  line-height: 1.65;
+}
+
+.policy-lead-text {
+  font-weight: 600;
+  color: #18345D;
+  font-size: 16px;
+}
+
+.policy-body-text {
+  color: #424751;
+}
+
+.policy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.policy-list-item {
+  color: #424751;
+  line-height: 1.5;
+}
+
+.policy-alert-box {
+  background-color: #F7C5C5;
+  border-left: 4px solid #BA1A1A;
+  border-radius: 8px;
+  padding: 16px 20px;
+  color: #795B60;
+  font-weight: 500;
+}
+
+.policy-contact-cta {
+  background-color: #295EAC;
+  border-radius: 16px;
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  color: #CADAFF;
+  box-shadow: 0 8px 24px rgba(41, 94, 172, 0.2);
+}
+
+.policy-cta-heading {
+  font-family: var(--font-family-display);
+  font-size: 18px;
+  font-weight: 900;
+  color: #CADAFF;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.policy-cta-desc {
+  font-size: 15px;
+  color: #CADAFF;
+  opacity: 0.9;
+  max-width: 600px;
+}
+
+.policy-cta-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-policy-chat {
+  padding: 12px 32px;
+  background-color: #FFFFFF;
+  color: #2D61AD;
+  border-radius: 9999px;
+  font-family: var(--font-family-base);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-policy-chat:hover {
+  background-color: #F8F5F0;
+  transform: translateY(-2px);
+}
+
+.btn-policy-hotline {
+  padding: 12px 32px;
+  background-color: transparent;
+  border: 1.5px solid #FFFFFF;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-family: var(--font-family-base);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-policy-hotline:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .policy-card-item {
+    padding: 24px 20px;
+  }
+}
+
 .profile-actions-stack {
   display: flex;
   flex-direction: column;

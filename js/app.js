@@ -1537,7 +1537,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <h3 class="cookie-title">Thông báo Cookie & Quyền riêng tư</h3>
               <p class="cookie-desc">
                 Donut Saigon sử dụng cookie để tối ưu trải nghiệm duyệt web, lưu giỏ hàng và mang đến các ưu đãi ngọt ngào nhất.
-                <a href="#privacy" class="cookie-policy-link" id="openPrivacyPolicyFromBanner">Xem chính sách</a>
+                <a href="policy.html" class="cookie-policy-link" id="openPrivacyPolicyFromBanner">Xem chính sách</a>
               </p>
             </div>
           </div>
@@ -1689,12 +1689,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Bind all privacy links on the page (footer links, navbar, register links)
+    // Bind in-page modal links (if any trigger explicit modal)
     document.addEventListener('click', (e) => {
-      const link = e.target.closest('a[href="#privacy"], a[href="#privacyPolicyModal"], .cookie-policy-link, a[href*="chinh-sach"]');
-      if (link) {
+      const modalTrigger = e.target.closest('a[href="#privacyPolicyModal"], .open-policy-modal');
+      if (modalTrigger) {
         e.preventDefault();
         openModal();
+      }
+
+      // Policy page chat trigger
+      const chatBtn = e.target.closest('#btnPolicyChat');
+      if (chatBtn) {
+        e.preventDefault();
+        showToast('💬 Đội ngũ chăm sóc khách hàng Donut Saigon luôn sẵn sàng hỗ trợ bạn!', '🍩');
       }
     });
   }

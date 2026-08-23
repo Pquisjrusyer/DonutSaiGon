@@ -46,8 +46,8 @@ class DonutFooter extends HTMLElement {
             <div class="footer-col" data-node-id="I2291:49834;1194:29781">
               <h4 class="footer-heading" data-node-id="I2291:49834;1194:29825">HỖ TRỢ</h4>
               <ul class="footer-links">
-                <li><a href="#privacy" class="footer-link" data-node-id="I2291:49834;1194:29828">Chính sách bảo mật</a></li>
-                <li><a href="#terms" class="footer-link" data-node-id="I2291:49834;1194:29831">Điều khoản dịch vụ</a></li>
+                <li><a href="policy.html#privacy" class="footer-link" data-node-id="I2291:49834;1194:29828">Chính sách bảo mật</a></li>
+                <li><a href="policy.html#terms" class="footer-link" data-node-id="I2291:49834;1194:29831">Điều khoản dịch vụ</a></li>
               </ul>
             </div>
 
