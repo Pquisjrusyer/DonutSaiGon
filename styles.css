@@ -1936,6 +1936,15 @@ donut-footer {
 /* --------------------------------------------------------------------------
    Auth / Login View (Figma Node 1227:13483)
    -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Account Page Authentication Flow (Login, Forgot, OTP, Signup, Success)
+   Figma Nodes: 1227:13483, 1227:13708, 1227:13739, 1303:25818, 1230:9228
+   -------------------------------------------------------------------------- */
+body.account-page.auth-mode donut-footer,
+body.account-page:not(.dashboard-mode) donut-footer {
+  display: none !important;
+}
+
 .auth-login-section {
   position: relative;
   min-height: calc(100vh - var(--header-height));

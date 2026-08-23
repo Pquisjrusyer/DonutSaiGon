@@ -757,6 +757,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateAuthDisplay() {
       const isLogged = localStorage.getItem('dnsg_user_logged_in') === 'true';
       if (authState === 'success' && successView) {
+        document.body.classList.add('auth-mode');
+        document.body.classList.remove('dashboard-mode');
         loginView.style.display = 'none';
         if (forgotView) forgotView.style.display = 'none';
         if (otpView) otpView.style.display = 'none';
@@ -767,6 +769,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (isLogged) {
+        document.body.classList.remove('auth-mode');
+        document.body.classList.add('dashboard-mode');
         authState = 'dashboard';
         loginView.style.display = 'none';
         if (forgotView) forgotView.style.display = 'none';
@@ -775,6 +779,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (successView) successView.style.display = 'none';
         dashboardView.style.display = 'block';
       } else {
+        document.body.classList.add('auth-mode');
+        document.body.classList.remove('dashboard-mode');
         if (authState === 'forgot' && forgotView) {
           loginView.style.display = 'none';
           forgotView.style.display = 'flex';
