@@ -1838,20 +1838,20 @@ document.addEventListener('DOMContentLoaded', () => {
       priceFormatted: '170.000 VNĐ',
       rating: '(128 Đánh giá)',
       img: 'assets/detail-glaze-main.png',
-      thumbs: ['assets/detail-glaze-main.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
+      thumbs: ['assets/detail-thumb-1.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
       desc: 'Bao gồm 4 chiếc bánh donut tự chọn bất kỳ cùng một lá thư tay được viết riêng, giúp mỗi hộp quà không chỉ ngọt ngào bởi hương vị mà còn đong đầy những cảm xúc chân thành.',
       features: [
-        { icon: 'assets/icon-cherry-donut.png', text: '4 bánh tự chọn' },
-        { icon: 'assets/icon-milk-bottle.png', text: 'Hộp quà cao cấp' },
-        { icon: 'assets/icon-leaf.png', text: 'Thiệp viết tay riêng' }
+        { icon: 'assets/icon-cherry-donut.png', text: 'Mềm xốp tự nhiên' },
+        { icon: 'assets/icon-milk-bottle.png', text: 'Ngọt thanh không gắt' },
+        { icon: 'assets/icon-leaf.png', text: 'Không chất bảo quản' }
       ],
       ingredients: [
-        { icon: 'assets/icon-wheat.png', name: 'Bột mì hảo hạng' },
-        { icon: 'assets/icon-butter.png', name: 'Bơ nhập khẩu' },
-        { icon: 'assets/icon-milk-bottle.png', name: 'Sữa tươi' },
-        { icon: 'assets/icon-sugar-cube.png', name: 'Đường nguyên chất' }
+        { icon: 'assets/icon-wheat.png', name: 'Bột mì' },
+        { icon: 'assets/icon-butter.png', name: 'Bơ' },
+        { icon: 'assets/icon-milk-bottle.png', name: 'Sữa' },
+        { icon: 'assets/icon-sugar-cube.png', name: 'Đường' }
       ],
-      flavor: 'Tự chọn 4 hương vị yêu thích - Kèm thiệp viết tay',
+      flavor: 'Ngọt nhẹ - Béo thơm - Mềm xốp',
       badge: 'BEST SELLER',
       isGiftBox: true
     }
