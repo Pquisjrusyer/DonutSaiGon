@@ -729,8 +729,9 @@ donut-footer {
 /* CTA Buttons overlay on product cards */
 .card-cta-btn {
   position: absolute;
-  top: 120px;
-  left: 40px;
+  top: clamp(70px, 14vw, 120px);
+  left: clamp(20px, 4.5vw, 40px);
+  margin: 0;
   height: 45px;
   padding: 0 20px;
   border-radius: 30px;
@@ -746,6 +747,13 @@ donut-footer {
   overflow: hidden;
   isolation: isolate;
   text-decoration: none;
+}
+
+.card-filled-donut .card-cta-btn,
+.card-ring-donut .card-cta-btn {
+  top: clamp(70px, 14vw, 120px);
+  left: clamp(20px, 4.5vw, 40px);
+  margin: 0;
 }
 
 /* Background Color Sweep from Left to Right */
@@ -771,14 +779,11 @@ donut-footer {
   transition: color 0.35s ease, filter 0.35s ease, transform var(--transition-fast);
 }
 
-.card-cta-btn.btn-white-gift {
-  top: 140px;
-}
-
 .btn-pink {
   background-color: var(--secondary);
   color: var(--text-light);
   border: 3px solid #FCFAF8;
+  margin: 0;
 }
 
 .btn-pink::before {
@@ -796,7 +801,7 @@ donut-footer {
   background-color: #FCFAF8;
   color: var(--primary);
   border: 3px solid #FCFAF8;
-  margin-top: 40px;
+  margin: 0;
 }
 
 .btn-white::before,
