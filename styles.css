@@ -741,8 +741,34 @@ donut-footer {
   font-weight: 600;
   letter-spacing: 0.03em;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-  transition: all var(--transition-fast);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, color 0.35s ease, border-color 0.35s ease;
   z-index: 5;
+  overflow: hidden;
+  isolation: isolate;
+  text-decoration: none;
+}
+
+/* Background Color Sweep from Left to Right */
+.card-cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card-cta-btn:hover::before {
+  transform: scaleX(1);
+}
+
+.card-cta-btn .btn-text,
+.card-cta-btn .btn-icon {
+  position: relative;
+  z-index: 1;
+  transition: color 0.35s ease, filter 0.35s ease, transform var(--transition-fast);
 }
 
 .card-cta-btn.btn-white-gift {
@@ -755,10 +781,14 @@ donut-footer {
   border: 3px solid #FCFAF8;
 }
 
+.btn-pink::before {
+  background-color: var(--primary);
+}
+
 .btn-pink:hover {
-  background-color: #e88d9c;
+  color: #FFFFFF;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(242, 161, 174, 0.45);
+  box-shadow: 0 6px 18px rgba(45, 97, 173, 0.35);
 }
 
 .btn-white,
@@ -769,28 +799,39 @@ donut-footer {
   margin-top: 40px;
 }
 
+.btn-white::before,
+.btn-white-gift::before {
+  background-color: var(--primary);
+}
+
 .btn-white:hover,
 .btn-white-gift:hover {
-  background-color: #FFFFFF;
-  color: var(--primary-hover);
+  color: #FFFFFF;
+  border-color: #FCFAF8;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(45, 97, 173, 0.25);
+  box-shadow: 0 6px 18px rgba(45, 97, 173, 0.35);
+}
+
+.btn-white:hover .arrow-svg,
+.btn-white-gift:hover .arrow-svg {
+  filter: brightness(0) invert(1);
 }
 
 .card-cta-btn .btn-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform var(--transition-fast);
+  transform: scaleX(-1);
 }
 
 .card-cta-btn:hover .btn-icon {
-  transform: translateX(4px);
+  transform: translateX(4px) scaleX(-1);
 }
 
 .arrow-svg {
   width: 20px;
   height: auto;
+  transition: filter 0.35s ease;
 }
 
 /* Card Meta Details (Hidden or visually accessible) */
