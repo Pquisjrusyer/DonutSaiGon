@@ -1949,9 +1949,10 @@ body.account-page:not(.dashboard-mode) donut-footer {
   position: relative;
   min-height: calc(100vh - var(--header-height));
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  padding: calc(var(--header-height) + 20px) 16px 60px;
+  padding: calc(var(--header-height) + 24px) 24px 20px;
   background-color: #F8F5F0;
   overflow: hidden;
 }
@@ -1982,14 +1983,18 @@ body.account-page:not(.dashboard-mode) donut-footer {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 440px;
+  max-width: 1140px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  min-height: calc(100vh - var(--header-height) - 60px);
+  margin: 0 auto;
 }
 
 .login-card {
   width: 100%;
+  max-width: 440px;
   background-color: #FFFFFF;
   border: 1px solid #F5ECE7;
   border-radius: 12px;
@@ -1998,6 +2003,52 @@ body.account-page:not(.dashboard-mode) donut-footer {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin: auto 0;
+}
+
+.login-page-footer-note {
+  width: 100%;
+  max-width: 1140px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 0 8px;
+  margin-top: auto;
+  font-family: var(--font-family-base);
+  font-size: 13.5px;
+  color: #5E5E5E;
+}
+
+.footer-note-copy {
+  color: #5E5E5E;
+  font-weight: 500;
+}
+
+.login-page-footer-note .footer-note-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.login-page-footer-note .footer-note-links a {
+  color: #5E5E5E;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.login-page-footer-note .footer-note-links a:hover {
+  color: #2D61AD;
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .login-page-footer-note {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 24px 0 0;
+  }
 }
 
 .login-header-icon-wrap {
