@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tài Khoản & Lịch Sử Mua Hàng | Donut Saigon</title>
-  <meta name="description" content="Quản lý thông tin tài khoản thành viên Donut Saigon, theo dõi điểm thưởng tích lũy và tra cứu lịch sử đơn hàng của bạn.">
+  <title>Tài Khoản & Đăng Nhập | Donut Saigon - Bánh Donut Nghệ Nhân</title>
+  <meta name="description" content="Đăng nhập tài khoản Donut Saigon để quản lý thông tin thành viên, tích lũy điểm thưởng và theo dõi đơn hàng của bạn.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Tài Khoản | Donut Saigon">
-  <meta property="og:description" content="Trang thành viên thân thiết Donut Saigon - Theo dõi điểm thưởng và đơn hàng của bạn.">
+  <meta property="og:description" content="Trang thành viên Donut Saigon - Đăng nhập và theo dõi đơn hàng dễ dàng.">
   <meta property="og:type" content="website">
 
   <!-- Google Fonts: Maven Pro & Display Typefaces -->
@@ -25,7 +25,99 @@
 
   <!-- Main Content -->
   <main>
-    <section class="account-main-section" aria-label="Khu vực tài khoản thành viên">
+    <!-- ==========================================================
+         STATE 1: LOGIN / SIGN IN VIEW (FIGMA NODE 1227:13483)
+         ========================================================== -->
+    <section class="auth-login-section" id="authLoginView">
+      <!-- Decorative Blurred Gradient Blobs -->
+      <div class="auth-decor-blob blob-left" aria-hidden="true"></div>
+      <div class="auth-decor-blob blob-right" aria-hidden="true"></div>
+
+      <div class="login-card-container">
+        <div class="login-card">
+          <!-- Account Icon Header -->
+          <div class="login-header-icon-wrap">
+            <img src="assets/icon-account-blue.svg" alt="Tài khoản" class="login-avatar-icon" width="48" height="48">
+          </div>
+
+          <header class="login-header">
+            <h1 class="login-title">Chào mừng trở lại</h1>
+            <p class="login-subtitle">Đăng nhập để đặt món bánh hằng ngày của bạn</p>
+          </header>
+
+          <!-- Login Form -->
+          <form class="login-form" id="loginForm" onsubmit="event.preventDefault();">
+            <!-- Email Field -->
+            <div class="login-form-group">
+              <label for="loginEmail" class="login-label">Địa chỉ Email</label>
+              <input type="email" id="loginEmail" class="login-input" placeholder="ten@vidu.com" value="ten@vidu.com" required>
+            </div>
+
+            <!-- Password Field -->
+            <div class="login-form-group">
+              <div class="login-label-row">
+                <label for="loginPassword" class="login-label">Mật khẩu</label>
+                <a href="#forgot" class="login-forgot-link" id="forgotPasswordLink">Quên mật khẩu?</a>
+              </div>
+              <input type="password" id="loginPassword" class="login-input" placeholder="••••••••" value="12345678" required>
+            </div>
+
+            <!-- Remember Me -->
+            <div class="login-remember-row">
+              <label class="custom-checkbox-label">
+                <input type="checkbox" id="loginRemember" checked class="custom-checkbox-input">
+                <span class="custom-checkbox-box"></span>
+                <span class="remember-text">Duy trì đăng nhập trong 30 ngày</span>
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-login-submit" id="btnLoginSubmit">
+              Đăng Nhập
+            </button>
+          </form>
+
+          <!-- Social Auth Divider -->
+          <div class="social-auth-divider">
+            <span class="divider-line"></span>
+            <span class="divider-text">HOẶC TIẾP TỤC VỚI</span>
+            <span class="divider-line"></span>
+          </div>
+
+          <!-- Social Buttons Grid -->
+          <div class="social-login-grid">
+            <button type="button" class="social-btn btn-google" id="btnSocialGoogle">
+              <img src="assets/icon-google.png" alt="Google" width="22" height="22">
+              <span>Google</span>
+            </button>
+            <button type="button" class="social-btn btn-facebook" id="btnSocialFacebook">
+              <img src="assets/icon-facebook.png" alt="Facebook" width="22" height="22">
+              <span>Facebook</span>
+            </button>
+          </div>
+
+          <!-- Signup Redirect Link -->
+          <div class="login-signup-redirect">
+            <span>Chưa có tài khoản?</span>
+            <a href="#signup" class="signup-link" id="signupLink">Đăng ký ngay</a>
+          </div>
+        </div>
+
+        <!-- Subpage Minimal Footer Note -->
+        <div class="login-page-footer-note">
+          <span>© 2024 Donut Saigon. Bánh donut vừa rẻ vừa ngon.</span>
+          <div class="footer-note-links">
+            <a href="#privacy">Chính sách bảo mật</a>
+            <a href="#terms">Điều khoản dịch vụ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         STATE 2: AUTHENTICATED USER DASHBOARD VIEW
+         ========================================================== -->
+    <section class="account-main-section" id="authDashboardView" style="display: none;" aria-label="Khu vực tài khoản thành viên">
       <div class="account-dashboard-wrapper">
         <!-- Back Navigation Button -->
         <div class="account-back-bar">
@@ -72,10 +164,15 @@
                 </div>
               </div>
 
-              <button class="profile-edit-btn" id="editProfileBtn" aria-label="Chỉnh sửa thông tin cá nhân">
-                <img src="assets/icon-edit.svg" alt="" class="edit-btn-icon" width="12" height="12">
-                <span>Chỉnh sửa thông tin</span>
-              </button>
+              <div class="profile-actions-stack">
+                <button class="profile-edit-btn" id="editProfileBtn" aria-label="Chỉnh sửa thông tin cá nhân">
+                  <img src="assets/icon-edit.svg" alt="" class="edit-btn-icon" width="12" height="12">
+                  <span>Chỉnh sửa thông tin</span>
+                </button>
+                <button class="profile-logout-btn" id="btnLogout" aria-label="Đăng xuất tài khoản">
+                  <span>Đăng xuất</span>
+                </button>
+              </div>
             </div>
 
             <!-- Loyalty Rewards Card -->

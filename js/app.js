@@ -728,6 +728,99 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------------------------------------------------------
+  // 9b. Account Page Authentication State (Figma Node 1227:13483)
+  // ------------------------------------------------------------------------
+  function initAccountAuth() {
+    const loginView = document.getElementById('authLoginView');
+    const dashboardView = document.getElementById('authDashboardView');
+    if (!loginView || !dashboardView) return;
+
+    function updateAuthDisplay() {
+      const isLogged = localStorage.getItem('dnsg_user_logged_in') === 'true';
+      if (isLogged) {
+        loginView.style.display = 'none';
+        dashboardView.style.display = 'block';
+      } else {
+        loginView.style.display = 'flex';
+        dashboardView.style.display = 'none';
+      }
+    }
+
+    updateAuthDisplay();
+
+    // Login Form Submit
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const emailInput = document.getElementById('loginEmail');
+        const passwordInput = document.getElementById('loginPassword');
+
+        if (!emailInput?.value.trim() || !passwordInput?.value.trim()) {
+          showToast('Vui lòng nhập đầy đủ Email và Mật khẩu!');
+          return;
+        }
+
+        localStorage.setItem('dnsg_user_logged_in', 'true');
+        showToast('🎉 Đăng nhập thành công! Chào mừng bạn trở lại.', '✓');
+        updateAuthDisplay();
+        scrollToTop();
+      });
+    }
+
+    // Social Login Buttons
+    const googleBtn = document.getElementById('btnSocialGoogle');
+    if (googleBtn) {
+      googleBtn.addEventListener('click', () => {
+        localStorage.setItem('dnsg_user_logged_in', 'true');
+        showToast('🎉 Đăng nhập thành công với tài khoản Google!', '✓');
+        updateAuthDisplay();
+        scrollToTop();
+      });
+    }
+
+    const facebookBtn = document.getElementById('btnSocialFacebook');
+    if (facebookBtn) {
+      facebookBtn.addEventListener('click', () => {
+        localStorage.setItem('dnsg_user_logged_in', 'true');
+        showToast('🎉 Đăng nhập thành công với tài khoản Facebook!', '✓');
+        updateAuthDisplay();
+        scrollToTop();
+      });
+    }
+
+    // Forgot Password & Sign Up links
+    const forgotLink = document.getElementById('forgotPasswordLink');
+    if (forgotLink) {
+      forgotLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showToast('Vui lòng kiểm tra hộp thư email để đặt lại mật khẩu.');
+      });
+    }
+
+    const signupLink = document.getElementById('signupLink');
+    if (signupLink) {
+      signupLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showToast('Tính năng đăng ký đang được hoàn thiện. Bạn có thể đăng nhập trực tiếp!');
+      });
+    }
+
+    // Logout Action
+    const logoutBtn = document.getElementById('btnLogout');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('dnsg_user_logged_in');
+        showToast('Bạn đã đăng xuất tài khoản thành công.', 'ℹ');
+        updateAuthDisplay();
+        scrollToTop();
+      });
+    }
+  }
+
+  initAccountAuth();
+
+  // ------------------------------------------------------------------------
   // 10. Cart & Checkout Dynamic Render Logic (Figma 1348:10296, 2653:49545 & 1343:10552)
   // ------------------------------------------------------------------------
   const productDescMap = {
