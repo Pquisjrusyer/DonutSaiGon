@@ -728,30 +728,101 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------------------------------------------------------
-  // 10. Cart & Checkout Dynamic Render Logic (Figma 1348:10296 & 1343:10552)
+  // 10. Cart & Checkout Dynamic Render Logic (Figma 1348:10296, 2653:49545 & 1343:10552)
   // ------------------------------------------------------------------------
+  const productDescMap = {
+    'glaze': 'Vị truyền thống phủ lớp đường sữa mềm mượt ngọt dịu.',
+    'donut-glaze': 'Vị truyền thống phủ lớp đường sữa mềm mượt ngọt dịu.',
+    'oreomallow': 'Socola đen, kẹo marshmallow mềm dẻo cùng vụn bánh oreo giòn tan.',
+    'donut-oreomallow': 'Socola đen, kẹo marshmallow mềm dẻo cùng vụn bánh oreo giòn tan.',
+    'smoker-white': 'Socola trắng khè cháy thơm ngậy kết hợp hạt phỉ bùi béo.',
+    'donut-smoker-white': 'Socola trắng khè cháy thơm ngậy kết hợp hạt phỉ bùi béo.',
+    'red-velvet': 'Kem phô mai chanh thơm mát, kết hợp cốt bánh nhung đỏ.',
+    'donut-red-velvet': 'Kem phô mai chanh thơm mát, kết hợp cốt bánh nhung đỏ.',
+    'dark-cookie': 'Socola đắng 55% nguyên chất hòa quyện vụn bánh cookie giòn thơm.',
+    'donut-dark-cookie': 'Socola đắng 55% nguyên chất hòa quyện vụn bánh cookie giòn thơm.',
+    'blackpink': 'Socola đen đậm đà và socola dâu hồng ngọt ngào.',
+    'donut-blackpink': 'Socola đen đậm đà và socola dâu hồng ngọt ngào.',
+    'fruit-pop': 'Phủ lớp socola trắng thơm lừng cùng cốm ngũ cốc cereal fruity sặc sỡ.',
+    'donut-fruit-pop': 'Phủ lớp socola trắng thơm lừng cùng cốm ngũ cốc cereal fruity sặc sỡ.',
+    'mango-tango': 'Nhân kem xoài nhiệt đới thơm nức ngọt lành tự nhiên.',
+    'donut-mango-tango': 'Nhân kem xoài nhiệt đới thơm nức ngọt lành tự nhiên.',
+    'very-berry': 'Nhân kem phúc bồn tử, phủ lớp socola dâu cùng vụn dâu sấy thăng hoa.',
+    'donut-very-berry': 'Nhân kem phúc bồn tử, phủ lớp socola dâu cùng vụn dâu sấy thăng hoa.',
+    'gift-box': 'Hộp quà 4 bánh donut nghệ nhân tự chọn cùng thư tay thủ công tinh tế.',
+    'donut-gift-box': 'Hộp quà 4 bánh donut nghệ nhân tự chọn cùng thư tay thủ công tinh tế.'
+  };
+
+  let currentCartStep = 1; // 1 = Cart Review (2653:49545), 2 = Shipping & Checkout (1343:10552)
+
   function renderCartPage() {
     const emptyView = document.getElementById('cartEmptyView');
+    const reviewView = document.getElementById('cartReviewView');
     const filledView = document.getElementById('cartFilledView');
-    const itemsListContainer = document.getElementById('checkoutItemsList');
-    const subtotalEl = document.getElementById('checkoutSubtotal');
-    const totalEl = document.getElementById('checkoutTotal');
 
-    if (!emptyView || !filledView) return;
+    const reviewItemsList = document.getElementById('cartReviewItemsList');
+    const reviewSubtotalEl = document.getElementById('reviewSubtotal');
+    const reviewShippingEl = document.getElementById('reviewShipping');
+    const reviewDiscountEl = document.getElementById('reviewDiscount');
+    const reviewTotalEl = document.getElementById('reviewTotal');
+
+    const checkoutItemsList = document.getElementById('checkoutItemsList');
+    const checkoutSubtotalEl = document.getElementById('checkoutSubtotal');
+    const checkoutShippingEl = document.getElementById('checkoutShipping');
+    const checkoutTotalEl = document.getElementById('checkoutTotal');
+
+    if (!emptyView || !reviewView || !filledView) return;
 
     const items = getCartItems();
 
     if (items.length === 0) {
       emptyView.style.display = 'block';
+      reviewView.style.display = 'none';
       filledView.style.display = 'none';
+      currentCartStep = 1;
       return;
     }
 
     emptyView.style.display = 'none';
-    filledView.style.display = 'block';
 
-    if (itemsListContainer) {
-      itemsListContainer.innerHTML = items.map((item) => {
+    if (currentCartStep === 1) {
+      reviewView.style.display = 'block';
+      filledView.style.display = 'none';
+    } else {
+      reviewView.style.display = 'none';
+      filledView.style.display = 'block';
+    }
+
+    // Render Step 1: Cart Review Items (Figma 2653:49545)
+    if (reviewItemsList) {
+      reviewItemsList.innerHTML = items.map((item) => {
+        const itemTotal = (item.price * item.qty).toLocaleString('vi-VN');
+        const desc = productDescMap[item.id] || productDescMap[item.id.toLowerCase()] || 'Những chiếc bánh donut nghệ nhân được tạo ra bằng tình yêu.';
+        return `
+          <div class="cart-review-item-row" data-product-id="${item.id}">
+            <div class="review-item-thumb">
+              <img src="${item.img}" alt="${item.name}" loading="lazy">
+            </div>
+            <div class="review-item-info">
+              <h3 class="review-item-name">${item.name}</h3>
+              <p class="review-item-desc">${desc}</p>
+            </div>
+            <div class="review-item-actions-col">
+              <div class="review-item-price">${itemTotal} VNĐ</div>
+              <div class="review-item-qty-pill">
+                <button type="button" class="review-qty-btn" data-action="decrease" data-id="${item.id}" aria-label="Giảm số lượng">-</button>
+                <span class="review-qty-val">${item.qty}</span>
+                <button type="button" class="review-qty-btn" data-action="increase" data-id="${item.id}" aria-label="Tăng số lượng">+</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Render Step 2: Checkout Items (Figma 1343:10552)
+    if (checkoutItemsList) {
+      checkoutItemsList.innerHTML = items.map((item) => {
         const itemTotal = (item.price * item.qty).toLocaleString('vi-VN');
         return `
           <div class="checkout-item-row" data-product-id="${item.id}">
@@ -776,18 +847,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const subtotal = items.reduce((sum, i) => sum + (i.price * i.qty), 0);
     const shipping = 25000;
-    const total = subtotal + shipping;
+    const discount = 5000;
+    const total = Math.max(0, subtotal + shipping - discount);
 
-    if (subtotalEl) {
-      subtotalEl.textContent = `${subtotal.toLocaleString('vi-VN')}đ`;
-    }
-    if (totalEl) {
-      totalEl.textContent = `${total.toLocaleString('vi-VN')}đ`;
-    }
+    if (reviewSubtotalEl) reviewSubtotalEl.textContent = `${subtotal.toLocaleString('vi-VN')} đ`;
+    if (reviewShippingEl) reviewShippingEl.textContent = `${shipping.toLocaleString('vi-VN')} đ`;
+    if (reviewDiscountEl) reviewDiscountEl.textContent = `-5.000 đ`;
+    if (reviewTotalEl) reviewTotalEl.textContent = `${total.toLocaleString('vi-VN')} VND`;
+
+    if (checkoutSubtotalEl) checkoutSubtotalEl.textContent = `${subtotal.toLocaleString('vi-VN')}đ`;
+    if (checkoutShippingEl) checkoutShippingEl.textContent = `${shipping.toLocaleString('vi-VN')}đ`;
+    if (checkoutTotalEl) checkoutTotalEl.textContent = `${total.toLocaleString('vi-VN')}đ`;
   }
 
   // Initial cart page render
   renderCartPage();
+
+  // Step Transition: Proceed to Checkout
+  const proceedToCheckoutBtn = document.getElementById('btnProceedToCheckout');
+  if (proceedToCheckoutBtn) {
+    proceedToCheckoutBtn.addEventListener('click', () => {
+      currentCartStep = 2;
+      renderCartPage();
+      scrollToTop();
+    });
+  }
+
+  // Step Transition: Back to Review
+  const backToReviewBtn = document.getElementById('btnBackToReview');
+  if (backToReviewBtn) {
+    backToReviewBtn.addEventListener('click', () => {
+      currentCartStep = 1;
+      renderCartPage();
+      scrollToTop();
+    });
+  }
 
   // Cart item quantity & delete delegation
   document.addEventListener('click', (e) => {
@@ -844,6 +938,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       showToast('🎉 Đặt hàng thành công! Đơn hàng đang được chuẩn bị giao đến bạn.', '✓');
       saveCartItems([]);
+      currentCartStep = 1;
       setTimeout(() => {
         renderCartPage();
       }, 800);

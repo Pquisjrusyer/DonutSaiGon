@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giỏ Hàng & Thanh Toán | Donut Saigon - Bánh Donut Nghệ Nhân</title>
-  <meta name="description" content="Xem lại các sản phẩm donut bạn đã chọn, nhập thông tin giao hàng và tiến hành thanh toán an toàn tại Donut Saigon.">
+  <meta name="description" content="Xem lại giỏ hàng và tiến hành thanh toán những chiếc bánh donut nghệ nhân Donut Saigon nhanh chóng, an toàn và tiện lợi.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Giỏ Hàng & Thanh Toán | Donut Saigon">
-  <meta property="og:description" content="Thưởng thức những chiếc bánh donut thủ công tươi mới thơm ngon nhất cùng Donut Saigon.">
+  <meta property="og:title" content="Giỏ Hàng - Donut Saigon">
+  <meta property="og:description" content="Thưởng thức những chiếc bánh donut thủ công tươi ngon nhất từ Donut Saigon.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/cart-empty-illustration.png">
 
   <!-- Google Fonts: Maven Pro & Display Typefaces -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,16 +21,16 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="cart-page">
-  <!-- Reusable Header Web Component -->
+  <!-- Reusable Header Component -->
   <donut-header></donut-header>
 
   <!-- Main Content -->
   <main>
-    <section class="cart-main-section" aria-label="Khu vực giỏ hàng và thanh toán">
+    <section class="cart-section" aria-label="Giỏ hàng của bạn">
       <div class="cart-wrapper">
         <!-- Back Navigation Link -->
         <div class="cart-back-bar">
-          <a href="menu.html" class="cart-back-link">
+          <a href="menu.html" class="cart-back-link" id="cartBackLink">
             <img src="assets/icon-back-arrow.svg" alt="" class="back-icon" width="14" height="14">
             <span>Quay lại</span>
           </a>
@@ -100,9 +101,71 @@
         </div>
 
         <!-- ==========================================================
-             STATE 2: FILLED CART / CHECKOUT VIEW (FIGMA NODE 1343:10552)
+             STATE 2: CART REVIEW / INTERMEDIATE STEP (FIGMA NODE 2653:49545)
              ========================================================== -->
-        <div class="checkout-view-wrapper" id="cartFilledView">
+        <div class="cart-review-view-wrapper" id="cartReviewView" style="display: none;">
+          <div class="cart-review-grid">
+            <!-- Left Column: List of items with quantity controls -->
+            <div class="cart-review-items-col">
+              <div class="cart-review-items-list" id="cartReviewItemsList">
+                <!-- Dynamically filled by JavaScript -->
+              </div>
+            </div>
+
+            <!-- Right Column: Order Summary & Action Buttons -->
+            <aside class="cart-review-summary-col">
+              <div class="cart-review-summary-card">
+                <h2 class="review-summary-title">Tổng đơn hàng</h2>
+                
+                <div class="review-summary-breakdown">
+                  <div class="review-summary-row">
+                    <span class="review-summary-label">Tạm tính</span>
+                    <span class="review-summary-value" id="reviewSubtotal">0đ</span>
+                  </div>
+                  <div class="review-summary-row">
+                    <span class="review-summary-label">Phí giao hàng</span>
+                    <span class="review-summary-value" id="reviewShipping">25.000đ</span>
+                  </div>
+                  <div class="review-summary-row discount-row">
+                    <span class="review-summary-label">Ưu đãi (DONUT5)</span>
+                    <span class="review-summary-value text-red" id="reviewDiscount">-5.000đ</span>
+                  </div>
+                </div>
+
+                <div class="review-summary-total-row">
+                  <span class="review-total-label">THÀNH TIỀN</span>
+                  <span class="review-total-value" id="reviewTotal">0 VND</span>
+                </div>
+
+                <div class="ssl-badge-box">
+                  <img src="assets/icon-ssl-shield.svg" alt="Bảo mật SSL" class="ssl-shield-icon" width="16" height="20">
+                  <span class="ssl-badge-text">Thanh toán an toàn 100% với mã hóa SSL</span>
+                </div>
+
+                <div class="cart-review-actions-group">
+                  <button type="button" class="btn-proceed-checkout" id="btnProceedToCheckout">
+                    <span>Thanh toán ngay</span>
+                    <img src="assets/icon-arrow-checkout.svg" alt="" width="16" height="16">
+                  </button>
+                  <a href="menu.html" class="btn-continue-shopping">Tiếp tục mua sắm</a>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             STATE 3: CHECKOUT & SHIPPING FORM (FIGMA NODE 1343:10552)
+             ========================================================== -->
+        <div class="checkout-view-wrapper" id="cartFilledView" style="display: none;">
+          <!-- Back to Cart Review Button -->
+          <div class="checkout-back-step-bar">
+            <button type="button" class="btn-back-step" id="btnBackToReview">
+              <img src="assets/icon-back-arrow.svg" alt="" width="14" height="14">
+              <span>Xem lại giỏ hàng</span>
+            </button>
+          </div>
+
           <div class="checkout-bento-grid">
             <!-- Left Column: Shipping Information Form -->
             <div class="checkout-shipping-col">
@@ -182,6 +245,10 @@
                   <div class="calc-row">
                     <span class="calc-label">Phí vận chuyển</span>
                     <span class="calc-value" id="checkoutShipping">25.000đ</span>
+                  </div>
+                  <div class="calc-row">
+                    <span class="calc-label">Ưu đãi (DONUT5)</span>
+                    <span class="calc-value text-red">-5.000đ</span>
                   </div>
                   <div class="calc-row calc-total-row">
                     <span class="calc-total-label">Tổng cộng</span>
