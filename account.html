@@ -161,6 +161,62 @@
     </section>
 
     <!-- ==========================================================
+         STATE 1C: OTP EMAIL VERIFICATION VIEW (FIGMA NODE 1227:13739)
+         ========================================================== -->
+    <section class="auth-login-section" id="authOtpView" style="display: none;">
+      <!-- Decorative Blurred Gradient Blobs -->
+      <div class="auth-decor-blob blob-left" aria-hidden="true"></div>
+      <div class="auth-decor-blob blob-right" aria-hidden="true"></div>
+
+      <div class="login-card-container">
+        <div class="login-card otp-card">
+          <!-- Back to Forgot Password Button -->
+          <div class="forgot-back-wrap">
+            <button type="button" class="btn-forgot-back" id="btnOtpBack" aria-label="Quay lại bước trước">
+              <img src="assets/icon-arrow-back-blue.svg" alt="" width="18" height="18">
+            </button>
+          </div>
+
+          <header class="forgot-header">
+            <h1 class="forgot-title">Kiểm tra email của bạn</h1>
+            <p class="forgot-subtitle">
+              Chúng tôi đã gửi mã OTP qua email của bạn, mã gồm 5 số và có hiệu lực trong vòng 3 phút.
+            </p>
+          </header>
+
+          <!-- OTP Input Form -->
+          <form class="otp-form" id="otpForm" onsubmit="event.preventDefault();">
+            <div class="otp-boxes-row">
+              <input type="text" class="otp-box" inputmode="numeric" pattern="[0-9]*" maxlength="1" data-index="0" autofocus>
+              <input type="text" class="otp-box" inputmode="numeric" pattern="[0-9]*" maxlength="1" data-index="1">
+              <input type="text" class="otp-box" inputmode="numeric" pattern="[0-9]*" maxlength="1" data-index="2">
+              <input type="text" class="otp-box" inputmode="numeric" pattern="[0-9]*" maxlength="1" data-index="3">
+              <input type="text" class="otp-box" inputmode="numeric" pattern="[0-9]*" maxlength="1" data-index="4">
+            </div>
+
+            <button type="submit" class="btn-forgot-submit" id="btnOtpSubmit">
+              Tiếp tục
+            </button>
+
+            <div class="otp-resend-row">
+              <span>Bạn chưa nhận được mã?</span>
+              <button type="button" class="btn-resend-otp" id="btnResendOtp">Gửi lại mã</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Subpage Minimal Footer Note -->
+        <div class="login-page-footer-note">
+          <span>© 2024 Donut Saigon. Bánh donut vừa rẻ vừa ngon.</span>
+          <div class="footer-note-links">
+            <a href="#privacy">Chính sách bảo mật</a>
+            <a href="#terms">Điều khoản dịch vụ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
          STATE 2: AUTHENTICATED USER DASHBOARD VIEW
          ========================================================== -->
     <section class="account-main-section" id="authDashboardView" style="display: none;" aria-label="Khu vực tài khoản thành viên">

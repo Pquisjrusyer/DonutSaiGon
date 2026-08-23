@@ -2357,6 +2357,80 @@ donut-footer {
   box-shadow: 0 6px 18px rgba(0, 70, 145, 0.35);
 }
 
+/* --------------------------------------------------------------------------
+   OTP Verification View (Figma Node 1227:13739)
+   -------------------------------------------------------------------------- */
+.otp-card {
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.otp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.otp-boxes-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.otp-box {
+  width: 52px;
+  height: 52px;
+  background-color: #FFFFFF;
+  border: 1.5px solid #C3C6D3;
+  border-radius: 8px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #004691;
+  text-align: center;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.otp-box:focus {
+  outline: none;
+  border-color: #004691;
+  box-shadow: 0 0 0 3px rgba(0, 70, 145, 0.15);
+}
+
+.otp-resend-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 15px;
+  color: #424751;
+  margin-top: 6px;
+}
+
+.btn-resend-otp {
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  color: #004691;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.btn-resend-otp:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.btn-resend-otp:disabled {
+  color: #737782;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
 .profile-actions-stack {
   display: flex;
   flex-direction: column;
