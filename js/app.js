@@ -1492,24 +1492,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Detail Add to Cart & Buy Now
+  // Detail Add to Cart & Buy Now (Custom Box Modal - Figma Node 2789:22862)
   const btnDetailAddCart = document.getElementById('btnDetailAddCart');
   const btnDetailBuyNow = document.getElementById('btnDetailBuyNow');
+  const customBoxModal = document.getElementById('customBoxModal');
+  const btnCloseCustomBox = document.getElementById('btnCloseCustomBoxModal');
+  const btnModalSubmitAddToCart = document.getElementById('btnModalSubmitAddToCart');
 
-  if (btnDetailAddCart) {
-    btnDetailAddCart.addEventListener('click', () => {
-      addToCart({
-        id: 'gift-box',
-        name: 'GIFT BOX (Hộp 4 Bánh)',
-        price: 170000,
-        img: 'assets/cat-gift-box.png',
-        qty: detailQty
-      });
-    });
-  }
-
-  if (btnDetailBuyNow) {
-    btnDetailBuyNow.addEventListener('click', () => {
+  function openCustomBox() {
+    if (customBoxModal) {
+      customBoxModal.classList.add('active');
+    } else {
       addToCart({
         id: 'gift-box',
         name: 'GIFT BOX (Hộp 4 Bánh)',
@@ -1518,6 +1511,59 @@ document.addEventListener('DOMContentLoaded', () => {
         qty: detailQty
       });
       window.location.href = 'cart.html';
+    }
+  }
+
+  function closeCustomBox() {
+    if (customBoxModal) customBoxModal.classList.remove('active');
+  }
+
+  if (btnDetailAddCart) {
+    btnDetailAddCart.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCustomBox();
+    });
+  }
+
+  if (btnDetailBuyNow) {
+    btnDetailBuyNow.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCustomBox();
+    });
+  }
+
+  if (btnCloseCustomBox) {
+    btnCloseCustomBox.addEventListener('click', () => {
+      closeCustomBox();
+    });
+  }
+
+  if (customBoxModal) {
+    customBoxModal.addEventListener('click', (e) => {
+      if (e.target === customBoxModal) closeCustomBox();
+    });
+  }
+
+  if (btnModalSubmitAddToCart) {
+    btnModalSubmitAddToCart.addEventListener('click', (e) => {
+      e.preventDefault();
+      const cake1 = document.querySelector('input[name="cake_flavor_1"]:checked')?.value || 'GLAZE';
+      const cake2 = document.querySelector('input[name="cake_flavor_2"]:checked')?.value || 'OREOMALLOW';
+      const note = document.getElementById('customGiftNote')?.value.trim();
+
+      addToCart({
+        id: 'gift-box',
+        name: `GIFT BOX (Vị: ${cake1}, ${cake2})`,
+        price: 170000,
+        img: 'assets/cat-gift-box.png',
+        qty: detailQty
+      });
+
+      closeCustomBox();
+      showToast('🎁 Đã thêm Gift Box tùy chỉnh vị vào giỏ hàng!', '✓');
+      setTimeout(() => {
+        window.location.href = 'cart.html';
+      }, 300);
     });
   }
 

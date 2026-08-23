@@ -338,6 +338,148 @@
   <!-- Reusable Footer Component -->
   <donut-footer></donut-footer>
 
+  <!-- ==========================================================
+       CUSTOM BOX MODAL / FLAVOR SELECTOR (FIGMA NODE 2789:22862)
+       ========================================================== -->
+  <div class="custom-box-modal-backdrop" id="customBoxModal" aria-hidden="true" role="dialog" aria-labelledby="customBoxModalTitle">
+    <div class="custom-box-modal-card">
+      <!-- Modal Header -->
+      <div class="custom-box-header">
+        <div class="custom-box-title-wrap">
+          <h2 class="custom-box-title" id="customBoxModalTitle">Tùy chỉnh đơn hàng</h2>
+          <p class="custom-box-subtitle">Chọn hương vị cho từng chiếc bánh trong hộp của bạn.</p>
+        </div>
+        <button type="button" class="custom-box-close-btn" id="btnCloseCustomBoxModal" aria-label="Đóng tùy chỉnh">✕</button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="custom-box-body">
+        <!-- Cake 1 Selection Card -->
+        <div class="custom-cake-selection-card">
+          <div class="cake-selection-header">
+            <h3 class="cake-selection-title">Bánh 1</h3>
+            <span class="cake-selection-badge">Hương vị tự chọn</span>
+          </div>
+          <div class="flavor-options-grid">
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_1" value="GLAZE" checked class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">GLAZE</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_1" value="RED VELVET" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">RED VELVET</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_1" value="FRUIT POP" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">FRUIT POP</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_1" value="OREOMALLOW" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">OREOMALLOW</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_1" value="DARK COOKIE" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">DARK COOKIE</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_1" value="MANGO TANGO" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">MANGO TANGO</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_1" value="SMOKER WHITE" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">SMOKER WHITE</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_1" value="BLACKPINK" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">BLACKPINK</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_1" value="VERY BERRY" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">VERY BERRY</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Cake 2 Selection Card -->
+        <div class="custom-cake-selection-card">
+          <div class="cake-selection-header">
+            <h3 class="cake-selection-title">Bánh 2</h3>
+            <span class="cake-selection-badge">Hương vị tự chọn</span>
+          </div>
+          <div class="flavor-options-grid">
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_2" value="GLAZE" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">GLAZE</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_2" value="RED VELVET" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">RED VELVET</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_2" value="FRUIT POP" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">FRUIT POP</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_2" value="OREOMALLOW" checked class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">OREOMALLOW</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_2" value="DARK COOKIE" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">DARK COOKIE</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_2" value="MANGO TANGO" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">MANGO TANGO</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_2" value="SMOKER WHITE" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">SMOKER WHITE</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_2" value="BLACKPINK" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">BLACKPINK</span>
+            </label>
+            <label class="flavor-radio-item">
+              <input type="radio" name="cake_flavor_2" value="VERY BERRY" class="flavor-radio-input">
+              <span class="flavor-radio-custom"></span>
+              <span class="flavor-name">VERY BERRY</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Handwritten Note Textarea -->
+        <div class="custom-cake-note-section">
+          <label for="customGiftNote" class="custom-cake-note-label">Nội dung thư:</label>
+          <textarea id="customGiftNote" class="custom-cake-note-textarea" placeholder="Thêm điều muốn nói với người ấy..."></textarea>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="custom-box-footer">
+        <button type="button" class="btn-custom-box-submit" id="btnModalSubmitAddToCart">
+          Thêm vào giỏ hàng
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
