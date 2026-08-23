@@ -1758,18 +1758,33 @@ donut-footer {
 
 .menu-product-card {
   background: #FFFFFF;
+  border: 1px solid rgba(195, 198, 211, 0.4);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 18px rgba(41, 94, 172, 0.05);
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  cursor: pointer;
 }
 
 .menu-product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(41, 94, 172, 0.12);
+}
+
+.menu-card-img-link,
+.menu-card-title-link,
+.related-card-link,
+.related-card-title-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.menu-card-title-link:hover .menu-card-title,
+.related-card-title-link:hover .related-card-title {
+  color: var(--primary);
 }
 
 .menu-card-img-wrap {

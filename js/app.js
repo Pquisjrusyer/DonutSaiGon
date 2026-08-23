@@ -1607,15 +1607,158 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ------------------------------------------------------------------------
-  // 12. Product Detail Page Interactions (Figma 1990:55171)
+  // 12. Product Detail Page Dynamic Loader (Figma 1990:55171 & 2173:77570)
   // ------------------------------------------------------------------------
+  const PRODUCT_DATABASE = {
+    'glaze': {
+      id: 'glaze',
+      name: 'GLAZE',
+      category: 'Ring Donut',
+      price: 25000,
+      priceFormatted: '25.000 VNĐ',
+      rating: '(128 Đánh giá)',
+      img: 'assets/menu-sp-1.png',
+      thumbs: ['assets/menu-sp-1.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
+      desc: 'Bánh donut truyền thống với lớp vỏ bánh mềm xốp thượng hạng, phủ đường sữa caramel mỏng nhẹ óng ánh tan chảy trên đầu lưỡi mang đến cảm giác ngọt dịu tự nhiên.',
+      flavor: 'Ngọt dịu - Thơm sữa - Mềm xốp',
+      badge: 'BEST SELLER',
+      isGiftBox: false
+    },
+    'oreomallow': {
+      id: 'oreomallow',
+      name: 'OREOMALLOW',
+      category: 'Ring Donut',
+      price: 25000,
+      priceFormatted: '25.000 VNĐ',
+      rating: '(96 Đánh giá)',
+      img: 'assets/menu-sp-2.png',
+      thumbs: ['assets/menu-sp-2.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-3.png'],
+      desc: 'Bánh donut phủ kem marshmallow dẻo quánh, phủ vụn bánh quy Oreo socola đen giòn rụm tạo nên cấu trúc tương phản giòn dẻo vô cùng thích thú.',
+      flavor: 'Socola Oreo - Marshmallow dẻo thơm',
+      badge: 'YÊU THÍCH',
+      isGiftBox: false
+    },
+    'smoker-white': {
+      id: 'smoker-white',
+      name: 'SMOKER WHITE',
+      category: 'Ring Donut',
+      price: 29000,
+      priceFormatted: '29.000 VNĐ',
+      rating: '(84 Đánh giá)',
+      img: 'assets/menu-sp-3.png',
+      thumbs: ['assets/menu-sp-3.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
+      desc: 'Hương vị socola trắng khói độc bản kết hợp hạt phỉ rang bùi béo, mùi thơm dịu nhẹ và vị ngậy êm dịu đặc trưng.',
+      flavor: 'Socola trắng khói - Bùi béo hạt phỉ',
+      badge: 'ĐẶC BIỆT',
+      isGiftBox: false
+    },
+    'red-velvet': {
+      id: 'red-velvet',
+      name: 'RED VELVET',
+      category: 'Ring Donut',
+      price: 30000,
+      priceFormatted: '30.000 VNĐ',
+      rating: '(142 Đánh giá)',
+      img: 'assets/menu-sp-4.png',
+      thumbs: ['assets/menu-sp-4.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-2.png'],
+      desc: 'Sắc đỏ nhung quý phái kết hợp lớp phủ sốt kem phô mai chanh chua ngọt thanh tao cùng cốt bánh ẩm mịn chuẩn vị tráng miệng nước Mỹ.',
+      flavor: 'Cream cheese chua nhẹ - Cốt bánh nhung đỏ béo ngậy',
+      badge: 'SIGNATURE',
+      isGiftBox: false
+    },
+    'dark-cookie': {
+      id: 'dark-cookie',
+      name: 'DARK COOKIE',
+      category: 'Ring Donut',
+      price: 30000,
+      priceFormatted: '30.000 VNĐ',
+      rating: '(76 Đánh giá)',
+      img: 'assets/menu-sp-5.png',
+      thumbs: ['assets/menu-sp-5.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
+      desc: 'Socola đen 70% nguyên chất Bỉ kết hợp bánh quy đen nướng giòn rụm, mang lại vị đắng thanh và hậu vị ngọt sâu lắng.',
+      flavor: 'Socola đắng đậm đà 70% - Cookie giòn tan',
+      badge: 'ĐẬM VỊ',
+      isGiftBox: false
+    },
+    'blackpink': {
+      id: 'blackpink',
+      name: 'BLACKPINK',
+      category: 'Ring Donut',
+      price: 30000,
+      priceFormatted: '30.000 VNĐ',
+      rating: '(110 Đánh giá)',
+      img: 'assets/menu-sp-6.png',
+      thumbs: ['assets/menu-sp-6.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-3.png'],
+      desc: 'Bản hòa ca tuyệt mỹ giữa socola đen đậm đà và socola dâu tây hồng pastel ngọt ngào, tạo nên hương vị bùng nổ và vẻ ngoài thời thượng.',
+      flavor: 'Socola đen đậm vị - Dâu tây ngọt ngào',
+      badge: 'TRENDING',
+      isGiftBox: false
+    },
+    'fruit-pop': {
+      id: 'fruit-pop',
+      name: 'FRUIT POP',
+      category: 'Ring Donut',
+      price: 30000,
+      priceFormatted: '30.000 VNĐ',
+      rating: '(68 Đánh giá)',
+      img: 'assets/menu-sp-7.png',
+      thumbs: ['assets/menu-sp-7.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
+      desc: 'Lớp phủ socola ngũ sắc trái cây nhiệt đới sặc sỡ và cốm cereal giòn tan, mang lại cảm giác vui tươi, sảng khoái tức thì.',
+      flavor: 'Ngũ cốc trái cây giòn tan - Socola thơm lừng',
+      badge: 'TRẺ TRUNG',
+      isGiftBox: false
+    },
+    'mango-tango': {
+      id: 'mango-tango',
+      name: 'MANGO TANGO',
+      category: 'Filled Donut',
+      price: 30000,
+      priceFormatted: '30.000 VNĐ',
+      rating: '(89 Đánh giá)',
+      img: 'assets/menu-sp-8.png',
+      thumbs: ['assets/menu-sp-8.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-2.png'],
+      desc: 'Cốt bánh nhân kem xoài cát chín vàng ươm mọng nước, vị chua ngọt nhiệt đới hài hòa tràn đầy năng lượng tươi mới.',
+      flavor: 'Xoài cát nhiệt đới tươi mát - Chua ngọt thanh nhẹ',
+      badge: 'MỚI RA MẮT',
+      isGiftBox: false
+    },
+    'very-berry': {
+      id: 'very-berry',
+      name: 'VERY BERRY',
+      category: 'Filled Donut',
+      price: 36000,
+      priceFormatted: '36.000 VNĐ',
+      rating: '(135 Đánh giá)',
+      img: 'assets/menu-sp-9.png',
+      thumbs: ['assets/menu-sp-9.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
+      desc: 'Nhân kem phúc bồn tử và việt quất tươi mọng nước tan chảy quyện cùng lớp phủ socola dâu hồng ngọt lịm khó cưỡng.',
+      flavor: 'Dâu tây & Việt quất tươi mọng - Chua ngọt thanh nhã',
+      badge: 'BEST SELLER',
+      isGiftBox: false
+    },
+    'gift-box': {
+      id: 'gift-box',
+      name: 'GIFT BOX',
+      category: 'Hộp Quà',
+      price: 170000,
+      priceFormatted: '170.000 VNĐ',
+      rating: '(128 Đánh giá)',
+      img: 'assets/detail-glaze-main.png',
+      thumbs: ['assets/detail-glaze-main.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
+      desc: 'Bao gồm 4 chiếc bánh donut tự chọn bất kỳ cùng một lá thư tay được viết riêng, giúp mỗi hộp quà không chỉ ngọt ngào bởi hương vị mà còn đong đầy những cảm xúc chân thành.',
+      flavor: 'Tự chọn 4 hương vị yêu thích - Kèm thiệp viết tay',
+      badge: 'BEST SELLER',
+      isGiftBox: true
+    }
+  };
+
   const showcaseImg = document.getElementById('mainShowcaseImg');
-  const thumbnailBtns = document.querySelectorAll('.thumbnail-item');
   const galleryPrevBtn = document.getElementById('galleryPrevBtn');
   const galleryNextBtn = document.getElementById('galleryNextBtn');
   let currentThumbIndex = 0;
 
   function updateGalleryImage(index) {
+    const thumbnailBtns = document.querySelectorAll('.thumbnail-item');
     if (thumbnailBtns.length === 0 || !showcaseImg) return;
     currentThumbIndex = (index + thumbnailBtns.length) % thumbnailBtns.length;
     thumbnailBtns.forEach((btn, idx) => {
@@ -1629,11 +1772,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 150);
   }
 
-  thumbnailBtns.forEach((btn, idx) => {
-    btn.addEventListener('click', () => {
-      updateGalleryImage(idx);
+  function bindThumbnailClicks() {
+    const thumbnailBtns = document.querySelectorAll('.thumbnail-item');
+    thumbnailBtns.forEach((btn, idx) => {
+      btn.onclick = () => updateGalleryImage(idx);
     });
-  });
+  }
 
   if (galleryPrevBtn) {
     galleryPrevBtn.addEventListener('click', () => {
@@ -1645,6 +1789,54 @@ document.addEventListener('DOMContentLoaded', () => {
     galleryNextBtn.addEventListener('click', () => {
       updateGalleryImage(currentThumbIndex + 1);
     });
+  }
+
+  // Load product from URL parameter
+  let currentProductData = PRODUCT_DATABASE['gift-box'];
+  const urlProductParam = new URLSearchParams(window.location.search).get('product');
+  if (urlProductParam && PRODUCT_DATABASE[urlProductParam.toLowerCase()]) {
+    currentProductData = PRODUCT_DATABASE[urlProductParam.toLowerCase()];
+  }
+
+  // Update DOM if on product-detail page
+  if (document.querySelector('.detail-main-section')) {
+    document.title = `Chi Tiết Sản Phẩm - ${currentProductData.name} | Donut Saigon`;
+
+    const breadcrumbCurrent = document.querySelector('.breadcrumb-current');
+    if (breadcrumbCurrent) breadcrumbCurrent.textContent = currentProductData.name;
+
+    const titleEl = document.querySelector('.detail-product-title');
+    if (titleEl) titleEl.textContent = currentProductData.name;
+
+    const badgeEl = document.querySelector('.detail-best-seller-badge');
+    if (badgeEl) badgeEl.textContent = currentProductData.badge;
+
+    const priceEl = document.getElementById('detailPriceDisplay');
+    if (priceEl) priceEl.textContent = currentProductData.priceFormatted;
+
+    const ratingEl = document.querySelector('.rating-count');
+    if (ratingEl) ratingEl.textContent = currentProductData.rating;
+
+    const descEl = document.querySelector('.detail-description');
+    if (descEl) descEl.textContent = currentProductData.desc;
+
+    const flavorEl = document.querySelector('.flavor-desc');
+    if (flavorEl) flavorEl.textContent = currentProductData.flavor;
+
+    if (showcaseImg) {
+      showcaseImg.src = currentProductData.img;
+      showcaseImg.alt = `Bánh ${currentProductData.name} Donut Saigon`;
+    }
+
+    const thumbsContainer = document.querySelector('.detail-thumbnails-list');
+    if (thumbsContainer && currentProductData.thumbs) {
+      thumbsContainer.innerHTML = currentProductData.thumbs.map((thumbSrc, idx) => `
+        <button class="thumbnail-item ${idx === 0 ? 'active' : ''}" data-img-src="${thumbSrc}" aria-label="Xem ảnh ${idx + 1}">
+          <img src="${thumbSrc}" alt="Ảnh chi tiết ${idx + 1}">
+        </button>
+      `).join('');
+      bindThumbnailClicks();
+    }
   }
 
   // Detail Quantity Selector
@@ -1669,7 +1861,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Detail Add to Cart & Buy Now (Custom Box Modal - Figma Node 2789:22862)
+  // Detail Add to Cart & Buy Now (Custom Box Modal for Gift Box vs Direct Add for single donuts)
   const btnDetailAddCart = document.getElementById('btnDetailAddCart');
   const btnDetailBuyNow = document.getElementById('btnDetailBuyNow');
   const customBoxModal = document.getElementById('customBoxModal');
@@ -1679,15 +1871,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function openCustomBox() {
     if (customBoxModal) {
       customBoxModal.classList.add('active');
-    } else {
-      addToCart({
-        id: 'gift-box',
-        name: 'GIFT BOX (Hộp 4 Bánh)',
-        price: 170000,
-        img: 'assets/cat-gift-box.png',
-        qty: detailQty
-      });
-      window.location.href = 'cart.html';
     }
   }
 
@@ -1698,14 +1881,35 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnDetailAddCart) {
     btnDetailAddCart.addEventListener('click', (e) => {
       e.preventDefault();
-      openCustomBox();
+      if (currentProductData.isGiftBox) {
+        openCustomBox();
+      } else {
+        addToCart({
+          id: currentProductData.id,
+          name: currentProductData.name,
+          price: currentProductData.price,
+          img: currentProductData.img,
+          qty: detailQty
+        });
+      }
     });
   }
 
   if (btnDetailBuyNow) {
     btnDetailBuyNow.addEventListener('click', (e) => {
       e.preventDefault();
-      openCustomBox();
+      if (currentProductData.isGiftBox) {
+        openCustomBox();
+      } else {
+        addToCart({
+          id: currentProductData.id,
+          name: currentProductData.name,
+          price: currentProductData.price,
+          img: currentProductData.img,
+          qty: detailQty
+        });
+        window.location.href = 'cart.html';
+      }
     });
   }
 
