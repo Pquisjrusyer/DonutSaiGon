@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theo Dõi Đơn Hàng | Donut Saigon - Bánh Donut Nghệ Nhân</title>
+  <meta name="description" content="Theo dõi chi tiết tiến trình giao hàng và trạng thái đơn hàng của bạn tại Donut Saigon.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Theo Dõi Đơn Hàng | Donut Saigon">
+  <meta property="og:description" content="Chi tiết đơn hàng và tiến trình giao bánh Donut Saigon.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Maven Pro & Display Typefaces -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&family=Montserrat:wght@800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="order-detail-page">
+  <!-- Reusable Header Web Component -->
+  <donut-header></donut-header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="order-detail-section" aria-label="Tiến trình giao hàng">
+      <div class="order-detail-container">
+        <!-- Back Navigation Bar -->
+        <div class="account-back-bar">
+          <a href="account.html" class="account-back-btn">
+            <img src="assets/icon-back-arrow.svg" alt="" class="back-icon" width="14" height="14">
+            <span>Quay lại trang tài khoản</span>
+          </a>
+        </div>
+
+        <!-- Main Tracking Bento Layout (Figma Node 1289:9051) -->
+        <div class="order-tracking-bento-grid">
+          <!-- Left Column: Title, Current Status & Timeline -->
+          <div class="tracking-left-col">
+            <!-- Order Header -->
+            <div class="tracking-header">
+              <h1 class="tracking-title">Theo dõi đơn hàng</h1>
+              <p class="tracking-code" id="orderDetailCode">Mã đơn hàng: #DS-8829410</p>
+            </div>
+
+            <!-- Current Status Box -->
+            <div class="tracking-current-status-card">
+              <div class="status-icon-circle">
+                <img src="assets/icon-delivery-bike.svg" alt="" width="26" height="18">
+              </div>
+              <div class="status-info-wrap">
+                <span class="status-info-label">TRẠNG THÁI HIỆN TẠI</span>
+                <h2 class="status-info-val" id="orderCurrentStatusText">Shipper đang trên đường tới bạn</h2>
+              </div>
+            </div>
+
+            <!-- Vertical Timeline Stages -->
+            <div class="tracking-vertical-timeline">
+              <!-- Stage 1: Placed -->
+              <div class="timeline-stage-item stage-completed">
+                <div class="stage-dot-wrap">
+                  <div class="stage-dot">
+                    <img src="assets/icon-timeline-check.svg" alt="" class="stage-check-icon" width="12" height="9">
+                  </div>
+                  <div class="stage-line-bar"></div>
+                </div>
+                <div class="stage-content">
+                  <h3 class="stage-title">Đã đặt hàng</h3>
+                  <p class="stage-desc">Đơn hàng của bạn đã được tiếp nhận thành công.</p>
+                </div>
+              </div>
+
+              <!-- Stage 2: Preparing -->
+              <div class="timeline-stage-item stage-completed">
+                <div class="stage-dot-wrap">
+                  <div class="stage-dot">
+                    <img src="assets/icon-timeline-check.svg" alt="" class="stage-check-icon" width="12" height="9">
+                  </div>
+                  <div class="stage-line-bar"></div>
+                </div>
+                <div class="stage-content">
+                  <h3 class="stage-title">Đang chuẩn bị</h3>
+                  <p class="stage-desc">Bếp đang nướng những chiếc donut tươi ngon nhất.</p>
+                </div>
+              </div>
+
+              <!-- Stage 3: Delivering (Current) -->
+              <div class="timeline-stage-item stage-current">
+                <div class="stage-dot-wrap">
+                  <div class="stage-dot">
+                    <span class="stage-inner-dot"></span>
+                  </div>
+                  <div class="stage-line-bar line-pending"></div>
+                </div>
+                <div class="stage-content">
+                  <h3 class="stage-title">Đang giao hàng</h3>
+                  <p class="stage-desc">Shipper đang trên đường tới bạn</p>
+                </div>
+              </div>
+
+              <!-- Stage 4: Delivered -->
+              <div class="timeline-stage-item stage-pending">
+                <div class="stage-dot-wrap">
+                  <div class="stage-dot">
+                    <span class="stage-inner-dot"></span>
+                  </div>
+                </div>
+                <div class="stage-content">
+                  <h3 class="stage-title">Đã giao</h3>
+                  <p class="stage-desc">Chúc bạn ngon miệng!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Delivery Info & Summary Cards -->
+          <div class="tracking-right-col">
+            <!-- Card 1: Estimated Delivery Time -->
+            <div class="delivery-time-card">
+              <div class="time-card-header">
+                <div class="time-clock-wrap">
+                  <img src="assets/icon-timeline-clock.svg" alt="" width="26" height="26">
+                </div>
+                <span class="time-badge">Dự kiến</span>
+              </div>
+              <p class="time-card-label">Thời gian giao hàng dự kiến</p>
+              <div class="time-range-display" id="orderEstTime">14:30 - 15:00</div>
+            </div>
+
+            <!-- Card 2: Order Items Summary -->
+            <div class="order-summary-card">
+              <h3 class="summary-card-title">Tóm tắt đơn hàng</h3>
+              
+              <div class="order-items-list" id="orderSummaryItems">
+                <div class="order-item-row">
+                  <div class="item-thumb-box">
+                    <img src="assets/thumb-very-berry.png" alt="VERY BERRY" class="item-thumb-img">
+                  </div>
+                  <div class="item-details">
+                    <h4 class="item-name">VERY BERRY</h4>
+                    <span class="item-qty">Số lượng: 2</span>
+                  </div>
+                  <div class="item-total-price">180.000đ</div>
+                </div>
+              </div>
+
+              <div class="order-financial-breakdown">
+                <div class="breakdown-line">
+                  <span class="line-label">Tạm tính</span>
+                  <span class="line-val" id="orderSubtotalVal">180.000đ</span>
+                </div>
+                <div class="breakdown-line">
+                  <span class="line-label">Phí giao hàng</span>
+                  <span class="line-val" id="orderShippingVal">15.000đ</span>
+                </div>
+                <div class="breakdown-total-row">
+                  <span class="total-label">Tổng cộng</span>
+                  <span class="total-val" id="orderTotalVal">195.000đ</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Support Note Box -->
+            <div class="order-support-note-card">
+              <p class="support-note-text">
+                Bạn cần hỗ trợ về đơn hàng này? Hãy truy cập trung tâm trợ giúp của chúng tôi.
+              </p>
+              <a href="tel:0901234567" class="support-note-btn">Liên hệ trợ giúp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Reusable Footer Component -->
+  <donut-footer></donut-footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Lenis & GSAP Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Components & Logic -->
+  <script src="components/header.js" defer></script>
+  <script src="components/footer.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

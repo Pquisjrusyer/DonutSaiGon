@@ -701,12 +701,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Account Page: Order details
+    // Account Page: Order details navigation (Figma Node 1289:9051)
     const orderBtn = e.target.closest('.order-action-link');
     if (orderBtn) {
       e.preventDefault();
       const orderId = orderBtn.getAttribute('data-order-id') || 'DS-8829410';
-      showToast(`Đang mở chi tiết đơn hàng #${orderId}`);
+      window.location.href = `order-detail.html?id=${orderId}`;
       return;
     }
 
@@ -1643,4 +1643,89 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initCookieConsentAndPolicyModal();
+
+  // ------------------------------------------------------------------------
+  // 14. Order Detail & Tracking Page Controller (Figma Node 1289:9051)
+  // ------------------------------------------------------------------------
+  function initOrderDetailPage() {
+    const codeEl = document.getElementById('orderDetailCode');
+    if (!codeEl) return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('id') || 'DS-8829410';
+    codeEl.textContent = `Mã đơn hàng: #${orderId.replace(/^#/, '')}`;
+
+    // Sample data mapping for past orders
+    const orderMockMap = {
+      'DS-8829410': {
+        status: 'Đã giao thành công',
+        statusDesc: 'Chúc bạn ngon miệng!',
+        stage: 4,
+        items: [
+          { name: 'VERY BERRY', qty: 2, price: 180000, img: 'assets/thumb-very-berry.png' },
+          { name: 'DARK COOKIE', qty: 1, price: 125000, img: 'assets/account-fav-1.png' }
+        ],
+        shipping: 15000,
+        estTime: 'Đã hoàn tất (24/05/2024)'
+      },
+      'DS-8829152': {
+        status: 'Đã giao thành công',
+        statusDesc: 'Chúc bạn ngon miệng!',
+        stage: 4,
+        items: [
+          { name: 'STRAWBERRY FILLED', qty: 1, price: 140000, img: 'assets/account-fav-2.png' }
+        ],
+        shipping: 15000,
+        estTime: 'Đã hoàn tất (18/05/2024)'
+      },
+      'DS-8828904': {
+        status: 'Shipper đang trên đường tới bạn',
+        statusDesc: 'Shipper đang trên đường tới bạn',
+        stage: 3,
+        items: [
+          { name: 'VERY BERRY', qty: 2, price: 180000, img: 'assets/thumb-very-berry.png' },
+          { name: 'GIFT BOX (4 Bánh)', qty: 2, price: 345000, img: 'assets/cat-gift-box.png' }
+        ],
+        shipping: 15000,
+        estTime: '14:30 - 15:00'
+      }
+    };
+
+    const data = orderMockMap[orderId] || orderMockMap['DS-8829410'];
+    if (data) {
+      const statusText = document.getElementById('orderCurrentStatusText');
+      if (statusText) statusText.textContent = data.status;
+
+      const estTimeEl = document.getElementById('orderEstTime');
+      if (estTimeEl) estTimeEl.textContent = data.estTime;
+
+      const itemsList = document.getElementById('orderSummaryItems');
+      if (itemsList && data.items) {
+        let subtotal = 0;
+        itemsList.innerHTML = data.items.map(item => {
+          subtotal += item.price;
+          return `
+            <div class="order-item-row">
+              <div class="item-thumb-box">
+                <img src="${item.img}" alt="${item.name}" class="item-thumb-img">
+              </div>
+              <div class="item-details">
+                <h4 class="item-name">${item.name}</h4>
+                <span class="item-qty">Số lượng: ${item.qty}</span>
+              </div>
+              <div class="item-total-price">${item.price.toLocaleString('vi-VN')}đ</div>
+            </div>
+          `;
+        }).join('');
+
+        const subtotalEl = document.getElementById('orderSubtotalVal');
+        if (subtotalEl) subtotalEl.textContent = `${subtotal.toLocaleString('vi-VN')}đ`;
+
+        const totalEl = document.getElementById('orderTotalVal');
+        if (totalEl) totalEl.textContent = `${(subtotal + data.shipping).toLocaleString('vi-VN')}đ`;
+      }
+    }
+  }
+
+  initOrderDetailPage();
 });
