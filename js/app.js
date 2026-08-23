@@ -728,21 +728,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------------------------------------------------------
-  // 9b. Account Page Authentication State (Figma Node 1227:13483)
+  // 9b. Account Page Authentication State (Figma Node 1227:13483 & 1227:13708)
   // ------------------------------------------------------------------------
   function initAccountAuth() {
     const loginView = document.getElementById('authLoginView');
+    const forgotView = document.getElementById('authForgotView');
     const dashboardView = document.getElementById('authDashboardView');
     if (!loginView || !dashboardView) return;
+
+    let authState = 'login'; // 'login', 'forgot', 'dashboard'
 
     function updateAuthDisplay() {
       const isLogged = localStorage.getItem('dnsg_user_logged_in') === 'true';
       if (isLogged) {
+        authState = 'dashboard';
         loginView.style.display = 'none';
+        if (forgotView) forgotView.style.display = 'none';
         dashboardView.style.display = 'block';
       } else {
-        loginView.style.display = 'flex';
-        dashboardView.style.display = 'none';
+        if (authState === 'forgot' && forgotView) {
+          loginView.style.display = 'none';
+          forgotView.style.display = 'flex';
+          dashboardView.style.display = 'none';
+        } else {
+          authState = 'login';
+          loginView.style.display = 'flex';
+          if (forgotView) forgotView.style.display = 'none';
+          dashboardView.style.display = 'none';
+        }
       }
     }
 
@@ -789,12 +802,43 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Forgot Password & Sign Up links
+    // Forgot Password Link Click
     const forgotLink = document.getElementById('forgotPasswordLink');
     if (forgotLink) {
       forgotLink.addEventListener('click', (e) => {
         e.preventDefault();
-        showToast('Vui lòng kiểm tra hộp thư email để đặt lại mật khẩu.');
+        authState = 'forgot';
+        updateAuthDisplay();
+        scrollToTop();
+      });
+    }
+
+    // Back to Login from Forgot Password
+    const forgotBackBtn = document.getElementById('btnForgotBack');
+    if (forgotBackBtn) {
+      forgotBackBtn.addEventListener('click', () => {
+        authState = 'login';
+        updateAuthDisplay();
+        scrollToTop();
+      });
+    }
+
+    // Forgot Password Form Submit
+    const forgotForm = document.getElementById('forgotForm');
+    if (forgotForm) {
+      forgotForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('forgotEmail')?.value.trim();
+        if (!email) {
+          showToast('Vui lòng nhập địa chỉ email của bạn!');
+          return;
+        }
+        showToast('✨ Hướng dẫn cấp lại mật khẩu đã được gửi đến email. Vui lòng kiểm tra hộp thư!', '✓');
+        setTimeout(() => {
+          authState = 'login';
+          updateAuthDisplay();
+          scrollToTop();
+        }, 1200);
       });
     }
 
@@ -812,6 +856,7 @@ document.addEventListener('DOMContentLoaded', () => {
       logoutBtn.addEventListener('click', () => {
         localStorage.removeItem('dnsg_user_logged_in');
         showToast('Bạn đã đăng xuất tài khoản thành công.', 'ℹ');
+        authState = 'login';
         updateAuthDisplay();
         scrollToTop();
       });

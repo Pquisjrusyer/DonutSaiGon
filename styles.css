@@ -2250,6 +2250,113 @@ donut-footer {
   text-decoration: underline;
 }
 
+/* --------------------------------------------------------------------------
+   Forgot Password View (Figma Node 1227:13708)
+   -------------------------------------------------------------------------- */
+.forgot-card {
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.forgot-back-wrap {
+  margin-bottom: -12px;
+}
+
+.btn-forgot-back {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-forgot-back:hover {
+  background-color: #F5ECE7;
+  transform: translateX(-3px);
+}
+
+.forgot-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.forgot-title {
+  font-family: var(--font-family-display);
+  font-size: 32px;
+  font-weight: 900;
+  color: #004691;
+  line-height: 1.25;
+}
+
+.forgot-subtitle {
+  font-size: 15px;
+  color: #004691;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.forgot-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.forgot-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #004691;
+}
+
+.forgot-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  background-color: #FFFFFF;
+  border: 1px solid #C3C6D3;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #004691;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.forgot-input:focus {
+  outline: none;
+  border-color: #004691;
+  box-shadow: 0 0 0 3px rgba(0, 70, 145, 0.15);
+}
+
+.btn-forgot-submit {
+  width: 100%;
+  height: 52px;
+  background-color: #004691;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 9999px;
+  font-family: var(--font-family-display);
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(0, 70, 145, 0.25);
+  margin-top: 10px;
+}
+
+.btn-forgot-submit:hover {
+  background-color: #00336a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 70, 145, 0.35);
+}
+
 .profile-actions-stack {
   display: flex;
   flex-direction: column;

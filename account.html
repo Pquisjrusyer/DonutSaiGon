@@ -115,6 +115,52 @@
     </section>
 
     <!-- ==========================================================
+         STATE 1B: FORGOT PASSWORD VIEW (FIGMA NODE 1227:13708)
+         ========================================================== -->
+    <section class="auth-login-section" id="authForgotView" style="display: none;">
+      <!-- Decorative Blurred Gradient Blobs -->
+      <div class="auth-decor-blob blob-left" aria-hidden="true"></div>
+      <div class="auth-decor-blob blob-right" aria-hidden="true"></div>
+
+      <div class="login-card-container">
+        <div class="login-card forgot-card">
+          <!-- Back to Login Button -->
+          <div class="forgot-back-wrap">
+            <button type="button" class="btn-forgot-back" id="btnForgotBack" aria-label="Quay lại đăng nhập">
+              <img src="assets/icon-arrow-back-blue.svg" alt="" width="18" height="18">
+            </button>
+          </div>
+
+          <header class="forgot-header">
+            <h1 class="forgot-title">Bạn quên mật khẩu ?</h1>
+            <p class="forgot-subtitle">Hãy nhập email của bạn để cấp lại mật khẩu.</p>
+          </header>
+
+          <!-- Forgot Password Form -->
+          <form class="forgot-form" id="forgotForm" onsubmit="event.preventDefault();">
+            <div class="login-form-group">
+              <label for="forgotEmail" class="forgot-label">Địa chỉ Email của bạn</label>
+              <input type="email" id="forgotEmail" class="forgot-input" placeholder="donutsaigon@gmail.com" value="donutsaigon@gmail.com" required>
+            </div>
+
+            <button type="submit" class="btn-forgot-submit" id="btnForgotSubmit">
+              Tiếp tục
+            </button>
+          </form>
+        </div>
+
+        <!-- Subpage Minimal Footer Note -->
+        <div class="login-page-footer-note">
+          <span>© 2024 Donut Saigon. Bánh donut vừa rẻ vừa ngon.</span>
+          <div class="footer-note-links">
+            <a href="#privacy">Chính sách bảo mật</a>
+            <a href="#terms">Điều khoản dịch vụ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
          STATE 2: AUTHENTICATED USER DASHBOARD VIEW
          ========================================================== -->
     <section class="account-main-section" id="authDashboardView" style="display: none;" aria-label="Khu vực tài khoản thành viên">
