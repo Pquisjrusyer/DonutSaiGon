@@ -1601,6 +1601,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------------------------------------
   // 12. Product Detail Page Dynamic Loader (Figma 1990:55171 & 2173:77570)
   // ------------------------------------------------------------------------
+  // ------------------------------------------------------------------------
+  // 12. Product Detail Page Dynamic Loader (Figma 1990:55171 & 2173:77570)
+  // ------------------------------------------------------------------------
   const PRODUCT_DATABASE = {
     'glaze': {
       id: 'glaze',
@@ -1611,8 +1614,19 @@ document.addEventListener('DOMContentLoaded', () => {
       rating: '(128 Đánh giá)',
       img: 'assets/menu-sp-1.png',
       thumbs: ['assets/menu-sp-1.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
-      desc: 'Bánh donut truyền thống với lớp vỏ bánh mềm xốp thượng hạng, phủ đường sữa caramel mỏng nhẹ óng ánh tan chảy trên đầu lưỡi mang đến cảm giác ngọt dịu tự nhiên.',
-      flavor: 'Ngọt dịu - Thơm sữa - Mềm xốp',
+      desc: 'Chiếc donut kinh điển với kết cấu mềm xốp, được ủ bột và chiên vàng nhẹ để giữ độ ẩm tự nhiên bên trong. Bề mặt phủ lớp glaze đường sữa mỏng, tạo độ bóng đẹp mắt cùng vị ngọt thanh dịu dàng. Đây là lựa chọn hoàn hảo cho những ai yêu thích hương vị nguyên bản của donut Mỹ.',
+      features: [
+        { icon: 'assets/icon-cherry-donut.png', text: 'Mềm xốp tự nhiên' },
+        { icon: 'assets/icon-milk-bottle.png', text: 'Ngọt thanh không gắt' },
+        { icon: 'assets/icon-leaf.png', text: 'Không chất bảo quản' }
+      ],
+      ingredients: [
+        { icon: 'assets/icon-wheat.png', name: 'Bột mì' },
+        { icon: 'assets/icon-butter.png', name: 'Bơ' },
+        { icon: 'assets/icon-milk-bottle.png', name: 'Sữa' },
+        { icon: 'assets/icon-sugar-cube.png', name: 'Đường' }
+      ],
+      flavor: 'Ngọt nhẹ - Béo thơm - Mềm xốp',
       badge: 'BEST SELLER',
       isGiftBox: false
     },
@@ -1626,6 +1640,17 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'assets/menu-sp-2.png',
       thumbs: ['assets/menu-sp-2.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-3.png'],
       desc: 'Bánh donut phủ kem marshmallow dẻo quánh, phủ vụn bánh quy Oreo socola đen giòn rụm tạo nên cấu trúc tương phản giòn dẻo vô cùng thích thú.',
+      features: [
+        { icon: 'assets/icon-cherry-donut.png', text: 'Marshmallow dẻo thơm' },
+        { icon: 'assets/icon-milk-bottle.png', text: 'Oreo giòn rụm' },
+        { icon: 'assets/icon-leaf.png', text: 'Không chất bảo quản' }
+      ],
+      ingredients: [
+        { icon: 'assets/icon-wheat.png', name: 'Bột mì' },
+        { icon: 'assets/icon-butter.png', name: 'Bơ' },
+        { icon: 'assets/icon-milk-bottle.png', name: 'Sữa' },
+        { icon: 'assets/icon-sugar-cube.png', name: 'Socola Oreo' }
+      ],
       flavor: 'Socola Oreo - Marshmallow dẻo thơm',
       badge: 'YÊU THÍCH',
       isGiftBox: false
@@ -1640,6 +1665,17 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'assets/menu-sp-3.png',
       thumbs: ['assets/menu-sp-3.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
       desc: 'Hương vị socola trắng khói độc bản kết hợp hạt phỉ rang bùi béo, mùi thơm dịu nhẹ và vị ngậy êm dịu đặc trưng.',
+      features: [
+        { icon: 'assets/icon-cherry-donut.png', text: 'Socola trắng khói' },
+        { icon: 'assets/icon-milk-bottle.png', text: 'Hạt phỉ bùi béo' },
+        { icon: 'assets/icon-leaf.png', text: 'Không chất bảo quản' }
+      ],
+      ingredients: [
+        { icon: 'assets/icon-wheat.png', name: 'Bột mì' },
+        { icon: 'assets/icon-butter.png', name: 'Bơ' },
+        { icon: 'assets/icon-milk-bottle.png', name: 'Sữa' },
+        { icon: 'assets/icon-sugar-cube.png', name: 'Hạt phỉ' }
+      ],
       flavor: 'Socola trắng khói - Bùi béo hạt phỉ',
       badge: 'ĐẶC BIỆT',
       isGiftBox: false
@@ -1654,6 +1690,17 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'assets/menu-sp-4.png',
       thumbs: ['assets/menu-sp-4.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-2.png'],
       desc: 'Sắc đỏ nhung quý phái kết hợp lớp phủ sốt kem phô mai chanh chua ngọt thanh tao cùng cốt bánh ẩm mịn chuẩn vị tráng miệng nước Mỹ.',
+      features: [
+        { icon: 'assets/icon-cherry-donut.png', text: 'Cream cheese thanh dịu' },
+        { icon: 'assets/icon-milk-bottle.png', text: 'Cốt nhung đỏ ẩm mịn' },
+        { icon: 'assets/icon-leaf.png', text: 'Không chất bảo quản' }
+      ],
+      ingredients: [
+        { icon: 'assets/icon-wheat.png', name: 'Bột mì' },
+        { icon: 'assets/icon-butter.png', name: 'Phô mai' },
+        { icon: 'assets/icon-milk-bottle.png', name: 'Sữa tươi' },
+        { icon: 'assets/icon-sugar-cube.png', name: 'Đường mía' }
+      ],
       flavor: 'Cream cheese chua nhẹ - Cốt bánh nhung đỏ béo ngậy',
       badge: 'SIGNATURE',
       isGiftBox: false
@@ -1668,6 +1715,17 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'assets/menu-sp-5.png',
       thumbs: ['assets/menu-sp-5.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
       desc: 'Socola đen 70% nguyên chất Bỉ kết hợp bánh quy đen nướng giòn rụm, mang lại vị đắng thanh và hậu vị ngọt sâu lắng.',
+      features: [
+        { icon: 'assets/icon-cherry-donut.png', text: 'Socola Bỉ 70%' },
+        { icon: 'assets/icon-milk-bottle.png', text: 'Cookie đen giòn rụm' },
+        { icon: 'assets/icon-leaf.png', text: 'Không chất bảo quản' }
+      ],
+      ingredients: [
+        { icon: 'assets/icon-wheat.png', name: 'Bột mì' },
+        { icon: 'assets/icon-butter.png', name: 'Bơ Pháp' },
+        { icon: 'assets/icon-milk-bottle.png', name: 'Sữa' },
+        { icon: 'assets/icon-sugar-cube.png', name: 'Socola đen' }
+      ],
       flavor: 'Socola đắng đậm đà 70% - Cookie giòn tan',
       badge: 'ĐẬM VỊ',
       isGiftBox: false
@@ -1682,6 +1740,17 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'assets/menu-sp-6.png',
       thumbs: ['assets/menu-sp-6.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-3.png'],
       desc: 'Bản hòa ca tuyệt mỹ giữa socola đen đậm đà và socola dâu tây hồng pastel ngọt ngào, tạo nên hương vị bùng nổ và vẻ ngoài thời thượng.',
+      features: [
+        { icon: 'assets/icon-cherry-donut.png', text: 'Socola dâu tây' },
+        { icon: 'assets/icon-milk-bottle.png', text: 'Socola đen nguyên chất' },
+        { icon: 'assets/icon-leaf.png', text: 'Không chất bảo quản' }
+      ],
+      ingredients: [
+        { icon: 'assets/icon-wheat.png', name: 'Bột mì' },
+        { icon: 'assets/icon-butter.png', name: 'Bơ' },
+        { icon: 'assets/icon-milk-bottle.png', name: 'Sữa' },
+        { icon: 'assets/icon-sugar-cube.png', name: 'Socola dâu' }
+      ],
       flavor: 'Socola đen đậm vị - Dâu tây ngọt ngào',
       badge: 'TRENDING',
       isGiftBox: false
@@ -1696,6 +1765,17 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'assets/menu-sp-7.png',
       thumbs: ['assets/menu-sp-7.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
       desc: 'Lớp phủ socola ngũ sắc trái cây nhiệt đới sặc sỡ và cốm cereal giòn tan, mang lại cảm giác vui tươi, sảng khoái tức thì.',
+      features: [
+        { icon: 'assets/icon-cherry-donut.png', text: 'Trái cây nhiệt đới' },
+        { icon: 'assets/icon-milk-bottle.png', text: 'Cốm giòn tan' },
+        { icon: 'assets/icon-leaf.png', text: 'Không chất bảo quản' }
+      ],
+      ingredients: [
+        { icon: 'assets/icon-wheat.png', name: 'Bột mì' },
+        { icon: 'assets/icon-butter.png', name: 'Bơ' },
+        { icon: 'assets/icon-milk-bottle.png', name: 'Sữa' },
+        { icon: 'assets/icon-sugar-cube.png', name: 'Cốm trái cây' }
+      ],
       flavor: 'Ngũ cốc trái cây giòn tan - Socola thơm lừng',
       badge: 'TRẺ TRUNG',
       isGiftBox: false
@@ -1710,6 +1790,17 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'assets/menu-sp-8.png',
       thumbs: ['assets/menu-sp-8.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-2.png'],
       desc: 'Cốt bánh nhân kem xoài cát chín vàng ươm mọng nước, vị chua ngọt nhiệt đới hài hòa tràn đầy năng lượng tươi mới.',
+      features: [
+        { icon: 'assets/icon-cherry-donut.png', text: 'Xoài cát tươi' },
+        { icon: 'assets/icon-milk-bottle.png', text: 'Nhân kem béo ngậy' },
+        { icon: 'assets/icon-leaf.png', text: 'Không chất bảo quản' }
+      ],
+      ingredients: [
+        { icon: 'assets/icon-wheat.png', name: 'Bột mì' },
+        { icon: 'assets/icon-butter.png', name: 'Bơ' },
+        { icon: 'assets/icon-milk-bottle.png', name: 'Xoài tươi' },
+        { icon: 'assets/icon-sugar-cube.png', name: 'Đường mía' }
+      ],
       flavor: 'Xoài cát nhiệt đới tươi mát - Chua ngọt thanh nhẹ',
       badge: 'MỚI RA MẮT',
       isGiftBox: false
@@ -1724,6 +1815,17 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'assets/menu-sp-9.png',
       thumbs: ['assets/menu-sp-9.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
       desc: 'Nhân kem phúc bồn tử và việt quất tươi mọng nước tan chảy quyện cùng lớp phủ socola dâu hồng ngọt lịm khó cưỡng.',
+      features: [
+        { icon: 'assets/icon-cherry-donut.png', text: 'Phúc bồn tử tươi' },
+        { icon: 'assets/icon-milk-bottle.png', text: 'Việt quất mọng nước' },
+        { icon: 'assets/icon-leaf.png', text: 'Không chất bảo quản' }
+      ],
+      ingredients: [
+        { icon: 'assets/icon-wheat.png', name: 'Bột mì' },
+        { icon: 'assets/icon-butter.png', name: 'Bơ' },
+        { icon: 'assets/icon-milk-bottle.png', name: 'Quả mọng' },
+        { icon: 'assets/icon-sugar-cube.png', name: 'Socola dâu' }
+      ],
       flavor: 'Dâu tây & Việt quất tươi mọng - Chua ngọt thanh nhã',
       badge: 'BEST SELLER',
       isGiftBox: false
@@ -1738,6 +1840,17 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'assets/detail-glaze-main.png',
       thumbs: ['assets/detail-glaze-main.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
       desc: 'Bao gồm 4 chiếc bánh donut tự chọn bất kỳ cùng một lá thư tay được viết riêng, giúp mỗi hộp quà không chỉ ngọt ngào bởi hương vị mà còn đong đầy những cảm xúc chân thành.',
+      features: [
+        { icon: 'assets/icon-cherry-donut.png', text: '4 bánh tự chọn' },
+        { icon: 'assets/icon-milk-bottle.png', text: 'Hộp quà cao cấp' },
+        { icon: 'assets/icon-leaf.png', text: 'Thiệp viết tay riêng' }
+      ],
+      ingredients: [
+        { icon: 'assets/icon-wheat.png', name: 'Bột mì hảo hạng' },
+        { icon: 'assets/icon-butter.png', name: 'Bơ nhập khẩu' },
+        { icon: 'assets/icon-milk-bottle.png', name: 'Sữa tươi' },
+        { icon: 'assets/icon-sugar-cube.png', name: 'Đường nguyên chất' }
+      ],
       flavor: 'Tự chọn 4 hương vị yêu thích - Kèm thiệp viết tay',
       badge: 'BEST SELLER',
       isGiftBox: true
@@ -1756,7 +1869,7 @@ document.addEventListener('DOMContentLoaded', () => {
     thumbnailBtns.forEach((btn, idx) => {
       btn.classList.toggle('active', idx === currentThumbIndex);
     });
-    const targetSrc = thumbnailBtns[currentThumbIndex].getAttribute('data-img-src') || 'assets/detail-glaze-main.png';
+    const targetSrc = thumbnailBtns[currentThumbIndex].getAttribute('data-img-src') || 'assets/menu-sp-1.png';
     showcaseImg.style.opacity = '0.5';
     showcaseImg.src = targetSrc;
     setTimeout(() => {
@@ -1783,8 +1896,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Load product from URL parameter
-  let currentProductData = PRODUCT_DATABASE['gift-box'];
+  // Load product from URL parameter (Default to GLAZE - Figma 2173:77570)
+  let currentProductData = PRODUCT_DATABASE['glaze'];
   const urlProductParam = new URLSearchParams(window.location.search).get('product');
   if (urlProductParam && PRODUCT_DATABASE[urlProductParam.toLowerCase()]) {
     currentProductData = PRODUCT_DATABASE[urlProductParam.toLowerCase()];
@@ -1814,6 +1927,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const flavorEl = document.querySelector('.flavor-desc');
     if (flavorEl) flavorEl.textContent = currentProductData.flavor;
+
+    // Render feature pills
+    const featurePillsContainer = document.querySelector('.detail-feature-pills');
+    if (featurePillsContainer && currentProductData.features) {
+      featurePillsContainer.innerHTML = currentProductData.features.map(f => `
+        <div class="feature-pill-item">
+          <div class="feature-pill-icon">
+            <img src="${f.icon}" alt="" width="24" height="24">
+          </div>
+          <span class="feature-pill-text">${f.text}</span>
+        </div>
+      `).join('');
+    }
+
+    // Render ingredients pills
+    const ingredientsContainer = document.querySelector('.ingredients-pills-list');
+    if (ingredientsContainer && currentProductData.ingredients) {
+      ingredientsContainer.innerHTML = currentProductData.ingredients.map(ing => `
+        <div class="ingredient-pill">
+          <img src="${ing.icon}" alt="" width="22" height="22">
+          <span>${ing.name}</span>
+        </div>
+      `).join('');
+    }
 
     if (showcaseImg) {
       showcaseImg.src = currentProductData.img;
