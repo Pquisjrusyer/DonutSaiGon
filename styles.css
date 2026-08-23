@@ -2671,6 +2671,66 @@ body.account-page:not(.dashboard-mode) donut-footer {
 }
 
 /* --------------------------------------------------------------------------
+   Profile Edit View (Figma Node 1269:14074)
+   -------------------------------------------------------------------------- */
+.profile-edit-container {
+  max-width: 1000px;
+}
+
+.profile-edit-card {
+  box-shadow: 0 12px 24px -10px rgba(41, 94, 172, 0.08);
+}
+
+.profile-header-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.btn-profile-back-dashboard {
+  background: transparent;
+  border: 1px solid rgba(45, 97, 173, 0.2);
+  border-radius: 9999px;
+  color: #2D61AD;
+  font-family: var(--font-family-base);
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-profile-back-dashboard:hover {
+  background-color: #F8F5F0;
+  border-color: #2D61AD;
+}
+
+.profile-address-textarea {
+  height: 80px;
+  min-height: 80px;
+  padding-top: 14px;
+  padding-left: 44px;
+  resize: vertical;
+  font-family: var(--font-family-base);
+}
+
+.textarea-wrap .icon-address-top {
+  top: 16px;
+  transform: none;
+}
+
+.btn-profile-save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 700;
+  height: 52px;
+}
+
+/* --------------------------------------------------------------------------
    Sign Up Success View (Figma Node 1230:9228)
    -------------------------------------------------------------------------- */
 .signup-success-container {

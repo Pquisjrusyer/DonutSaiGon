@@ -747,15 +747,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const otpView = document.getElementById('authOtpView');
     const signupView = document.getElementById('authSignupView');
     const successView = document.getElementById('authSignupSuccessView');
+    const profileEditView = document.getElementById('authProfileEditView');
     const dashboardView = document.getElementById('authDashboardView');
     if (!loginView || !dashboardView) return;
 
-    let authState = 'login'; // 'login', 'forgot', 'otp', 'signup', 'success', 'dashboard'
+    let authState = 'login'; // 'login', 'forgot', 'otp', 'signup', 'success', 'profile_edit', 'dashboard'
     let currentOtp = '82941';
     let targetEmail = '';
 
+    // Preload user profile from localStorage if available
+    try {
+      const savedProfile = JSON.parse(localStorage.getItem('dnsg_user_profile') || '{}');
+      if (savedProfile.name) {
+        const nameEl = document.querySelector('.profile-name');
+        if (nameEl) nameEl.textContent = savedProfile.name;
+        const editNameInput = document.getElementById('editFullNameInput');
+        if (editNameInput) editNameInput.value = savedProfile.name;
+      }
+      if (savedProfile.email) {
+        const infoTexts = document.querySelectorAll('.profile-info-item .info-text');
+        if (infoTexts[0]) infoTexts[0].textContent = savedProfile.email;
+        const editEmailInput = document.getElementById('editEmailInput');
+        if (editEmailInput) editEmailInput.value = savedProfile.email;
+      }
+      if (savedProfile.phone) {
+        const infoTexts = document.querySelectorAll('.profile-info-item .info-text');
+        if (infoTexts[1]) infoTexts[1].textContent = savedProfile.phone;
+        const editPhoneInput = document.getElementById('editPhoneInput');
+        if (editPhoneInput) editPhoneInput.value = savedProfile.phone;
+      }
+      if (savedProfile.address) {
+        const infoTexts = document.querySelectorAll('.profile-info-item .info-text');
+        if (infoTexts[2]) infoTexts[2].textContent = savedProfile.address;
+        const editAddressInput = document.getElementById('editAddressInput');
+        if (editAddressInput) editAddressInput.value = savedProfile.address;
+      }
+    } catch (e) {}
+
     function updateAuthDisplay() {
       const isLogged = localStorage.getItem('dnsg_user_logged_in') === 'true';
+
+      if (authState === 'profile_edit' && profileEditView && isLogged) {
+        document.body.classList.remove('auth-mode');
+        document.body.classList.add('dashboard-mode');
+        loginView.style.display = 'none';
+        if (forgotView) forgotView.style.display = 'none';
+        if (otpView) otpView.style.display = 'none';
+        if (signupView) signupView.style.display = 'none';
+        if (successView) successView.style.display = 'none';
+        dashboardView.style.display = 'none';
+        profileEditView.style.display = 'flex';
+        return;
+      }
+
       if (authState === 'success' && successView) {
         document.body.classList.add('auth-mode');
         document.body.classList.remove('dashboard-mode');
@@ -763,6 +807,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (forgotView) forgotView.style.display = 'none';
         if (otpView) otpView.style.display = 'none';
         if (signupView) signupView.style.display = 'none';
+        if (profileEditView) profileEditView.style.display = 'none';
         successView.style.display = 'flex';
         dashboardView.style.display = 'none';
         return;
@@ -777,10 +822,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (otpView) otpView.style.display = 'none';
         if (signupView) signupView.style.display = 'none';
         if (successView) successView.style.display = 'none';
+        if (profileEditView) profileEditView.style.display = 'none';
         dashboardView.style.display = 'block';
       } else {
         document.body.classList.add('auth-mode');
         document.body.classList.remove('dashboard-mode');
+        if (profileEditView) profileEditView.style.display = 'none';
         if (authState === 'forgot' && forgotView) {
           loginView.style.display = 'none';
           forgotView.style.display = 'flex';
@@ -1124,6 +1171,69 @@ document.addEventListener('DOMContentLoaded', () => {
         updateAuthDisplay();
         scrollToTop();
       });
+    }
+
+    // Edit Profile View Switch (Figma Node 1269:14074)
+    const editProfileBtn = document.getElementById('editProfileBtn');
+    if (editProfileBtn) {
+      editProfileBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        authState = 'profile_edit';
+        updateAuthDisplay();
+        scrollToTop();
+      });
+    }
+
+    // Back from Profile Edit to Dashboard
+    const btnBackFromProfileEdit = document.getElementById('btnBackFromProfileEdit');
+    if (btnBackFromProfileEdit) {
+      btnBackFromProfileEdit.addEventListener('click', (e) => {
+        e.preventDefault();
+        authState = 'dashboard';
+        updateAuthDisplay();
+        scrollToTop();
+      });
+    }
+
+    // Profile Edit Form Submit
+    const profileEditForm = document.getElementById('profileEditForm');
+    if (profileEditForm) {
+      profileEditForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newName = document.getElementById('editFullNameInput')?.value.trim();
+        const newEmail = document.getElementById('editEmailInput')?.value.trim();
+        const newPhone = document.getElementById('editPhoneInput')?.value.trim();
+        const newAddress = document.getElementById('editAddressInput')?.value.trim();
+
+        if (!newName || !newEmail || !newPhone) {
+          showToast('Vui lòng điền đầy đủ họ tên, email và số điện thoại!');
+          return;
+        }
+
+        const profileData = { name: newName, email: newEmail, phone: newPhone, address: newAddress };
+        localStorage.setItem('dnsg_user_profile', JSON.stringify(profileData));
+
+        // Update dashboard profile UI
+        const nameEl = document.querySelector('.profile-name');
+        if (nameEl) nameEl.textContent = newName;
+        const infoTexts = document.querySelectorAll('.profile-info-item .info-text');
+        if (infoTexts[0]) infoTexts[0].textContent = newEmail;
+        if (infoTexts[1]) infoTexts[1].textContent = newPhone;
+        if (infoTexts[2] && newAddress) infoTexts[2].textContent = newAddress;
+
+        showToast('✓ Cập nhật thông tin cá nhân thành công!', '✓');
+        authState = 'dashboard';
+        updateAuthDisplay();
+        scrollToTop();
+      });
+    }
+
+    // Check URL hash for direct profile edit navigation
+    if (window.location.hash === '#profile' || window.location.hash === '#edit-profile') {
+      if (localStorage.getItem('dnsg_user_logged_in') === 'true') {
+        authState = 'profile_edit';
+        updateAuthDisplay();
+      }
     }
 
     // Logout Action

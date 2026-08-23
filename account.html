@@ -342,8 +342,102 @@
         <div class="login-page-footer-note">
           <span>© 2024 Donut Saigon. Bánh donut thủ công làm bằng cả tâm huyết.</span>
           <div class="footer-note-links">
-            <a href="#privacy">Chính sách bảo mật</a>
-            <a href="#terms">Điều khoản dịch vụ</a>
+            <a href="policy.html#privacy">Chính sách bảo mật</a>
+            <a href="policy.html#terms">Điều khoản dịch vụ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         STATE 6: PROFILE EDIT VIEW (FIGMA NODE 1269:14074)
+         ========================================================== -->
+    <section class="auth-login-section auth-profile-section" id="authProfileEditView" style="display: none;" aria-label="Cập nhật thông tin cá nhân">
+      <div class="auth-decor-blob blob-left"></div>
+      <div class="auth-decor-blob blob-right"></div>
+
+      <div class="signup-card-container profile-edit-container">
+        <div class="signup-card profile-edit-card">
+          <!-- Left Column: Visual Banner -->
+          <div class="signup-visual-col profile-visual-col">
+            <div class="signup-visual-overlay"></div>
+            <div class="signup-brand-logo-wrap">
+              <img src="assets/logo-donut-saigon.png" alt="Donut Saigon" class="signup-brand-logo" width="130">
+            </div>
+            <div class="signup-visual-content">
+              <div class="signup-visual-badge">GÓC NGỌT NGÀO</div>
+              <h2 class="signup-visual-title">Cập Nhật Hồ Sơ<br>&amp; Sở Thích</h2>
+              <p class="signup-visual-desc">
+                Duy trì thông tin chính xác và cập nhật sở thích của bạn để chúng tôi có thể phục vụ tốt nhất.
+              </p>
+            </div>
+            <div class="signup-visual-donut-wrap">
+              <img src="assets/menu-sp-4.png" alt="Donut Red Velvet" class="signup-visual-donut">
+            </div>
+          </div>
+
+          <!-- Right Column: Edit Profile Form -->
+          <div class="signup-form-col profile-form-col">
+            <div class="signup-form-header">
+              <div class="profile-header-top-row">
+                <h1 class="signup-title">Thông tin cá nhân</h1>
+                <button type="button" class="btn-profile-back-dashboard" id="btnBackFromProfileEdit" aria-label="Quay lại bảng điều khiển">← Bảng điều khiển</button>
+              </div>
+              <p class="signup-subtitle">Cập nhật email và số điện thoại liên lạc mới nhất.</p>
+            </div>
+
+            <form class="signup-form" id="profileEditForm" novalidate>
+              <!-- Full Name Field -->
+              <div class="signup-form-group">
+                <label for="editFullNameInput" class="signup-label">Họ và tên</label>
+                <div class="signup-input-wrap">
+                  <img src="assets/icon-signup-user.svg" alt="" class="signup-input-icon" width="18" height="18">
+                  <input type="text" id="editFullNameInput" class="signup-input" placeholder="Tên cũ của khách hàng" value="Nguyễn Văn An" required autocomplete="name">
+                </div>
+              </div>
+
+              <!-- Email Field -->
+              <div class="signup-form-group">
+                <label for="editEmailInput" class="signup-label">Email</label>
+                <div class="signup-input-wrap">
+                  <img src="assets/icon-signup-email.svg" alt="" class="signup-input-icon" width="18" height="18">
+                  <input type="email" id="editEmailInput" class="signup-input" placeholder="email cũ" value="nguyen.vana@email.com" required autocomplete="email">
+                </div>
+              </div>
+
+              <!-- Phone Field -->
+              <div class="signup-form-group">
+                <label for="editPhoneInput" class="signup-label">Số điện thoại</label>
+                <div class="signup-input-wrap">
+                  <img src="assets/icon-signup-phone.svg" alt="" class="signup-input-icon" width="18" height="18">
+                  <input type="tel" id="editPhoneInput" class="signup-input" placeholder="sdt cũ" value="0901234567" required autocomplete="tel">
+                </div>
+              </div>
+
+              <!-- Delivery Address Field -->
+              <div class="signup-form-group">
+                <label for="editAddressInput" class="signup-label">Địa chỉ giao hàng</label>
+                <div class="signup-input-wrap textarea-wrap">
+                  <img src="assets/icon-location.svg" alt="" class="signup-input-icon icon-address-top" width="18" height="18">
+                  <textarea id="editAddressInput" class="signup-input profile-address-textarea" placeholder="địa chỉ cũ">Quận 1, TP. Hồ Chí Minh</textarea>
+                </div>
+              </div>
+
+              <!-- Confirm checkbox -->
+              <div class="signup-terms-row">
+                <label class="custom-checkbox-label">
+                  <input type="checkbox" id="confirmProfileUpdateCheckbox" class="custom-checkbox-input" checked>
+                  <span class="custom-checkbox-box"></span>
+                  <span class="terms-label-text">Xác nhận thông tin cập nhật</span>
+                </label>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn-signup-submit btn-profile-save" id="btnSaveProfile">
+                <span>Cập nhật thông tin</span>
+                <span class="btn-arrow-icon">→</span>
+              </button>
+            </form>
           </div>
         </div>
       </div>
