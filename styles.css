@@ -2722,7 +2722,305 @@ body.account-page:not(.dashboard-mode) donut-footer {
 }
 
 /* --------------------------------------------------------------------------
-   Profile Edit View (Figma Node 1269:14074)
+   Profile Update Page (Figma Node 1269:14074 - "Đổi thông tin tk")
+   -------------------------------------------------------------------------- */
+.profile-update-section {
+  background-color: #F8F5F0;
+  padding: calc(var(--header-height) + 32px) 24px 60px;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-update-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.profile-update-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #FFFFFF;
+  border: 1px solid rgba(195, 198, 211, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px -10px rgba(41, 94, 172, 0.08);
+  min-height: 864px;
+}
+
+.profile-update-visual-col {
+  background-color: #2D61AD;
+  color: #FFFFFF;
+  padding: 48px 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.profile-visual-brand {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 24px;
+}
+
+.profile-brand-logo {
+  filter: brightness(0) invert(1);
+}
+
+.profile-visual-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-visual-badge {
+  background-color: #F2A1AE;
+  color: #FEFBFB;
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  display: inline-block;
+  width: fit-content;
+  letter-spacing: 0.6px;
+}
+
+.profile-visual-heading {
+  font-family: var(--font-family-display);
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 56px;
+  letter-spacing: -0.96px;
+  color: #FEFBFB;
+}
+
+.profile-visual-desc {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  line-height: 28px;
+  color: #FFFFFF;
+  max-width: 320px;
+  font-weight: 500;
+}
+
+.profile-visual-donut-graphic {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.profile-donut-img {
+  width: 280px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.25));
+}
+
+.decor-star {
+  position: absolute;
+  color: #F2A1AE;
+  user-select: none;
+  pointer-events: none;
+}
+
+.star-1 {
+  top: 15%;
+  left: 10%;
+  font-size: 28px;
+}
+
+.star-2 {
+  top: 40%;
+  right: 12%;
+  font-size: 22px;
+}
+
+.star-3 {
+  bottom: 25%;
+  left: 20%;
+  font-size: 18px;
+}
+
+.profile-update-form-col {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #FFFFFF;
+}
+
+.profile-form-header {
+  margin-bottom: 28px;
+}
+
+.profile-form-title {
+  font-family: var(--font-family-display);
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 40px;
+  color: #2D61AD;
+  margin-bottom: 8px;
+}
+
+.profile-form-subtitle {
+  font-size: 16px;
+  line-height: 28px;
+  color: #181818;
+  font-weight: 500;
+}
+
+.profile-form-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.profile-input-label {
+  font-size: 16px;
+  line-height: 28px;
+  color: #181818;
+  font-weight: 600;
+}
+
+.profile-input-box-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.profile-field-icon {
+  position: absolute;
+  left: 16px;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.profile-field-input {
+  width: 100%;
+  height: 56px;
+  padding: 0 16px 0 48px;
+  background-color: #FFFFFF;
+  border: 1px solid #C4C7C7;
+  border-radius: 8px;
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  color: #181818;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.profile-field-input:focus,
+.profile-field-textarea:focus {
+  outline: none;
+  border-color: #2D61AD;
+  box-shadow: 0 0 0 3px rgba(45, 97, 173, 0.15);
+}
+
+.profile-field-textarea {
+  width: 100%;
+  height: 110px;
+  padding: 14px 16px 14px 48px;
+  background-color: #FFFFFF;
+  border: 1px solid #C4C7C7;
+  border-radius: 8px;
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  color: #181818;
+  resize: vertical;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.profile-input-box-wrap.textarea-mode .icon-pin {
+  top: 18px;
+  transform: none;
+}
+
+.profile-confirm-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+  margin-bottom: 24px;
+}
+
+.profile-confirm-text {
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  color: #181818;
+  font-weight: 600;
+}
+
+.btn-profile-submit {
+  width: 100%;
+  height: 56px;
+  background-color: #2D61AD;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(45, 97, 173, 0.25);
+}
+
+.btn-profile-submit:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(45, 97, 173, 0.35);
+}
+
+.submit-arrow {
+  font-size: 18px;
+  transition: transform var(--transition-fast);
+}
+
+.btn-profile-submit:hover .submit-arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 860px) {
+  .profile-update-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .profile-visual-heading {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  .profile-update-form-col {
+    padding: 36px 24px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Profile Edit View (Inside Account Dashboard)
    -------------------------------------------------------------------------- */
 .profile-edit-container {
   max-width: 1000px;

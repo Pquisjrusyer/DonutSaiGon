@@ -1252,6 +1252,56 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccountAuth();
 
   // ------------------------------------------------------------------------
+  // 9c. Standalone Profile Page (Figma Node 1269:14074 - profile.html)
+  // ------------------------------------------------------------------------
+  function initStandaloneProfilePage() {
+    const form = document.getElementById('standaloneProfileForm');
+    if (!form) return;
+
+    try {
+      const savedProfile = JSON.parse(localStorage.getItem('dnsg_user_profile') || '{}');
+      if (savedProfile.name) {
+        const nameInput = document.getElementById('profileFullName');
+        if (nameInput) nameInput.value = savedProfile.name;
+      }
+      if (savedProfile.email) {
+        const emailInput = document.getElementById('profileEmail');
+        if (emailInput) emailInput.value = savedProfile.email;
+      }
+      if (savedProfile.phone) {
+        const phoneInput = document.getElementById('profilePhone');
+        if (phoneInput) phoneInput.value = savedProfile.phone;
+      }
+      if (savedProfile.address) {
+        const addressInput = document.getElementById('profileAddress');
+        if (addressInput) addressInput.value = savedProfile.address;
+      }
+    } catch (e) {}
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('profileFullName')?.value.trim();
+      const email = document.getElementById('profileEmail')?.value.trim();
+      const phone = document.getElementById('profilePhone')?.value.trim();
+      const address = document.getElementById('profileAddress')?.value.trim();
+
+      if (!name || !email || !phone) {
+        showToast('Vui lòng điền đầy đủ họ tên, email và số điện thoại!');
+        return;
+      }
+
+      const profileData = { name, email, phone, address };
+      localStorage.setItem('dnsg_user_profile', JSON.stringify(profileData));
+      showToast('✓ Cập nhật thông tin cá nhân thành công!', '✓');
+      setTimeout(() => {
+        window.location.href = 'account.html';
+      }, 1000);
+    });
+  }
+
+  initStandaloneProfilePage();
+
+  // ------------------------------------------------------------------------
   // 10. Cart & Checkout Dynamic Render Logic (Figma 1348:10296, 2653:49545 & 1343:10552)
   // ------------------------------------------------------------------------
   const productDescMap = {
