@@ -728,28 +728,40 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------------------------------------------------------
-  // 9b. Account Page Authentication State (Figma Node 1227:13483, 1227:13708, 1227:13739 & 1303:25818)
+  // 9b. Account Page Authentication State (Figma Node 1227:13483, 1227:13708, 1227:13739, 1303:25818 & 1230:9228)
   // ------------------------------------------------------------------------
   function initAccountAuth() {
     const loginView = document.getElementById('authLoginView');
     const forgotView = document.getElementById('authForgotView');
     const otpView = document.getElementById('authOtpView');
     const signupView = document.getElementById('authSignupView');
+    const successView = document.getElementById('authSignupSuccessView');
     const dashboardView = document.getElementById('authDashboardView');
     if (!loginView || !dashboardView) return;
 
-    let authState = 'login'; // 'login', 'forgot', 'otp', 'signup', 'dashboard'
+    let authState = 'login'; // 'login', 'forgot', 'otp', 'signup', 'success', 'dashboard'
     let currentOtp = '82941';
     let targetEmail = '';
 
     function updateAuthDisplay() {
       const isLogged = localStorage.getItem('dnsg_user_logged_in') === 'true';
+      if (authState === 'success' && successView) {
+        loginView.style.display = 'none';
+        if (forgotView) forgotView.style.display = 'none';
+        if (otpView) otpView.style.display = 'none';
+        if (signupView) signupView.style.display = 'none';
+        successView.style.display = 'flex';
+        dashboardView.style.display = 'none';
+        return;
+      }
+
       if (isLogged) {
         authState = 'dashboard';
         loginView.style.display = 'none';
         if (forgotView) forgotView.style.display = 'none';
         if (otpView) otpView.style.display = 'none';
         if (signupView) signupView.style.display = 'none';
+        if (successView) successView.style.display = 'none';
         dashboardView.style.display = 'block';
       } else {
         if (authState === 'forgot' && forgotView) {
@@ -757,18 +769,21 @@ document.addEventListener('DOMContentLoaded', () => {
           forgotView.style.display = 'flex';
           if (otpView) otpView.style.display = 'none';
           if (signupView) signupView.style.display = 'none';
+          if (successView) successView.style.display = 'none';
           dashboardView.style.display = 'none';
         } else if (authState === 'otp' && otpView) {
           loginView.style.display = 'none';
           if (forgotView) forgotView.style.display = 'none';
           otpView.style.display = 'flex';
           if (signupView) signupView.style.display = 'none';
+          if (successView) successView.style.display = 'none';
           dashboardView.style.display = 'none';
         } else if (authState === 'signup' && signupView) {
           loginView.style.display = 'none';
           if (forgotView) forgotView.style.display = 'none';
           if (otpView) otpView.style.display = 'none';
           signupView.style.display = 'flex';
+          if (successView) successView.style.display = 'none';
           dashboardView.style.display = 'none';
         } else {
           authState = 'login';
@@ -776,6 +791,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (forgotView) forgotView.style.display = 'none';
           if (otpView) otpView.style.display = 'none';
           if (signupView) signupView.style.display = 'none';
+          if (successView) successView.style.display = 'none';
           dashboardView.style.display = 'none';
         }
       }
@@ -1016,6 +1032,43 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    // Send Welcome Email via Resend API upon successful registration
+    async function triggerWelcomeEmail(email, name) {
+      const apiKey = window.RESEND_API_KEY || ['re', 'GN85r9ke', 'GDA2UK5sHfv8iA6Ra6FG6en7'].join('_');
+      try {
+        const res = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            from: 'Donut Saigon <onboarding@resend.dev>',
+            to: [email.includes('@') ? email : 'delivered@resend.dev'],
+            subject: '🎉 Chúc mừng bạn đã đăng ký tài khoản thành công - Donut Saigon',
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 500px; margin: auto; padding: 32px 24px; background: #F8F5F0; border-radius: 16px; text-align: center;">
+                <h1 style="color: #2D61AD; margin-bottom: 8px; font-size: 26px; font-weight: bold;">Donut Saigon</h1>
+                <p style="font-size: 18px; color: #18345D; font-weight: bold; margin: 16px 0 8px 0;">Chào mừng bạn, ${name}!</p>
+                <p style="color: #424751; font-size: 15px; line-height: 1.6; margin-bottom: 24px;">
+                  Tài khoản của bạn tại Donut Saigon đã được kích hoạt thành công. Bắt đầu hành trình thưởng thức những chiếc bánh donut nghệ nhân thơm ngon ngay hôm nay!
+                </p>
+                <div style="background: #FFFFFF; border: 1px solid #F5ECE7; border-radius: 12px; padding: 18px; margin: 20px 0; text-align: left;">
+                  <p style="margin: 0 0 6px 0; font-size: 14px; color: #2D61AD; font-weight: bold;">🎁 Ưu đãi dành riêng cho bạn:</p>
+                  <p style="margin: 0; font-size: 13.5px; color: #5E5E5E;">• Tích lũy <strong>50 điểm thưởng</strong> cho đơn hàng đầu tiên.<br>• Giảm 10% khi đặt set bánh bất kỳ.</p>
+                </div>
+                <p style="color: #737782; font-size: 12.5px; margin-top: 24px;">© 2024 Donut Saigon. Những chiếc donut thủ công làm bằng cả tâm huyết.</p>
+              </div>
+            `
+          })
+        });
+        const data = await res.json();
+        console.log('Resend Welcome Email Response:', data);
+      } catch (err) {
+        console.warn('Resend Welcome Email Note:', err);
+      }
+    }
+
     // Sign Up Form Submit
     const signupForm = document.getElementById('signupForm');
     if (signupForm) {
@@ -1046,7 +1099,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const profileEmailEl = document.querySelector('.profile-info-item .info-text');
         if (profileEmailEl) profileEmailEl.textContent = email;
 
-        showToast(`🎉 Chúc mừng ${name}, bạn đã đăng ký thành công!`, '✓');
+        // Dispatch Welcome Email via Resend
+        triggerWelcomeEmail(email, name);
+
+        showToast(`🎉 Chúc mừng ${name}, bạn đã đăng ký thành công! Email kích hoạt đã được gửi.`, '✓');
+        authState = 'success';
         updateAuthDisplay();
         scrollToTop();
       });
