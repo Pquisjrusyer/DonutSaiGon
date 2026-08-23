@@ -2172,12 +2172,12 @@ body.account-page:not(.dashboard-mode) donut-footer {
   flex-shrink: 0;
 }
 
-.custom-checkbox-input:checked + .custom-checkbox-box {
+.custom-checkbox-input:checked+.custom-checkbox-box {
   background-color: #2D61AD;
   border-color: #2D61AD;
 }
 
-.custom-checkbox-input:checked + .custom-checkbox-box::after {
+.custom-checkbox-input:checked+.custom-checkbox-box::after {
   content: '✓';
   color: #FFFFFF;
   font-size: 12px;
@@ -2843,9 +2843,11 @@ body.account-page:not(.dashboard-mode) donut-footer {
     transform: scale(0.6);
     opacity: 0;
   }
+
   70% {
     transform: scale(1.08);
   }
+
   100% {
     transform: scale(1);
     opacity: 1;
@@ -2887,6 +2889,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   .signup-success-card {
     padding: 32px 20px;
   }
+
   .signup-success-check-img {
     width: 110px;
     height: 110px;
@@ -3078,6 +3081,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
     transform: translateY(24px) scale(0.96);
     opacity: 0;
   }
+
   to {
     transform: translateY(0) scale(1);
     opacity: 1;
@@ -3895,6 +3899,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
     transform: translateY(28px) scale(0.96);
     opacity: 0;
   }
+
   to {
     transform: translateY(0) scale(1);
     opacity: 1;
@@ -4029,12 +4034,12 @@ body.account-page:not(.dashboard-mode) donut-footer {
   position: relative;
 }
 
-.flavor-radio-input:checked + .flavor-radio-custom {
+.flavor-radio-input:checked+.flavor-radio-custom {
   background-color: #2D61AD;
   border-color: #2D61AD;
 }
 
-.flavor-radio-input:checked + .flavor-radio-custom::after {
+.flavor-radio-input:checked+.flavor-radio-custom::after {
   content: "✓";
   color: #FFFFFF;
   font-size: 13px;
