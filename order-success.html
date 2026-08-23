@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đặt Hàng Thành Công | Donut Saigon - Bánh Donut Nghệ Nhân</title>
+  <meta name="description" content="Cảm ơn bạn đã đặt hàng tại Donut Saigon. Những chiếc bánh donut thủ công thơm ngon đang bắt đầu hành trình đến với bạn.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Đặt Hàng Thành Công - Donut Saigon">
+  <meta property="og:description" content="Cảm ơn bạn đã đặt hàng tại Donut Saigon. Những chiếc bánh donut nghệ nhân đang được chuẩn bị.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/order-success-mascot.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&family=Montserrat:wght@800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="order-success-page">
+  <!-- Reusable Header Component -->
+  <donut-header></donut-header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="order-success-section" aria-label="Đặt hàng thành công">
+      <div class="order-success-container">
+        <!-- Mascot Illustration -->
+        <div class="order-success-mascot-wrap">
+          <div class="mascot-circle">
+            <img src="assets/order-success-mascot.png" alt="Donut Saigon Mascot" class="mascot-img">
+          </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="order-success-msg-group">
+          <h1 class="order-success-title">Cảm ơn bạn đã đặt hàng!</h1>
+          <p class="order-success-subtitle">
+            Những chiếc bánh donut thủ công thơm ngon đang<br>
+            bắt đầu hành trình đến với bạn.
+          </p>
+        </div>
+
+        <!-- Order Information Card -->
+        <div class="order-success-card">
+          <span class="order-card-tag">MÃ ĐƠN HÀNG CỦA BẠN</span>
+          <div class="order-card-code" id="displayOrderId">#DS-8829410</div>
+          <div class="order-card-estimate">
+            <img src="assets/icon-calendar-clock.svg" alt="" class="estimate-icon" width="14" height="16">
+            <span id="displayEstimateTime">Dự kiến giao: Hôm nay, 14:30 - 15:00</span>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="order-success-actions">
+          <a href="menu.html" class="btn-success-primary">Tiếp tục mua sắm</a>
+          <a href="account.html" class="btn-success-secondary">Chi tiết đơn hàng</a>
+        </div>
+
+        <!-- Support Info -->
+        <div class="order-success-support">
+          <p>Cần hỗ trợ? Gọi chúng tôi tại <a href="tel:19001234" class="support-phone">1900 1234</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Reusable Footer Component -->
+  <donut-footer></donut-footer>
+
+  <!-- Lenis & GSAP Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Components & Logic -->
+  <script src="components/header.js" defer></script>
+  <script src="components/footer.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dynamic Order ID from URL or generate random
+      const params = new URLSearchParams(window.location.search);
+      const orderId = params.get('orderId') || '#DS-8829410';
+      const orderCodeEl = document.getElementById('displayOrderId');
+      if (orderCodeEl) {
+        orderCodeEl.textContent = orderId.startsWith('#') ? orderId : `#${orderId}`;
+      }
+
+      // Calculate estimate time ~ 30-45 mins from now
+      const now = new Date();
+      const startMin = new Date(now.getTime() + 30 * 60000);
+      const endMin = new Date(now.getTime() + 60 * 60000);
+      const pad = (n) => String(n).padStart(2, '0');
+      const timeStr = `Dự kiến giao: Hôm nay, ${pad(startMin.getHours())}:${pad(startMin.getMinutes())} - ${pad(endMin.getHours())}:${pad(endMin.getMinutes())}`;
+      const estimateEl = document.getElementById('displayEstimateTime');
+      if (estimateEl && !params.get('static')) {
+        estimateEl.textContent = timeStr;
+      }
+    });
+  </script>
+</body>
+</html>

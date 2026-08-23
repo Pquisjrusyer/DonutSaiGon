@@ -3217,6 +3217,199 @@ donut-footer {
 }
 
 /* --------------------------------------------------------------------------
+   Order Success Page (Figma Node 1265:14155)
+   -------------------------------------------------------------------------- */
+.order-success-page {
+  background-color: #FBE4E8;
+}
+
+.order-success-section {
+  padding: calc(var(--header-height) + 40px) 24px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.order-success-container {
+  width: 100%;
+  max-width: 585px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.order-success-mascot-wrap {
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: center;
+}
+
+.mascot-circle {
+  width: clamp(220px, 30vw, 290px);
+  height: clamp(220px, 30vw, 290px);
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 36px rgba(41, 94, 172, 0.12);
+  border: 4px solid #FFFFFF;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.mascot-circle:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.mascot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.order-success-msg-group {
+  margin-bottom: 30px;
+}
+
+.order-success-title {
+  font-family: var(--font-family-display);
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 900;
+  color: #2D61AD;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.order-success-subtitle {
+  font-size: 16px;
+  color: #181818;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.order-success-card {
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 1px solid #F5ECE7;
+  border-radius: 14px;
+  padding: 30px 24px;
+  box-shadow: 0 4px 20px rgba(41, 94, 172, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.order-card-tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2D61AD;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.order-card-code {
+  font-family: var(--font-family-base);
+  font-size: clamp(26px, 3.5vw, 34px);
+  font-weight: 800;
+  color: #2D61AD;
+  letter-spacing: 0.02em;
+}
+
+.order-card-estimate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2D61AD;
+  margin-top: 4px;
+}
+
+.estimate-icon {
+  width: 15px;
+  height: auto;
+}
+
+.order-success-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.btn-success-primary {
+  padding: 16px 40px;
+  background-color: #2D61AD;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(45, 97, 173, 0.25);
+  transition: all var(--transition-fast);
+  min-width: 190px;
+}
+
+.btn-success-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(45, 97, 173, 0.35);
+}
+
+.btn-success-secondary {
+  padding: 16px 40px;
+  background-color: transparent;
+  color: #181818;
+  border: 1.5px solid #2D61AD;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  min-width: 190px;
+}
+
+.btn-success-secondary:hover {
+  background-color: rgba(45, 97, 173, 0.08);
+  color: #2D61AD;
+  transform: translateY(-2px);
+}
+
+.order-success-support {
+  font-size: 16px;
+  color: #181818;
+}
+
+.support-phone {
+  color: #181818;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.support-phone:hover {
+  color: #2D61AD;
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
    Product Detail Page (Figma Node 1990:55171)
    -------------------------------------------------------------------------- */
 .product-detail-page {

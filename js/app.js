@@ -936,12 +936,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      showToast('🎉 Đặt hàng thành công! Đơn hàng đang được chuẩn bị giao đến bạn.', '✓');
+      const randomCode = 'DS-' + Math.floor(1000000 + Math.random() * 9000000);
+      showToast('🎉 Đặt hàng thành công! Đang chuyển hướng...', '✓');
       saveCartItems([]);
       currentCartStep = 1;
       setTimeout(() => {
-        renderCartPage();
-      }, 800);
+        window.location.href = `order-success.html?orderId=${randomCode}`;
+      }, 700);
     });
   }
 
