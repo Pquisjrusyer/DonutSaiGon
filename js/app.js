@@ -1549,18 +1549,22 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const cake1 = document.querySelector('input[name="cake_flavor_1"]:checked')?.value || 'GLAZE';
       const cake2 = document.querySelector('input[name="cake_flavor_2"]:checked')?.value || 'OREOMALLOW';
+      const cake3 = document.querySelector('input[name="cake_flavor_3"]:checked')?.value || 'RED VELVET';
+      const cake4 = document.querySelector('input[name="cake_flavor_4"]:checked')?.value || 'VERY BERRY';
       const note = document.getElementById('customGiftNote')?.value.trim();
+
+      const flavorDesc = [cake1, cake2, cake3, cake4].filter(Boolean).join(', ');
 
       addToCart({
         id: 'gift-box',
-        name: `GIFT BOX (Vị: ${cake1}, ${cake2})`,
+        name: `GIFT BOX (4 Bánh: ${flavorDesc})`,
         price: 170000,
         img: 'assets/cat-gift-box.png',
         qty: detailQty
       });
 
       closeCustomBox();
-      showToast('🎁 Đã thêm Gift Box tùy chỉnh vị vào giỏ hàng!', '✓');
+      showToast('🎁 Đã thêm Gift Box (4 bánh tự chọn) vào giỏ hàng!', '✓');
       setTimeout(() => {
         window.location.href = 'cart.html';
       }, 300);
