@@ -3018,12 +3018,12 @@ donut-footer {
   align-items: center;
   justify-content: center;
   transition: transform var(--transition-fast);
-  transform: scaleX(-1);
 }
 
 .gallery-nav-btn:hover {
-  transform: scale(1.18);
+  transform: scale(1.15);
 }
+
 
 .detail-main-img-box {
   flex: 1;
