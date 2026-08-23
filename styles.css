@@ -2744,6 +2744,15 @@ body.account-page:not(.dashboard-mode) donut-footer {
 /* --------------------------------------------------------------------------
    Profile Update Page (Figma Node 1269:14074 - "Đổi thông tin tk")
    -------------------------------------------------------------------------- */
+.profile-page donut-footer,
+.profile-page .site-footer,
+.profile-page .footer-bg-wrapper,
+.auth-profile-section donut-footer,
+.auth-profile-section .site-footer,
+.auth-profile-section .footer-bg-wrapper {
+  display: none !important;
+}
+
 .profile-update-section {
   background-color: #F8F5F0;
   padding: calc(var(--header-height) + 32px) 24px 60px;
