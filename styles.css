@@ -6139,17 +6139,34 @@ body.account-page:not(.dashboard-mode) donut-footer {
   gap: 10px;
 }
 
+.detail-info-card {
+  background-color: #F8F5F0;
+  border-radius: 20px;
+  padding: 36px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.detail-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .detail-product-title {
   font-family: var(--font-family-display);
-  font-size: clamp(36px, 4vw, 48px);
+  font-size: 48px;
   font-weight: 900;
   color: #18345D;
-  line-height: 1.1;
+  line-height: 1;
+  margin: 0;
 }
 
 .detail-badge-wrap {
   position: relative;
-  width: 226px;
+  width: 229px;
   height: 33px;
   display: flex;
   align-items: center;
@@ -6175,7 +6192,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  line-height: 1;
+  line-height: 21.6px;
 }
 
 .detail-price-rating-row {
@@ -6191,6 +6208,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   font-size: 32px;
   font-weight: 900;
   color: #F2A1AE;
+  line-height: 40px;
 }
 
 .detail-rating-box {
@@ -6201,52 +6219,55 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .rating-stars {
   display: flex;
-  gap: 3px;
+  gap: 4px;
+  align-items: center;
 }
 
 .rating-count {
-  font-size: 15px;
+  font-family: var(--font-family-base);
+  font-size: 16px;
   color: #424751;
   font-weight: 500;
+  line-height: 28px;
 }
 
 .detail-dot-divider {
   width: 100%;
-  height: 16px;
-  background-image: radial-gradient(circle, #F2A1AE 3px, transparent 2px);
-  background-size: 12px 6px;
+  height: 10px;
+  background-image: radial-gradient(circle, #F2A1AE 4.5px, transparent 4.5px);
+  background-size: 15px 10px;
   background-repeat: repeat-x;
-  opacity: 1;
-  margin: 2px 0;
+  margin: 6px 0;
 }
 
 .detail-description {
+  font-family: var(--font-family-base);
   font-size: 16px;
   color: #424751;
-  line-height: 1.7;
+  line-height: 28px;
   text-align: justify;
+  margin: 0;
 }
 
 .detail-feature-pills {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 28px;
+  padding: 4px 0;
 }
 
 .feature-pill-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  color: #424751;
-  font-weight: 500;
+  gap: 12px;
 }
 
 .feature-pill-icon {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 70, 145, 0.5);
+  border: 1px solid rgba(0, 70, 145, 0.8);
   background-color: #FFFFFF;
   display: flex;
   align-items: center;
@@ -6254,98 +6275,131 @@ body.account-page:not(.dashboard-mode) donut-footer {
   flex-shrink: 0;
 }
 
+.feature-pill-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.feature-pill-text {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  line-height: 24px;
+  color: #424751;
+  font-weight: 500;
+}
+
 .detail-ingredients-section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .ingredients-heading {
   font-family: var(--font-family-base);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 500;
   color: #004691;
+  line-height: 24px;
+  margin: 0;
+  text-transform: uppercase;
 }
 
 .ingredients-pills-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
 }
 
 .ingredient-pill {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
+  height: 44px;
+  padding: 0 20px;
   border: 2px solid #004691;
   border-radius: 9999px;
-  font-size: 15px;
-  font-weight: 600;
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: 500;
   color: #2D61AD;
-  background-color: #FFFFFF;
+  background-color: #F8F5F0;
 }
 
 .detail-flavor-profile {
-  font-size: 16px;
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .flavor-heading {
-  font-weight: 700;
+  font-family: var(--font-family-base);
+  font-size: 24px;
+  font-weight: 500;
   color: #004691;
+  line-height: 24px;
+  text-transform: uppercase;
 }
 
 .flavor-desc {
+  font-family: var(--font-family-base);
+  font-size: 16px;
   color: #424751;
   font-weight: 500;
+  line-height: 28px;
 }
 
 /* Quantity & CTA Buttons */
 .detail-actions-section {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding-top: 6px;
+  gap: 20px;
+  padding-top: 4px;
 }
 
 .quantity-selector-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
 }
 
 .qty-label {
+  font-family: var(--font-family-base);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   color: #18345D;
+  line-height: 28px;
 }
 
 .qty-pill-controls {
   display: inline-flex;
   align-items: center;
+  justify-content: space-between;
   border: 2px solid #004691;
   border-radius: 9999px;
-  padding: 4px 12px;
-  background-color: #FFFFFF;
-  gap: 12px;
+  height: 44px;
+  width: 120px;
+  padding: 0 12px;
+  background-color: #F8F5F0;
 }
 
 .qty-control-btn {
   background: transparent;
   border: none;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: #004691;
   cursor: pointer;
-  padding: 0 4px;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .qty-value-display {
+  font-family: var(--font-family-base);
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   color: #2D61AD;
   min-width: 24px;
   text-align: center;
@@ -6353,23 +6407,24 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .detail-cta-buttons-row {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 16px;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 24px;
 }
 
 .btn-detail-add-cart {
-  padding: 16px 20px;
+  height: 64px;
   border: 2px solid #004691;
   border-radius: 9999px;
-  font-size: 18px;
-  font-weight: 700;
+  font-family: var(--font-family-base);
+  font-size: 20px;
+  font-weight: 500;
   color: #2D61AD;
   background-color: transparent;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   transition: all var(--transition-fast);
 }
 
@@ -6379,17 +6434,21 @@ body.account-page:not(.dashboard-mode) donut-footer {
 }
 
 .btn-detail-buy-now {
-  padding: 16px;
+  height: 64px;
   background-color: #2D61AD;
   color: #FFFFFF;
   border: none;
   border-radius: 9999px;
-  font-size: 18px;
-  font-weight: 700;
+  font-family: var(--font-family-base);
+  font-size: 22px;
+  font-weight: 500;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all var(--transition-fast);
   text-align: center;
-  box-shadow: 0 4px 12px rgba(45, 97, 173, 0.25);
+  box-shadow: 0 4px 14px rgba(45, 97, 173, 0.25);
 }
 
 .btn-detail-buy-now:hover {
@@ -6402,8 +6461,10 @@ body.account-page:not(.dashboard-mode) donut-footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-size: 14px;
+  gap: 10px;
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  line-height: 28px;
   color: #424751;
   font-weight: 500;
 }
