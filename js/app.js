@@ -1613,7 +1613,7 @@ document.addEventListener('DOMContentLoaded', () => {
       priceFormatted: '25.000 VNĐ',
       rating: '(128 Đánh giá)',
       img: 'assets/menu-sp-1.png',
-      thumbs: ['assets/menu-sp-1.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
+      thumbs: ['assets/menu-sp-1.png', 'assets/glaze-thumb-2.png', 'assets/glaze-thumb-3.png'],
       desc: 'Chiếc donut kinh điển với kết cấu mềm xốp, được ủ bột và chiên vàng nhẹ để giữ độ ẩm tự nhiên bên trong. Bề mặt phủ lớp glaze đường sữa mỏng, tạo độ bóng đẹp mắt cùng vị ngọt thanh dịu dàng. Đây là lựa chọn hoàn hảo cho những ai yêu thích hương vị nguyên bản của donut Mỹ.',
       features: [
         { icon: 'assets/icon-cherry-donut.png', text: 'Mềm xốp tự nhiên' },
