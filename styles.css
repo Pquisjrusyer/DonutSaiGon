@@ -1374,7 +1374,7 @@ donut-footer {
   font-weight: 700;
   font-size: 16px;
   border-radius: 12px;
-  border: 2px solid var(--primary);
+  border: 2px solid transparent;
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -1409,7 +1409,7 @@ donut-footer {
 
 .btn-primary-lg:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(248, 205, 212, 0.55);
 }
@@ -1457,7 +1457,7 @@ donut-footer {
 
 .btn-outline-lg:hover {
   color: #FFFFFF !important;
-  border-color: var(--primary);
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(45, 97, 173, 0.35);
 }
@@ -1691,7 +1691,7 @@ donut-footer {
   font-weight: 700;
   font-size: 16px;
   border-radius: 9999px;
-  border: 2px solid #FFFFFF;
+  border: 2px solid transparent;
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -1725,7 +1725,7 @@ donut-footer {
 
 .btn-cta-white:hover {
   color: #FFFFFF !important;
-  border-color: #18345D;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
@@ -1773,7 +1773,7 @@ donut-footer {
 
 .btn-cta-outline:hover {
   color: #004691 !important;
-  border-color: #FFFFFF;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
@@ -2353,7 +2353,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   height: 52px;
   background-color: #2D61AD;
   color: #FFFFFF;
-  border: 2px solid #2D61AD;
+  border: 2px solid transparent;
   border-radius: 9999px;
   font-family: var(--font-family-display);
   font-size: 20px;
@@ -2393,7 +2393,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-login-submit:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 22px rgba(248, 205, 212, 0.55);
 }
@@ -2585,7 +2585,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   height: 52px;
   background-color: #004691;
   color: #FFFFFF;
-  border: 2px solid #004691;
+  border: 2px solid transparent;
   border-radius: 9999px;
   font-family: var(--font-family-display);
   font-size: 20px;
@@ -2625,7 +2625,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-forgot-submit:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 22px rgba(248, 205, 212, 0.55);
 }
@@ -2874,7 +2874,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   height: 50px;
   background-color: #2D61AD;
   color: #FFFFFF;
-  border: 2px solid #2D61AD;
+  border: 2px solid transparent;
   border-radius: 8px;
   font-family: var(--font-family-display);
   font-size: 20px;
@@ -2914,7 +2914,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-signup-submit:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 22px rgba(248, 205, 212, 0.55);
 }
@@ -3198,7 +3198,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   height: 56px;
   background-color: #2D61AD;
   color: #FFFFFF;
-  border: 2px solid #2D61AD;
+  border: 2px solid transparent;
   border-radius: 8px;
   font-family: var(--font-family-base);
   font-size: 16px;
@@ -3241,7 +3241,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-profile-submit:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(248, 205, 212, 0.55);
 }
@@ -3336,7 +3336,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-profile-back-dashboard:hover {
   color: #FFFFFF !important;
-  border-color: #2D61AD;
+  border-color: transparent !important;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(45, 97, 173, 0.25);
 }
@@ -3365,7 +3365,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   height: 52px;
   background-color: #2D61AD;
   color: #FFFFFF;
-  border: 2px solid #2D61AD;
+  border: 2px solid transparent;
   border-radius: 8px;
   cursor: pointer;
   position: relative;
@@ -3401,7 +3401,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-profile-save:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(248, 205, 212, 0.55);
 }
@@ -3493,7 +3493,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   height: 56px;
   background-color: #2D61AD;
   color: #FFFFFF;
-  border: 2px solid #2D61AD;
+  border: 2px solid transparent;
   border-radius: 8px;
   font-family: var(--font-family-display);
   font-size: 22px;
@@ -3537,7 +3537,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-success-home:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(248, 205, 212, 0.55);
 }
@@ -5435,7 +5435,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-checkout-primary:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(248, 205, 212, 0.55);
 }
@@ -5496,7 +5496,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-continue-shopping:hover {
   color: #FFFFFF !important;
-  border-color: #004691;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0, 70, 145, 0.35);
 }
@@ -5894,7 +5894,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-complete-order:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(248, 205, 212, 0.55);
 }
@@ -6170,7 +6170,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-proceed-checkout:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(248, 205, 212, 0.55);
 }
@@ -6229,7 +6229,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-continue-shopping:hover {
   color: #FFFFFF !important;
-  border-color: #004691;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0, 70, 145, 0.35);
 }
@@ -7017,7 +7017,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-detail-add-cart:hover {
   color: #FFFFFF !important;
-  border-color: #004691;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 70, 145, 0.35);
 }
@@ -7036,7 +7036,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   height: 64px;
   background-color: #2D61AD;
   color: #FFFFFF;
-  border: 2px solid #2D61AD;
+  border: 2px solid transparent;
   border-radius: 9999px;
   font-family: var(--font-family-base);
   font-size: 22px;
@@ -7079,7 +7079,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-detail-buy-now:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(248, 205, 212, 0.55);
 }
@@ -7570,7 +7570,7 @@ body.reviews-page main {
 .btn-submit-review {
   background-color: #295EAC;
   color: #FFFFFF;
-  border: 2px solid #295EAC;
+  border: 2px solid transparent;
   border-radius: 8px;
   padding: 14px 24px;
   font-family: var(--font-family-base);
@@ -7615,7 +7615,7 @@ body.reviews-page main {
 
 .btn-submit-review:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(248, 205, 212, 0.55);
 }
@@ -7849,8 +7849,8 @@ body.reviews-page main {
 }
 
 .btn-all-reviews-link:hover {
-  color: #FFFFFF;
-  border-color: #2D61AD;
+  color: #FFFFFF !important;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(45, 97, 173, 0.3);
 }
@@ -7871,7 +7871,7 @@ body.reviews-page main {
   gap: 10px;
   background-color: #2D61AD;
   color: #FFFFFF;
-  border: 2px solid #2D61AD;
+  border: 2px solid transparent;
   font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 700;
@@ -7912,7 +7912,7 @@ body.reviews-page main {
 
 .btn-reviews-cta:hover {
   color: #004691 !important;
-  border-color: #F8CDD4;
+  border-color: transparent !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(248, 205, 212, 0.55);
 }
