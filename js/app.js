@@ -1657,13 +1657,38 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'smoker-white': {
       id: 'smoker-white',
-      name: 'SMOKER WHITE',
+      name: 'SMOKED WHITE',
       category: 'Ring Donut',
       price: 29000,
       priceFormatted: '29.000 VNĐ',
       rating: '(84 Đánh giá)',
       img: 'assets/menu-sp-3.png',
-      thumbs: ['assets/menu-sp-3.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
+      thumbs: ['assets/menu-sp-3.png', 'assets/smoked-white-thumb-2.png', 'assets/smoked-white-thumb-3.png'],
+      desc: 'Hương vị socola trắng khói độc bản kết hợp hạt phỉ rang bùi béo, mùi thơm dịu nhẹ và vị ngậy êm dịu đặc trưng.',
+      features: [
+        { icon: 'assets/icon-cherry-donut.png', text: 'Socola trắng khói' },
+        { icon: 'assets/icon-milk-bottle.png', text: 'Hạt phỉ bùi béo' },
+        { icon: 'assets/icon-leaf.png', text: 'Không chất bảo quản' }
+      ],
+      ingredients: [
+        { icon: 'assets/icon-wheat.png', name: 'Bột mì' },
+        { icon: 'assets/icon-butter.png', name: 'Bơ' },
+        { icon: 'assets/icon-milk-bottle.png', name: 'Sữa' },
+        { icon: 'assets/icon-sugar-cube.png', name: 'Hạt phỉ' }
+      ],
+      flavor: 'Socola trắng khói - Bùi béo hạt phỉ',
+      badge: 'ĐẶC BIỆT',
+      isGiftBox: false
+    },
+    'smoked-white': {
+      id: 'smoked-white',
+      name: 'SMOKED WHITE',
+      category: 'Ring Donut',
+      price: 29000,
+      priceFormatted: '29.000 VNĐ',
+      rating: '(84 Đánh giá)',
+      img: 'assets/menu-sp-3.png',
+      thumbs: ['assets/menu-sp-3.png', 'assets/smoked-white-thumb-2.png', 'assets/smoked-white-thumb-3.png'],
       desc: 'Hương vị socola trắng khói độc bản kết hợp hạt phỉ rang bùi béo, mùi thơm dịu nhẹ và vị ngậy êm dịu đặc trưng.',
       features: [
         { icon: 'assets/icon-cherry-donut.png', text: 'Socola trắng khói' },
@@ -1688,7 +1713,7 @@ document.addEventListener('DOMContentLoaded', () => {
       priceFormatted: '30.000 VNĐ',
       rating: '(142 Đánh giá)',
       img: 'assets/menu-sp-4.png',
-      thumbs: ['assets/menu-sp-4.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-2.png'],
+      thumbs: ['assets/menu-sp-4.png', 'assets/red-velvet-thumb-2.png', 'assets/red-velvet-thumb-3.png'],
       desc: 'Sắc đỏ nhung quý phái kết hợp lớp phủ sốt kem phô mai chanh chua ngọt thanh tao cùng cốt bánh ẩm mịn chuẩn vị tráng miệng nước Mỹ.',
       features: [
         { icon: 'assets/icon-cherry-donut.png', text: 'Cream cheese thanh dịu' },
@@ -1713,7 +1738,7 @@ document.addEventListener('DOMContentLoaded', () => {
       priceFormatted: '30.000 VNĐ',
       rating: '(76 Đánh giá)',
       img: 'assets/menu-sp-5.png',
-      thumbs: ['assets/menu-sp-5.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
+      thumbs: ['assets/menu-sp-5.png', 'assets/dark-cookie-thumb-2.png', 'assets/dark-cookie-thumb-3.png'],
       desc: 'Socola đen 70% nguyên chất Bỉ kết hợp bánh quy đen nướng giòn rụm, mang lại vị đắng thanh và hậu vị ngọt sâu lắng.',
       features: [
         { icon: 'assets/icon-cherry-donut.png', text: 'Socola Bỉ 70%' },
@@ -1738,7 +1763,7 @@ document.addEventListener('DOMContentLoaded', () => {
       priceFormatted: '30.000 VNĐ',
       rating: '(110 Đánh giá)',
       img: 'assets/menu-sp-6.png',
-      thumbs: ['assets/menu-sp-6.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-3.png'],
+      thumbs: ['assets/menu-sp-6.png', 'assets/blackpink-thumb-2.png', 'assets/blackpink-thumb-3.png'],
       desc: 'Bản hòa ca tuyệt mỹ giữa socola đen đậm đà và socola dâu tây hồng pastel ngọt ngào, tạo nên hương vị bùng nổ và vẻ ngoài thời thượng.',
       features: [
         { icon: 'assets/icon-cherry-donut.png', text: 'Socola dâu tây' },
@@ -1763,7 +1788,7 @@ document.addEventListener('DOMContentLoaded', () => {
       priceFormatted: '30.000 VNĐ',
       rating: '(68 Đánh giá)',
       img: 'assets/menu-sp-7.png',
-      thumbs: ['assets/menu-sp-7.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
+      thumbs: ['assets/menu-sp-7.png', 'assets/fruit-pop-thumb-2.png', 'assets/fruit-pop-thumb-3.png'],
       desc: 'Lớp phủ socola ngũ sắc trái cây nhiệt đới sặc sỡ và cốm cereal giòn tan, mang lại cảm giác vui tươi, sảng khoái tức thì.',
       features: [
         { icon: 'assets/icon-cherry-donut.png', text: 'Trái cây nhiệt đới' },
@@ -1788,7 +1813,7 @@ document.addEventListener('DOMContentLoaded', () => {
       priceFormatted: '30.000 VNĐ',
       rating: '(89 Đánh giá)',
       img: 'assets/menu-sp-8.png',
-      thumbs: ['assets/menu-sp-8.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-2.png'],
+      thumbs: ['assets/menu-sp-8.png', 'assets/mango-tango-thumb-2.png', 'assets/mango-tango-thumb-3.png'],
       desc: 'Cốt bánh nhân kem xoài cát chín vàng ươm mọng nước, vị chua ngọt nhiệt đới hài hòa tràn đầy năng lượng tươi mới.',
       features: [
         { icon: 'assets/icon-cherry-donut.png', text: 'Xoài cát tươi' },
@@ -1813,7 +1838,7 @@ document.addEventListener('DOMContentLoaded', () => {
       priceFormatted: '36.000 VNĐ',
       rating: '(135 Đánh giá)',
       img: 'assets/menu-sp-9.png',
-      thumbs: ['assets/menu-sp-9.png', 'assets/detail-thumb-2.png', 'assets/detail-thumb-3.png'],
+      thumbs: ['assets/menu-sp-9.png', 'assets/very-berry-thumb-2.png', 'assets/very-berry-thumb-3.png'],
       desc: 'Nhân kem phúc bồn tử và việt quất tươi mọng nước tan chảy quyện cùng lớp phủ socola dâu hồng ngọt lịm khó cưỡng.',
       features: [
         { icon: 'assets/icon-cherry-donut.png', text: 'Phúc bồn tử tươi' },
