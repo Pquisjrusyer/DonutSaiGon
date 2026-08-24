@@ -6034,8 +6034,8 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .detail-main-img-box {
   flex: 1;
-  height: 500px;
-  background-color: #F8F5F0;
+  height: 540px;
+  background-color: rgba(245, 236, 231, 0.5);
   border: 3px solid #FFFFFF;
   border-radius: 20px;
   display: flex;
@@ -6043,17 +6043,27 @@ body.account-page:not(.dashboard-mode) donut-footer {
   justify-content: center;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
 .detail-showcase-img {
-  max-width: 90%;
-  max-height: 90%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.2s ease, transform var(--transition-normal);
+}
+
+.detail-showcase-img.is-png-cutout {
+  width: auto;
+  height: auto;
+  max-width: 85%;
+  max-height: 85%;
   object-fit: contain;
-  transition: transform var(--transition-normal);
 }
 
 .detail-showcase-img:hover {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .detail-thumbnails-list {
@@ -6075,6 +6085,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   align-items: center;
   justify-content: center;
   transition: all var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .thumbnail-item.active {
@@ -6091,6 +6102,13 @@ body.account-page:not(.dashboard-mode) donut-footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform var(--transition-fast);
+}
+
+.thumbnail-item:hover img {
+  transform: scale(1.06);
 }
 
 /* Commitments Bento Card (HDSD - Figma Node 2467:39370) */

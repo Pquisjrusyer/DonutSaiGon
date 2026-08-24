@@ -1870,8 +1870,10 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.toggle('active', idx === currentThumbIndex);
     });
     const targetSrc = thumbnailBtns[currentThumbIndex].getAttribute('data-img-src') || 'assets/menu-sp-1.png';
-    showcaseImg.style.opacity = '0.5';
+    showcaseImg.style.opacity = '0.4';
     showcaseImg.src = targetSrc;
+    const isCutout = targetSrc.includes('menu-sp-') || targetSrc.includes('cat-');
+    showcaseImg.classList.toggle('is-png-cutout', isCutout);
     setTimeout(() => {
       showcaseImg.style.opacity = '1';
     }, 150);
@@ -1955,6 +1957,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (showcaseImg) {
       showcaseImg.src = currentProductData.img;
       showcaseImg.alt = `Bánh ${currentProductData.name} Donut Saigon`;
+      const isCutout = currentProductData.img.includes('menu-sp-') || currentProductData.img.includes('cat-');
+      showcaseImg.classList.toggle('is-png-cutout', isCutout);
     }
 
     const thumbsContainer = document.querySelector('.detail-thumbnails-list');
