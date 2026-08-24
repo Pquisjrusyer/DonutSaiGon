@@ -2343,7 +2343,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   height: 52px;
   background-color: #2D61AD;
   color: #FFFFFF;
-  border: none;
+  border: 2px solid #2D61AD;
   border-radius: 9999px;
   font-family: var(--font-family-display);
   font-size: 20px;
@@ -2352,7 +2352,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, color 0.35s ease, border-color 0.35s ease;
   box-shadow: 0 4px 14px rgba(45, 97, 173, 0.25);
   margin-top: 6px;
 }
@@ -2361,7 +2361,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: #18345D;
+  background-color: #F8CDD4;
   border-radius: inherit;
   z-index: 0;
   transform: scaleX(0);
@@ -2374,14 +2374,18 @@ body.account-page:not(.dashboard-mode) donut-footer {
   transform: scaleX(1);
 }
 
-.btn-login-submit > * {
+.btn-login-submit span,
+.btn-login-submit * {
   position: relative;
   z-index: 1;
+  transition: color 0.35s ease;
 }
 
 .btn-login-submit:hover {
+  color: #004691 !important;
+  border-color: #F8CDD4;
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(45, 97, 173, 0.4);
+  box-shadow: 0 8px 22px rgba(248, 205, 212, 0.55);
 }
 
 .social-auth-divider {
@@ -2832,7 +2836,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   height: 50px;
   background-color: #2D61AD;
   color: #FFFFFF;
-  border: none;
+  border: 2px solid #2D61AD;
   border-radius: 8px;
   font-family: var(--font-family-display);
   font-size: 20px;
@@ -2841,7 +2845,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, color 0.35s ease, border-color 0.35s ease;
   box-shadow: 0 4px 14px rgba(45, 97, 173, 0.25);
   margin-top: 4px;
 }
@@ -2850,7 +2854,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: #18345D;
+  background-color: #F8CDD4;
   border-radius: inherit;
   z-index: 0;
   transform: scaleX(0);
@@ -2863,14 +2867,18 @@ body.account-page:not(.dashboard-mode) donut-footer {
   transform: scaleX(1);
 }
 
-.btn-signup-submit > * {
+.btn-signup-submit span,
+.btn-signup-submit * {
   position: relative;
   z-index: 1;
+  transition: color 0.35s ease;
 }
 
 .btn-signup-submit:hover {
+  color: #004691 !important;
+  border-color: #F8CDD4;
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(45, 97, 173, 0.4);
+  box-shadow: 0 8px 22px rgba(248, 205, 212, 0.55);
 }
 
 .signup-login-redirect {
@@ -3152,7 +3160,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   height: 56px;
   background-color: #2D61AD;
   color: #FFFFFF;
-  border: none;
+  border: 2px solid #2D61AD;
   border-radius: 8px;
   font-family: var(--font-family-base);
   font-size: 16px;
@@ -3165,7 +3173,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, color 0.35s ease, border-color 0.35s ease;
   box-shadow: 0 4px 14px rgba(45, 97, 173, 0.25);
 }
 
@@ -3173,7 +3181,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: #18345D;
+  background-color: #F8CDD4;
   border-radius: inherit;
   z-index: 0;
   transform: scaleX(0);
@@ -3186,14 +3194,22 @@ body.account-page:not(.dashboard-mode) donut-footer {
   transform: scaleX(1);
 }
 
-.btn-profile-submit > * {
+.btn-profile-submit span,
+.btn-profile-submit * {
   position: relative;
   z-index: 1;
+  transition: color 0.35s ease, transform var(--transition-fast);
 }
 
 .btn-profile-submit:hover {
+  color: #004691 !important;
+  border-color: #F8CDD4;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(45, 97, 173, 0.4);
+  box-shadow: 0 8px 24px rgba(248, 205, 212, 0.55);
+}
+
+.btn-profile-submit:hover span {
+  color: #004691 !important;
 }
 
 .submit-arrow {
@@ -3203,6 +3219,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
 
 .btn-profile-submit:hover .submit-arrow {
   transform: translateX(6px);
+  color: #004691 !important;
 }
 
 @media (max-width: 860px) {
@@ -6651,7 +6668,7 @@ body.account-page:not(.dashboard-mode) donut-footer {
   border-radius: 9999px;
   font-family: var(--font-family-base);
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   color: #2D61AD;
   background-color: transparent;
   cursor: pointer;
@@ -6682,34 +6699,40 @@ body.account-page:not(.dashboard-mode) donut-footer {
   transform: scaleX(1);
 }
 
-.btn-detail-add-cart > * {
+.btn-detail-add-cart span,
+.btn-detail-add-cart img,
+.btn-detail-add-cart svg {
   position: relative;
   z-index: 1;
-  transition: color 0.35s ease, filter 0.35s ease, transform var(--transition-fast);
+  transition: color 0.35s ease, filter 0.35s ease, transform 0.35s ease;
 }
 
 .btn-detail-add-cart:hover {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   border-color: #004691;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 70, 145, 0.35);
 }
 
+.btn-detail-add-cart:hover span {
+  color: #FFFFFF !important;
+}
+
 .btn-detail-add-cart:hover img,
 .btn-detail-add-cart:hover svg {
   filter: brightness(0) invert(1);
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .btn-detail-buy-now {
   height: 64px;
   background-color: #2D61AD;
   color: #FFFFFF;
-  border: none;
+  border: 2px solid #2D61AD;
   border-radius: 9999px;
   font-family: var(--font-family-base);
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -6719,14 +6742,14 @@ body.account-page:not(.dashboard-mode) donut-footer {
   isolation: isolate;
   text-align: center;
   box-shadow: 0 4px 14px rgba(45, 97, 173, 0.25);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, color 0.35s ease, border-color 0.35s ease;
 }
 
 .btn-detail-buy-now::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: #18345D;
+  background-color: #F8CDD4;
   border-radius: inherit;
   z-index: 0;
   transform: scaleX(0);
@@ -6739,14 +6762,22 @@ body.account-page:not(.dashboard-mode) donut-footer {
   transform: scaleX(1);
 }
 
-.btn-detail-buy-now > * {
+.btn-detail-buy-now span,
+.btn-detail-buy-now * {
   position: relative;
   z-index: 1;
+  transition: color 0.35s ease;
 }
 
 .btn-detail-buy-now:hover {
+  color: #004691 !important;
+  border-color: #F8CDD4;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(45, 97, 173, 0.4);
+  box-shadow: 0 8px 24px rgba(248, 205, 212, 0.55);
+}
+
+.btn-detail-buy-now:hover span {
+  color: #004691 !important;
 }
 
 .delivery-guarantee-note {
@@ -7231,12 +7262,12 @@ body.reviews-page main {
 .btn-submit-review {
   background-color: #295EAC;
   color: #FFFFFF;
-  border: none;
+  border: 2px solid #295EAC;
   border-radius: 8px;
   padding: 14px 24px;
   font-family: var(--font-family-base);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -7245,7 +7276,7 @@ body.reviews-page main {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, color 0.35s ease, border-color 0.35s ease;
   box-shadow: 0 4px 12px rgba(41, 94, 172, 0.2);
 }
 
@@ -7253,7 +7284,7 @@ body.reviews-page main {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: #18345D;
+  background-color: #F8CDD4;
   border-radius: inherit;
   z-index: 0;
   transform: scaleX(0);
@@ -7266,20 +7297,29 @@ body.reviews-page main {
   transform: scaleX(1);
 }
 
-.btn-submit-review > * {
+.btn-submit-review span,
+.btn-submit-review img,
+.btn-submit-review svg {
   position: relative;
   z-index: 1;
-  transition: transform var(--transition-fast);
+  transition: color 0.35s ease, filter 0.35s ease, transform var(--transition-fast);
 }
 
 .btn-submit-review:hover {
+  color: #004691 !important;
+  border-color: #F8CDD4;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(41, 94, 172, 0.35);
+  box-shadow: 0 6px 18px rgba(248, 205, 212, 0.55);
+}
+
+.btn-submit-review:hover span {
+  color: #004691 !important;
 }
 
 .btn-submit-review:hover img,
 .btn-submit-review:hover svg {
   transform: translateX(4px);
+  filter: brightness(0) saturate(100%) invert(18%) sepia(85%) saturate(2222%) hue-rotate(200deg) brightness(92%) contrast(102%);
 }
 
 /* Right Testimonials Display */
@@ -7523,6 +7563,7 @@ body.reviews-page main {
   gap: 10px;
   background-color: #2D61AD;
   color: #FFFFFF;
+  border: 2px solid #2D61AD;
   font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 700;
@@ -7532,7 +7573,7 @@ body.reviews-page main {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, color 0.35s ease, border-color 0.35s ease;
   box-shadow: 0 4px 14px rgba(45, 97, 173, 0.25);
 }
 
@@ -7540,7 +7581,7 @@ body.reviews-page main {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: #18345D;
+  background-color: #F8CDD4;
   border-radius: inherit;
   z-index: 0;
   transform: scaleX(0);
@@ -7553,20 +7594,29 @@ body.reviews-page main {
   transform: scaleX(1);
 }
 
-.btn-reviews-cta > * {
+.btn-reviews-cta span,
+.btn-reviews-cta img,
+.btn-reviews-cta svg {
   position: relative;
   z-index: 1;
-  transition: transform var(--transition-fast);
+  transition: color 0.35s ease, filter 0.35s ease, transform var(--transition-fast);
 }
 
 .btn-reviews-cta:hover {
+  color: #004691 !important;
+  border-color: #F8CDD4;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(45, 97, 173, 0.4);
+  box-shadow: 0 8px 24px rgba(248, 205, 212, 0.55);
+}
+
+.btn-reviews-cta:hover span {
+  color: #004691 !important;
 }
 
 .btn-reviews-cta:hover img,
 .btn-reviews-cta:hover svg {
   transform: translateX(4px);
+  filter: brightness(0) saturate(100%) invert(18%) sepia(85%) saturate(2222%) hue-rotate(200deg) brightness(92%) contrast(102%);
 }
 
 @media (max-width: 992px) {
