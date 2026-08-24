@@ -1638,7 +1638,7 @@ document.addEventListener('DOMContentLoaded', () => {
       priceFormatted: '25.000 VNĐ',
       rating: '(96 Đánh giá)',
       img: 'assets/menu-sp-2.png',
-      thumbs: ['assets/menu-sp-2.png', 'assets/detail-thumb-1.png', 'assets/detail-thumb-3.png'],
+      thumbs: ['assets/menu-sp-2.png', 'assets/oreomallow-thumb-2.png', 'assets/oreomallow-thumb-3.png'],
       desc: 'Bánh donut phủ kem marshmallow dẻo quánh, phủ vụn bánh quy Oreo socola đen giòn rụm tạo nên cấu trúc tương phản giòn dẻo vô cùng thích thú.',
       features: [
         { icon: 'assets/icon-cherry-donut.png', text: 'Marshmallow dẻo thơm' },
