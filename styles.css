@@ -1389,7 +1389,7 @@ donut-footer {
   inset: 0;
   background-color: #F8CDD4;
   border-radius: inherit;
-  z-index: 0;
+  z-index: 1;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
@@ -1403,11 +1403,13 @@ donut-footer {
 .btn-primary-lg span,
 .btn-primary-lg * {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   transition: color 0.35s ease;
 }
 
-.btn-primary-lg:hover {
+.btn-primary-lg:hover,
+.btn-primary-lg:hover span,
+.btn-primary-lg:hover * {
   color: #004691 !important;
   border-color: transparent !important;
   transform: translateY(-2px);
@@ -1437,7 +1439,7 @@ donut-footer {
   inset: 0;
   background-color: var(--primary);
   border-radius: inherit;
-  z-index: 0;
+  z-index: 1;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
@@ -1451,11 +1453,13 @@ donut-footer {
 .btn-outline-lg span,
 .btn-outline-lg * {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   transition: color 0.35s ease;
 }
 
-.btn-outline-lg:hover {
+.btn-outline-lg:hover,
+.btn-outline-lg:hover span,
+.btn-outline-lg:hover * {
   color: #FFFFFF !important;
   border-color: transparent !important;
   transform: translateY(-2px);
@@ -1705,7 +1709,7 @@ donut-footer {
   inset: 0;
   background-color: #18345D;
   border-radius: inherit;
-  z-index: 0;
+  z-index: 1;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
@@ -1719,11 +1723,13 @@ donut-footer {
 .btn-cta-white span,
 .btn-cta-white * {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   transition: color 0.35s ease;
 }
 
-.btn-cta-white:hover {
+.btn-cta-white:hover,
+.btn-cta-white:hover span,
+.btn-cta-white:hover * {
   color: #FFFFFF !important;
   border-color: transparent !important;
   transform: translateY(-2px);
@@ -1753,7 +1759,7 @@ donut-footer {
   inset: 0;
   background-color: #FFFFFF;
   border-radius: inherit;
-  z-index: 0;
+  z-index: 1;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
@@ -1767,11 +1773,13 @@ donut-footer {
 .btn-cta-outline span,
 .btn-cta-outline * {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   transition: color 0.35s ease;
 }
 
-.btn-cta-outline:hover {
+.btn-cta-outline:hover,
+.btn-cta-outline:hover span,
+.btn-cta-outline:hover * {
   color: #004691 !important;
   border-color: transparent !important;
   transform: translateY(-2px);
