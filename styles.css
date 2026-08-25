@@ -787,13 +787,22 @@ donut-footer {
 }
 
 .btn-pink::before {
-  background-color: var(--primary);
+  background-color: #FFFFFF;
 }
 
 .btn-pink:hover {
-  color: #FFFFFF;
+  color: #F2A1AE !important;
+  border-color: #F2A1AE !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(45, 97, 173, 0.35);
+  box-shadow: 0 6px 18px rgba(242, 161, 174, 0.4);
+}
+
+.btn-pink:hover .btn-text {
+  color: #F2A1AE !important;
+}
+
+.btn-pink:hover .arrow-svg {
+  filter: brightness(0) saturate(100%) invert(75%) sepia(21%) saturate(1478%) hue-rotate(305deg) brightness(97%) contrast(96%);
 }
 
 .btn-white,
@@ -7850,7 +7859,7 @@ body.reviews-page main {
   transform: scaleX(1);
 }
 
-.btn-all-reviews-link > * {
+.btn-all-reviews-link>* {
   position: relative;
   z-index: 1;
   transition: color 0.35s ease, transform var(--transition-fast);
